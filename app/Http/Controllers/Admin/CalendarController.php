@@ -13,8 +13,9 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $calendar = Calendar::all();
-        return view('admin.calendar.list');
+        $title="Calendar";
+        $calendar = Calendar::paginate(2);
+        return view('admin.calendar.list',compact('title','calendar'));
     }
 
     /**
@@ -22,7 +23,8 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        //
+        $title="Add Calendar";
+        return view('admin.calendar.add',compact('title'));
     }
 
     /**
@@ -30,7 +32,18 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'eventName'=>'required',
+            'startDate'=>'required',
+            'endDate'=>'required',
+            'location'=>'required',
+            'committeeId'=>'required'
+        ]);
+
+        $calendar = new Calendar;
+        $calendar->create($request->all());
+        return redirect('/admin/calendar')->with('success','Operation Successfull');
+
     }
 
     /**
