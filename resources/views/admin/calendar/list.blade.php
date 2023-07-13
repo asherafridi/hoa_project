@@ -41,9 +41,13 @@
                       <a class="dropdown-item" href="{{route('admin.calendar.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >
-                      <a class="dropdown-item" href="javascript:void(0);"
-                        ><i class="bx bx-trash me-1"></i> Delete</a
+                      <form method="POST" action="{{route('admin.calendar.destroy',$item->id)}}">
+                        @csrf
+                        @method('DELETE')
+                      <button class="dropdown-item" type="submit"
+                        ><i class="bx bx-trash me-1"></i> Delete</button
                       >
+                      </form>
                     </div>
                   </div>
                 </td>

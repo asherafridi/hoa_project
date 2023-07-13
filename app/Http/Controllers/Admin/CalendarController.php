@@ -14,7 +14,7 @@ class CalendarController extends Controller
     public function index()
     {
         $title="Calendar";
-        $calendar = Calendar::paginate(2);
+        $calendar = Calendar::paginate(10);
         return view('admin.calendar.list',compact('title','calendar'));
     }
 
@@ -59,7 +59,9 @@ class CalendarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $title="Edit Calendar";
+        $calendar=Calendar::find($id);
+        return view('admin.calendar.edit',compact('title','calendar'));
     }
 
     /**
@@ -67,7 +69,17 @@ class CalendarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated=$request->validate([
+            'eventName'=>'required',
+            'startDate'=>'required',
+            'endDate'=>'required',
+            'location'=>'required',
+            'committeeId'=>'required'
+        ]);
+
+        $calendar = Calendar::find($id);
+        $calendar->update($request->all());
+        return redirect('/admin/calendar')->with('success','Operation Successfull');
     }
 
     /**
@@ -75,6 +87,8 @@ class CalendarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product=Calendar::find($id);
+        $product->delete();
+        return redirect('/admin/calendar')->with('success','Operation Successfull');
     }
 }
