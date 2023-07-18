@@ -59,7 +59,9 @@
                         <div class="col-md-6">
                             <label class="form-label">Committee</label>
                             <select class="form-control" name="committeeId" required>
-                                <option value="1">Committee 1</option>
+                                @foreach ($committee as $comm)
+                                <option value="{{$comm->id}}">{{$comm->name}}</option>
+                                @endforeach
                             </select>
                             @error('committeeId')
                                 <div class="form-text text-danger">

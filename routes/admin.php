@@ -2,6 +2,8 @@
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\CommitteeController;
+use App\Http\Controllers\Admin\VendorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,7 +20,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('profile/password/update',[AuthenticatedSessionController::class,'profilePasswordUpdate'])->name('profile.password_update');
     });
     
-    Route::get('dashboard',[HomeController::class,'index'])->name('dashboard');
-    Route::resource('calendar', CalendarController::class);
+    Route::get('dashboard',[HomeController::class,'index'])->name('dashboard')->middleware('admin.auth');
+    Route::resource('calendar', CalendarController::class)->middleware('admin.auth');
+    Route::resource('committee', CommitteeController::class)->middleware('admin.auth');
+    Route::resource('vendor', VendorController::class)->middleware('admin.auth');
+    
 
 });

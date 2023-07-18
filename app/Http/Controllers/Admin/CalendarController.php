@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Calendar;
+use App\Models\Committee;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
@@ -24,7 +25,8 @@ class CalendarController extends Controller
     public function create()
     {
         $title="Add Calendar";
-        return view('admin.calendar.add',compact('title'));
+        $committee=Committee::all();
+        return view('admin.calendar.add',compact('title','committee'));
     }
 
     /**
@@ -51,7 +53,10 @@ class CalendarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $title="View Calendar";
+        $calendar=Calendar::find($id);
+        $committee=Committee::find($calendar->committeeId);
+        return view('admin.calendar.detail',compact('title','calendar','committee'));
     }
 
     /**
@@ -61,7 +66,9 @@ class CalendarController extends Controller
     {
         $title="Edit Calendar";
         $calendar=Calendar::find($id);
-        return view('admin.calendar.edit',compact('title','calendar'));
+        
+        $committee=Committee::all();
+        return view('admin.calendar.edit',compact('title','calendar','committee'));
     }
 
     /**

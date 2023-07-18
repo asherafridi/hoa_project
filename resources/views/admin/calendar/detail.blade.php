@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Calendar /</span> Edit</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Calendar /</span> View</h4>
 
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -13,8 +13,7 @@
 
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.calendar.update',$calendar->id) }}">
-                    @csrf
-                    @method('PUT')
+                    
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Event Name</label>
@@ -60,11 +59,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Committee</label>
                             <select class="form-control" name="committeeId" required>
-                                @foreach ($committee as $comm)
-                                <option value="{{$comm->id}}" @if ($comm->id==$calendar->committeeId)
-                                    Selected
-                                @endif>{{$comm->name}}  </option>
-                                @endforeach
+                                <option value="1">Committee 1</option>
                             </select>
                             @error('committeeId')
                                 <div class="form-text text-danger">
@@ -83,9 +78,6 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row px-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

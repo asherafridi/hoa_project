@@ -4,47 +4,45 @@
 @section('content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Calendar /</span> List</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Vendor /</span> List</h4>
 
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5>{{$title}}<h5>
-            <a href="{{route('admin.calendar.create')}}" class="btn btn-primary">Add {{$title}}</a>
+            <a href="{{route('admin.vendor.create')}}" class="btn btn-primary">Add {{$title}}</a>
           </div>
         
         <div class="table-responsive text-nowrap">
           <table class="table">
             <thead>
               <tr>
-                <th>Event Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Location</th>
-                <th>Committee</th>
+                <th>Name</th>
+                <th>Contact Person</th>
+                <th>Contact Number</th>
+                <th>Service Description</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              @forelse ($calendar as $item)
+              @forelse ($vendor as $item)
               <tr>
-                <td>{{$item->eventName}}</td>
-                <td>{{$item->startDate}}</td>
-                <td>{{$item->endDate}}</td>
-                <td>{{$item->location}}</td>
-                <td>{{$item->committee() ? $item->committee()->name : 'No Committee'}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->contactPerson}}</td>
+                <td>{{$item->contactNumber}}</td>
+                <td>{{$item->serviceDescription}}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{route('admin.calendar.show',$item->id)}}"
+                      <a class="dropdown-item" href="{{route('admin.vendor.show',$item->id)}}"
                         ><i class="bx bx-menu me-1"></i> View</a
                       >
-                      <a class="dropdown-item" href="{{route('admin.calendar.edit',$item->id)}}"
+                      <a class="dropdown-item" href="{{route('admin.vendor.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >
-                      <form method="POST" action="{{route('admin.calendar.destroy',$item->id)}}">
+                      <form method="POST" action="{{route('admin.vendor.destroy',$item->id)}}">
                         @csrf
                         @method('DELETE')
                       <button class="dropdown-item" type="submit"
@@ -66,7 +64,7 @@
           
           <div class="d-flex justify-content-between mt-4 mb-2 px-3 w-100 ">
 
-            {{$calendar->links()}}
+            {{$vendor->links()}}
           </div>
         </div>
       </div>
