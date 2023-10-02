@@ -16,7 +16,7 @@
                 <span class="app-brand-logo demo">
                   <img src="" />
                 </span>
-                <span class=" demo text-body fw-bolder">APP NAME</span>
+                <span class=" demo text-body fw-bolder">{{settings('website_name')}}</span>
               </a>
             </div>
             <!-- /Logo -->  
@@ -56,12 +56,12 @@
               <button class="btn btn-primary d-grid w-100">Sign up</button>
             </form>
 
-            <p class="text-center">
+            {{-- <p class="text-center">
               <span>Already have an account?</span>
               <a href="auth-login-basic.html">
                 <span>Sign in instead</span>
               </a>
-            </p>
+            </p> --}}
           </div>
         </div>
         <!-- Register Card -->

@@ -50,7 +50,10 @@ class VendorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        $title="View Vendor";
+        $vendor=Vendor::find($id);
+        return view('admin.vendor.detail',compact('title','vendor'));
     }
 
     /**
@@ -58,7 +61,9 @@ class VendorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $title="Edit Vendor";
+        $vendor=Vendor::find($id);
+        return view('admin.vendor.edit',compact('title','vendor'));
     }
 
     /**
@@ -66,7 +71,17 @@ class VendorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $validated=$request->validate([
+            'name'=>'required',
+            'contactPerson'=>'required',
+            'contactNumber'=>'required',
+            'serviceDescription'=>'required',
+        ]);
+
+        $vendor = Vendor::find($id);
+        $vendor->update($request->all());
+        return redirect('/admin/vendor')->with('success','Operation Successfull');
     }
 
     /**
@@ -74,6 +89,9 @@ class VendorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $vendor=Vendor::find($id);
+        $vendor->delete();
+        return redirect('/admin/vendor')->with('success','Operation Successfull');
     }
 }

@@ -12,15 +12,15 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.calendar.update',$calendar->id) }}">
+                <form method="POST" action="{{ route('admin.vendor.update',$vendor->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="row mb-4">
                         <div class="col-md-4">
-                            <label class="form-label">Event Name</label>
-                            <input type="text" class="form-control" required name="eventName" value="{{$calendar->eventName}}" placeholder="Arrangement"
-                                autofocus />
-                            @error('eventName')
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" required name="name" 
+                                autofocus value="{{$vendor->name}}" />
+                            @error('name')
                                 <div class="form-text text-danger">
                                     {{$message}}
                                 </div>
@@ -28,9 +28,9 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">Start Date</label>
-                            <input class="form-control" type="datetime-local" required name="startDate" value="{{$calendar->startDate}}" />
-                            @error('startDate')
+                            <label class="form-label">Contact Person</label>
+                            <input class="form-control" type="text" required name="contactPerson" value="{{$vendor->contactPerson}}"  />
+                            @error('contactPerson')
                                 <div class="form-text text-danger">
                                     {{$message}}
                                 </div>
@@ -38,35 +38,9 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">End Date</label>
-                            <input class="form-control" type="datetime-local" required name="endDate"  value="{{$calendar->endDate}}" />
-                            @error('endDate')
-                                <div class="form-text text-danger">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label class="form-label">Location</label>
-                            <input type="text" class="form-control" name="location" required  value="{{$calendar->location}}" placeholder="St. 1000 , Newyork etc" />
-                            @error('location')
-                                <div class="form-text text-danger">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Committee</label>
-                            <select class="form-control" name="committeeId" required>
-                                @foreach ($committee as $comm)
-                                <option value="{{$comm->id}}" @if ($comm->id==$calendar->committeeId)
-                                    Selected
-                                @endif>{{$comm->name}}  </option>
-                                @endforeach
-                            </select>
-                            @error('committeeId')
+                            <label class="form-label">Contact Number</label>
+                            <input class="form-control" type="text" required name="contactNumber" value="{{$vendor->contactNumber}}" />
+                            @error('contactNumber')
                                 <div class="form-text text-danger">
                                     {{$message}}
                                 </div>
@@ -75,9 +49,9 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Event Description</label>
-                            <textarea type="text" name="description" class="form-control"  value="" placeholder="Description..." rows="3">{{$calendar->description}}</textarea>
-                            @error('description')
+                            <label class="form-label">Service Description</label>
+                            <textarea type="text" name="serviceDescription" value="{{$vendor->serviceDescription}}" class="form-control" placeholder="Description..." rows="3">{{$vendor->serviceDescription}}</textarea>
+                            @error('serviceDescription')
                                 <div class="form-text text-danger">
                                     {{$message}}
                                 </div>

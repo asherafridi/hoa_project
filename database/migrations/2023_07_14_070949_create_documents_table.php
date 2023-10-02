@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->mediumText('description');
+            $table->mediumText('file')->nullable();
             $table->uuid('adminId');
             $table->timestamps();
         });

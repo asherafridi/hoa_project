@@ -25,7 +25,7 @@ class CalendarController extends Controller
     public function create()
     {
         $title="Add Calendar";
-        $committee=Committee::all();
+        $committee=Calendar::all();
         return view('admin.calendar.add',compact('title','committee'));
     }
 

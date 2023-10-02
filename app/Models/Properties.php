@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Properties extends Model
 {
     use HasFactory;
+    protected $fillable = ['type', 'address', 'userId'];
+    function user(){
+        $user = User::find($this->userId);
+        return $user;
+    }
 }

@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>{{env('APP_NAME')}} - @yield('title')</title>
+    <title>{{settings('website_name')}} - @yield('title')</title>
 
     <meta name="description" content="" />
 

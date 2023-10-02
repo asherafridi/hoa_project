@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class WorkOrder extends Model
 {
     use HasFactory;
+    protected $fillable = [ 'description','date','vendorId', 'adminId'];
+    function vendor(){
+        $vendor = Vendor::find($this->vendorId);
+        return $vendor;
+    }
 }
