@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('board_members', function (Blueprint $table) {
+        Schema::create('vendor_type', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName', 30);
-            $table->string('lastName', 30);
-            $table->string('email', 50);
-            $table->string('phoneNumber', 20);
-            $table->string('Position', 50);
-
-            $table->mediumText('description');
-            $table->uuid('adminId');
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('board_members');
+        Schema::dropIfExists('vendor_type');
     }
 };

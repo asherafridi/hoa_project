@@ -16,35 +16,62 @@
                     @csrf
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label class="form-label">User</label>
-                            <select class="form-control" name="userId" required>
-                                @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" required name="name" placeholder="Block C-3"
+                                autofocus />
+                            @error('name')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Property Type</label>
+                            <select class="form-control" required name="propertyType">
+                                <option value="">Select Type</option>
+                                @foreach ($type as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
-                            @error('userId')
+                            @error('userType')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Type</label>
-                            <input type="text" class="form-control" name="type" required placeholder="Home" />
-                            @error('type')
-                                <div class="form-text text-danger">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
-
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                            <textarea type="text" name="address" class="form-control" placeholder="Address..." rows="2"></textarea>
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" required name="address" placeholder="Block C-3"
+                                autofocus />
                             @error('address')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Unit No.</label>
+                            <input type="text" class="form-control" required name="unit_no" placeholder="No"
+                                autofocus />
+                            @error('unit_no')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" required name="status">
+                                <option value="">Select Type</option>
+                                @foreach (propertyStatus() as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @error('status')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>

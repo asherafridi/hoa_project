@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Board Member /</span> Edit</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Board Member /</span> View</h4>
 
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -12,9 +12,8 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.board-member.update',$boardmember->id) }}">
-                    @csrf
-                    @method('PUT')
+                <form method="POST">
+                    
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">First Name</label>
@@ -79,9 +78,6 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row px-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

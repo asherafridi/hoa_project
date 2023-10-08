@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Transaction extends Model
+{
+    use HasFactory, SoftDeletes;
+    protected $table='transaction';
+    protected $fillable=['userId','transactionType','transactionDate','amount','status','description'];
+    function user(){
+        $user = User::find($this->userId);
+        return $user;
+    }
+    function type(){
+        $user = TransactionType::find($this->transactionType);
+        return $user;
+    }
+}

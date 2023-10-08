@@ -17,8 +17,10 @@
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Vendor Type</th>
                 <th>Contact Person</th>
                 <th>Contact Number</th>
+                <th>Contact Email</th>
                 <th>Service Description</th>
                 <th>Action</th>
               </tr>
@@ -27,8 +29,10 @@
               @forelse ($vendor as $item)
               <tr>
                 <td>{{$item->name}}</td>
+                <td>{{$item->type() ? $item->type()->name : 'type not Found'}}</td>
                 <td>{{$item->contactPerson}}</td>
                 <td>{{$item->contactNumber}}</td>
+                <td>{{$item->contactEmail}}</td>
                 <td>{{$item->serviceDescription}}</td>
                 <td>
                   <div class="dropdown">

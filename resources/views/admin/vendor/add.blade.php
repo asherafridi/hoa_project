@@ -15,11 +15,39 @@
                 <form method="POST" action="{{ route('admin.vendor.store') }}">
                     @csrf
                     <div class="row mb-4">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" required name="name" 
                                 autofocus />
                             @error('name')
+                                <div class="form-text text-danger">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Vendor Type</label>
+                            <select class="form-control" required name="vendorType">
+                                <option value="">Select Type</option>
+                                @foreach ($type as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('userType')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Email</label>
+                            <input type="text" class="form-control" required name="contactEmail" 
+                                autofocus />
+                            @error('contactEmail')
                                 <div class="form-text text-danger">
                                     {{$message}}
                                 </div>

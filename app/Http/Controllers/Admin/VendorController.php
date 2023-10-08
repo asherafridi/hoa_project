@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Vendor;
+use App\Models\VendorType;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -25,7 +26,8 @@ class VendorController extends Controller
     public function create()
     {
         $title="Add Vendor";
-        return view('admin.vendor.add',compact('title'));
+        $type=VendorType::get();
+        return view('admin.vendor.add',compact('title','type'));
     }
 
     /**
@@ -39,7 +41,6 @@ class VendorController extends Controller
             'contactNumber'=>'required',
             'serviceDescription'=>'required',
         ]);
-        $request['adminId']=auth()->guard('admin')->user()->id;
         $vendor = new Vendor;
         $vendor->create($request->all());
         return redirect('/admin/vendor')->with('success','Operation Successfull');
@@ -53,7 +54,8 @@ class VendorController extends Controller
         
         $title="View Vendor";
         $vendor=Vendor::find($id);
-        return view('admin.vendor.detail',compact('title','vendor'));
+        $type=VendorType::get();
+        return view('admin.vendor.detail',compact('title','vendor','type'));
     }
 
     /**
@@ -63,7 +65,8 @@ class VendorController extends Controller
     {
         $title="Edit Vendor";
         $vendor=Vendor::find($id);
-        return view('admin.vendor.edit',compact('title','vendor'));
+        $types=VendorType::get();
+        return view('admin.vendor.edit',compact('title','vendor','types'));
     }
 
     /**

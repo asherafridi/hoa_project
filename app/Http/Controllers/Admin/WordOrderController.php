@@ -3,19 +3,39 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Properties;
+use App\Models\User;
 use App\Models\Vendor;
 use App\Models\WorkOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WordOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title="Work Order";
-        $workOrder = WorkOrder::paginate(10);
+        
+        $workOrderQuery = WorkOrder::query();
+
+    if ($request->priority !== null) {
+        $workOrderQuery->where('priority', $request->priority);
+    }
+    if ($request->status !== null) {
+        $workOrderQuery->where('status', $request->status);
+    }
+    if ($request->date !== null) {
+        $date = explode(' to ', $request->date);
+        $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
+    $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
+        
+        $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
+    }
+
+    $workOrder = $workOrderQuery->paginate(10);
         return view('admin.work-order.list',compact('title','workOrder'));
     }
 
@@ -26,7 +46,9 @@ class WordOrderController extends Controller
     {
         $title="Add Work Order";
         $vendor=Vendor::all();
-        return view('admin.work-order.add',compact('title','vendor'));
+        $property=Properties::all();
+        $members=User::all();
+        return view('admin.work-order.add',compact('title','vendor','property','members'));
     }
 
     /**
@@ -34,8 +56,18 @@ class WordOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $workOrder = new WorkOrder;
-        $request['adminId']=auth()->guard('admin')->user()->id;
+        $request->validate([
+        'invoice' => 'file|mimes:pdf,docx|max:2048',
+        ]);
+        $workOrder = new WorkOrder;if ($request->hasFile('invoice')) {
+            $file = $request->file('invoice');
+            if ($file->isValid()) {
+                $path = $file->store('uploads/invoices/');
+                $request->merge(['invoice' => $path]);
+            } else {
+                return redirect()->back()->with('error', 'Failed to upload the invoice file.');
+            }
+        }
         $workOrder->create($request->all());
         return redirect('/admin/work-order')->with('success','Operation Successfull');
     }
@@ -45,7 +77,13 @@ class WordOrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $title="View Work Order";
+        $workOrder=WorkOrder::find($id);
+        
+        $vendor=Vendor::all();
+        $properties=Properties::all();
+        $members=User::all();
+        return view('admin.work-order.detail',compact('title','workOrder','properties','members','vendor'));
     }
 
     /**
@@ -57,7 +95,9 @@ class WordOrderController extends Controller
         $workOrder=WorkOrder::find($id);
         
         $vendor=Vendor::all();
-        return view('admin.work-order.edit',compact('title','workOrder','vendor'));
+        $properties=Properties::all();
+        $members=User::all();
+        return view('admin.work-order.edit',compact('title','workOrder','properties','members','vendor'));
     }
 
     /**
@@ -65,9 +105,28 @@ class WordOrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $workOrder = WorkOrder::find($id);
-        $workOrder->update($request->all());
-        return redirect('/admin/work-order')->with('success','Operation Successfull');
+        
+    $workOrder = WorkOrder::findOrFail($id);
+
+    // Handle file upload
+    if ($request->hasFile('invoice')) {
+        $file = $request->file('invoice');
+        if ($file->isValid()) {
+            // Delete the old invoice file if it exists
+            if ($workOrder->invoice) {
+                Storage::delete($workOrder->invoice);
+            }
+
+            $path = $file->store('uploads/invoices/');
+            $request->merge(['invoice' => $path]);
+        } else {
+            return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
+        }
+    }
+
+    $workOrder->update($request->all());
+
+    return redirect('/admin/work-order')->with('success', 'Operation successful');
     }
 
     /**

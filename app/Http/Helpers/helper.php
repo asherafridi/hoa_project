@@ -71,3 +71,20 @@ function documents(){
 function contacts(){
     return array("Email","Phone","Address","Address1");
 }
+
+function propertyStatus(){
+    return array('Owned','Rented','Vacant','Under Construction','For Sale','Other');
+}
+
+function priority_level(){
+    return array('High Priority','Medium Priority','Low Priority','Routine Maintenance','Scheduled/Planned','Deffered','No Priority/Unassigned','Emergency','Non-Emergency','On-Hold','Scheduled Maintenance','Customer-Requested');
+}
+
+function workOrder_Status(){
+    return array('New','Assigned','In Progress','On Hold','Completed','Canceled','Reopened'
+                ,'Overdue','Scheduled','Pending Approval','In Review','Customer-Requested');
+}
+
+function transactionStatus(){
+    return array('Paid','Unpaid');
+}

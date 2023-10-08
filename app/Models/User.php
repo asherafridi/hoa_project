@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
         'email',
         'password',
+        'phone',
+        'userType',
+        'propertyId',
+        'balance',
     ];
 
     /**
@@ -42,4 +47,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    function type(){
+        $user = UserType::withTrashed()->find($this->userType);
+        return $user;
+    }
+    function property(){
+        $user = Properties::withTrashed()->find($this->propertyId);
+        return $user;
+    }
+
+    function fullName(){
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }

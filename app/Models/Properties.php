@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Properties extends Model
 {
-    use HasFactory;
-    protected $fillable = ['type', 'address', 'userId'];
-    function user(){
-        $user = User::find($this->userId);
+    use HasFactory, SoftDeletes;
+    protected $fillable = ['name','propertyType', 'address', 'unit_no','status'];
+    function type(){
+        $user = PropertyType::find($this->propertyType);
         return $user;
     }
 }

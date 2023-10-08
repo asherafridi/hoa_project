@@ -22,15 +22,6 @@ Route::get('gallery',[SiteController::class,'gallery'])->name('gallery');
 Route::get('events',[SiteController::class,'events'])->name('events');
 Route::get('documents',[SiteController::class,'documents'])->name('documents');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 
 Route::get('placeholder-image/{size}', [ProfileController::class,'placeholderImage'])->name('placeholder.image');
@@ -38,3 +29,5 @@ Route::get('placeholder-image/{size}', [ProfileController::class,'placeholderIma
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+require __DIR__.'/member.php';
+

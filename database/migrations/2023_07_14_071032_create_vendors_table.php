@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->integer('vendorType');
             $table->string('contactPerson', 100);
             $table->string('contactNumber', 100);
+            $table->string('contactEmail', 100);
             $table->mediumText('serviceDescription');
-            $table->uuid('adminId');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

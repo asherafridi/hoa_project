@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Properties;
+use App\Models\PropertyType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PropertiesController extends Controller
      */
     public function index()
     {
-        $title="Properties";
+        $title="Property";
         $properties = Properties::paginate(10);
         return view('admin.properties.list',compact('title','properties'));
     }
@@ -24,9 +25,9 @@ class PropertiesController extends Controller
      */
     public function create()
     {
-        $title="Add Properties";
-        $users=User::all();
-        return view('admin.properties.add',compact('title','users'));
+        $title="Add Property";
+        $type=PropertyType::all();
+        return view('admin.properties.add',compact('title','type'));
     }
 
     /**
@@ -34,17 +35,17 @@ class PropertiesController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated=$request->validate([
-        //     'eventName'=>'required',
-        //     'startDate'=>'required',
-        //     'endDate'=>'required',
-        //     'location'=>'required',
-        //     'committeeId'=>'required'
-        // ]);
+        $validated=$request->validate([
+            'name'=>'required',
+            'propertyType'=>'required',
+            'address'=>'required',
+            'unit_no'=>'required',
+            'status'=>'required'
+        ]);
 
         $properties = new Properties;
         $properties->create($request->all());
-        return redirect('/admin/properties')->with('success','Operation Successfull');
+        return redirect()->route('admin.properties.index')->with('success','Property Added Successfully');
     }
 
     /**
@@ -52,10 +53,11 @@ class PropertiesController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Properties";
-        $properties=Properties::find($id);
-        $users=User::all();
-        return view('admin.properties.detail',compact('title','properties','users'));
+        $title="View Property";
+        $property=Properties::find($id);
+        
+        $type=PropertyType::all();
+        return view('admin.properties.detail',compact('title','property','type'));
     }
 
     /**
@@ -64,11 +66,11 @@ class PropertiesController extends Controller
     public function edit(string $id)
     {
         
-        $title="Edit Properties";
-        $properties=Properties::find($id);
+        $title="Edit Property";
+        $property=Properties::find($id);
         
-        $users=User::all();
-        return view('admin.properties.edit',compact('title','properties','users'));
+        $types=PropertyType::all();
+        return view('admin.properties.edit',compact('title','property','types'));
     }
 
     /**
@@ -76,18 +78,17 @@ class PropertiesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        // $validated=$request->validate([
-        //     'eventName'=>'required',
-        //     'startDate'=>'required',
-        //     'endDate'=>'required',
-        //     'location'=>'required',
-        //     'committeeId'=>'required'
-        // ]);
+        $validated=$request->validate([
+            'name'=>'required',
+            'propertyType'=>'required',
+            'address'=>'required',
+            'unit_no'=>'required',
+            'status'=>'required'
+        ]);
 
         $properties = Properties::find($id);
         $properties->update($request->all());
-        return redirect('/admin/properties')->with('success','Operation Successfull');
+        return redirect()->route('admin.properties.index')->with('success','Property Updated Successfully');
     }
 
     /**
@@ -97,6 +98,6 @@ class PropertiesController extends Controller
     {
         $properties=Properties::find($id);
         $properties->delete();
-        return redirect('/admin/properties')->with('success','Operation Successfull');
+        return redirect()->route('admin.properties.index')->with('success','Property Deleted Successfully');
     }
 }

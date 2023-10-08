@@ -5,7 +5,7 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Work Order /</span> List</h4>
-
+    @include('admin.work-order.filter')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5>{{$title}}<h5>
@@ -16,27 +16,35 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Vendor</th>
+                <th>Property</th>
+                <th>Requested By</th>
+                <th>Requested Date</th>
                 <th>Description</th>
-                <th>Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned To</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
               @forelse ($workOrder as $item)
               <tr>
-                <td>{{$item->vendor() ? $item->vendor()->name : 'No Vendor'}}</td>
+                <td>{{$item->property() ? $item->property()->name : 'No Property Selected'}}</td>
+                <td>{{$item->requestedBy() ? $item->requestedBy()->fullname() : 'Have to Select User'}}</td>
+                <td>{{$item->requested_date}}</td>
                 <td>{{$item->description}}</td>
-                <td>{{$item->date}}</td>
+                <td>{{$item->priority}}</td>
+                <td>{{$item->status}}</td>
+                <td>{{$item->vendor() ? $item->vendor()->name : 'Work not Assigned Yet'}}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      {{-- <a class="dropdown-item" href="{{route('admin.properties.show',$item->id)}}"
+                      <a class="dropdown-item" href="{{route('admin.work-order.show',$item->id)}}"
                         ><i class="bx bx-menu me-1"></i> View</a
-                      > --}}
+                      >
                       <a class="dropdown-item" href="{{route('admin.work-order.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >

@@ -4,12 +4,12 @@
 @section('content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Board Member /</span> List</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Member /</span> List</h4>
 
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5>{{$title}}<h5>
-            <a href="{{route('admin.board-member.create')}}" class="btn btn-primary">Add {{$title}}</a>
+            <a href="{{route('admin.member.create')}}" class="btn btn-primary">Add {{$title}}</a>
           </div>
         
         <div class="table-responsive text-nowrap">
@@ -20,7 +20,9 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
-                <th>Position</th>
+                <th>Member Type</th>
+                <th>Property</th>
+                <th>Balance</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -30,21 +32,23 @@
                 <td>{{$item->firstName}}</td>
                 <td>{{$item->lastName}}</td>
                 <td>{{$item->email}}</td>
-                <td>{{$item->phoneNumber}}</td>
-                <td>{{$item->Position}}</td>
+                <td>{{$item->phone}}</td>
+                <td>{{$item->type() ? $item->type()->name : 'Type Not Found'}}</td>
+                <td>{{$item->property() ? $item->property()->name : 'No Property'}}</td>
+                <td>{{$item->balance}}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{route('admin.board-member.show',$item->id)}}"
+                      {{-- <a class="dropdown-item" href="{{route('admin.member.show',$item->id)}}"
                         ><i class="bx bx-menu me-1"></i> View</a
-                      >
-                      <a class="dropdown-item" href="{{route('admin.board-member.edit',$item->id)}}"
+                      > --}}
+                      <a class="dropdown-item" href="{{route('admin.member.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >
-                      <form method="POST" action="{{route('admin.board-member.destroy',$item->id)}}">
+                      <form method="POST" action="{{route('admin.member.destroy',$item->id)}}">
                         @csrf
                         @method('DELETE')
                       <button class="dropdown-item" type="submit"

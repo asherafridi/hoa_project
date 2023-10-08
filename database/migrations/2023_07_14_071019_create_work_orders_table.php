@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('work_orders', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('description');
-            $table->dateTime('date', 0);
-            $table->uuid('vendorId');
-            $table->uuid('adminId');
+            $table->uuid('propertyId')->nullable();
+            $table->uuid('requestedBy')->nullable();
+            $table->dateTime('requested_date', 0)->nullable();
+            $table->mediumText('description')->nullable();
+            $table->string('priority')->nullable();
+            $table->string('status')->nullable();
+            $table->uuid('assignedTo')->nullable();
+            $table->dateTime('completion_date', 0)->nullable();
+            $table->string('invoice',250)->nullable();
+            $table->float('invoice_amount',8,2)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

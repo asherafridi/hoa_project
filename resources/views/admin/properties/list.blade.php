@@ -16,18 +16,24 @@
           <table class="table">
             <thead>
               <tr>
+                <th>#</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Address</th>
-                <th>User</th>
+                <th>Unit</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
               @forelse ($properties as $item)
               <tr>
-                <td>{{$item->type}}</td>
+                <td>{{$loop->index+1}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->type() ? $item->type()->name : ''}}</td>
                 <td>{{$item->address}}</td>
-                <td>{{$item->user() ? $item->user()->name : 'No User'}}</td>
+                <td>{{$item->unit_no}}</td>
+                <td>{{$item->status}}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
