@@ -16,207 +16,126 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item @if (str_contains($title, 'Dashboard') == 1) active @endif">
-            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+            <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard </div>
             </a>
         </li>
-
-        <li class="menu-item @if (str_contains($title, 'Member') == 1) active open @endif">
+        
+        
+        <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active open @endif">
             
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Layouts">Members</div>
+                <div data-i18n="Layouts">Work Order</div>
             </a>
 
             <ul class="menu-sub">
                 <li class="menu-item">
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.member.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Members</div>
+                    <a href="{{ route('work-order.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">Create Work Request</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.member-type.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Members Type</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item @if (str_contains($title, 'Property') == 1) active open @endif">
-            
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-home"></i>
-                <div data-i18n="Layouts">Properties</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.properties.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Properties</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.property-type.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Property Type</div>
+                    <a href="{{ route('work-order.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">My Work Orders</div>
                     </a>
                 </li>
             </ul>
         </li>
-
-        <li class="menu-item @if (str_contains($title, 'Vendor') == 1) active open @endif">
-            
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-briefcase-alt-2"></i>
-                <div data-i18n="Layouts">Vendors</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.vendor.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Vendors</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.vendor-type.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Vendor Type</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active @endif">
-            <a href="{{ route('admin.work-order.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-basket"></i>
-                <div data-i18="Boxicons">Work Order</div>
-            </a>
-        </li>
-
         
-        <li class="menu-item @if (str_contains($title, 'Transaction') == 1) active open @endif">
+        <li class="menu-item @if (str_contains($title, 'Bills') == 1) active open @endif">
             
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
-                <div data-i18n="Layouts">Transactions</div>
+                <div data-i18n="Layouts">Bills</div>
             </a>
 
             <ul class="menu-sub">
                 <li class="menu-item">
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.transaction.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Transactions</div>
+                    <a href="{{ route('bills.index') }}?status=Unpaid" class="menu-link">
+                        <div data-i18n="Without menu">Unpaid Bills</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.transaction-type.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Transaction Type</div>
+                    <a href="{{ route('bills.index') }}?status=Paid" class="menu-link">
+                        <div data-i18n="Without menu">Paid Bills</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('bills.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">All Bills</div>
                     </a>
                 </li>
             </ul>
         </li>
+        
+        <li class="menu-item @if (str_contains($title, 'Payment') == 1) active open @endif">
+            
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
+                <div data-i18n="Layouts">Payments</div>
+            </a>
 
-        <li class="menu-item @if (str_contains($title, 'Committee') == 1) active @endif">
-            <a href="{{ route('admin.committee.index') }}" class="menu-link">
+            <ul class="menu-sub">
+                <li class="menu-item">
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('payment.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Payment History</div>
+                    </a>
+                </li>
+                {{-- <li class="menu-item">
+                    <a href="{{ route('admin.transaction-type.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Declined Payments</div>
+                    </a>
+                </li> --}}
+            </ul>
+        </li>
+
+
+        
+
+
+
+        <li class="menu-item  @if (str_contains($title, 'Committee') == 1) active @endif">
+            <a href="{{ route('committee.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Boxicons">Committee</div>
             </a>
         </li>
 
         <li class="menu-item  @if (str_contains($title, 'Events') == 1) active @endif">
-            <a href="{{ route('admin.calendar.index') }}" class="menu-link">
+            <a href="{{ route('events.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
                 <div data-i18n="Boxicons">Events</div>
             </a>
         </li>
 
         <li class="menu-item @if (str_contains($title, 'Announcement') == 1) active @endif">
-            <a href="{{ route('admin.announcement.index') }}" class="menu-link">
+            <a href="{{ route('announcement.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bell"></i>
                 <div data-i18n="Boxicons">Announcement</div>
             </a>
         </li>
 
-        <li class="menu-item @if (str_contains($title, 'Documents') == 1) active @endif">
+        {{-- <li class="menu-item @if (str_contains($title, 'Documents') == 1) active @endif">
             <a href="{{ route('admin.documents.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-file-doc"></i>
                 <div data-i18="Boxicons">Documents</div>
             </a>
-        </li>
+        </li> --}}
 
-        <li class="menu-item @if (str_contains($title, 'Gallery') == 1) active @endif">
+        {{-- <li class="menu-item @if (str_contains($title, 'Gallery') == 1) active @endif">
             <a href="{{ route('admin.gallery.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-images"></i>
                 <div data-i18="Boxicons">Gallery</div>
             </a>
-        </li>
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Settings</span>
-        </li>
-
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Layouts">Settings</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.settings.website') }}" class="menu-link">
-                        <div data-i18n="Without menu">General Settings</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.settings.header') }}" class="menu-link">
-                        <div data-i18n="Without menu">Header Settings</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Layouts">Sections</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.settings.header') }}" class="menu-link">
-                        <div data-i18n="Without menu">Header</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.settings.about') }}" class="menu-link">
-                        <div data-i18n="Without menu">About</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.settings.social.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Social Icons</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-
-
-
-
-
-
-
+        </li> --}}
 
         {{-- <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Pages</span>

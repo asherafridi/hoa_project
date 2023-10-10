@@ -56,14 +56,14 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            @include('admin.partials.sidebar')
+            @include('member.partials.sidebar')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
 
-                @include('admin.partials.navbar')
+                @include('member.partials.navbar')
 
                 <!-- / Navbar -->
 
@@ -75,7 +75,7 @@
                     <!-- / Content -->
 
                     <!-- Footer -->
-                    @include('admin.partials.footer')
+                    @include('member.partials.footer')
                     <!-- / Footer -->
 
 

@@ -19,4 +19,9 @@ class Transaction extends Model
         $user = TransactionType::find($this->transactionType);
         return $user;
     }
+
+    function payment(){
+        $payment = Payment::where('status', '!=','Declined')->where('transactionId',$this->id)->first();
+        return $payment;
+    }
 }

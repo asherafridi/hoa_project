@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Events;
 use App\Models\Gallery;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
     public function home(){
-        return view('frontend.basic.home');
+        $title="Home";
+        $vendor= Vendor::limit(4)->get();
+        $gallery = Gallery::limit(4)->get();
+        return view('frontend.basic.home',compact('title','vendor','gallery'));
     }
     public function gallery(){
         $title="Gallery";

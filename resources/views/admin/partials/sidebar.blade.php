@@ -122,6 +122,13 @@
             </ul>
         </li>
 
+        <li class="menu-item @if (str_contains($title, 'Payments') == 1) active @endif">
+            <a href="{{ route('admin.payments.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-money"></i>
+                <div data-i18n="Boxicons">Payments</div>
+            </a>
+        </li>
+
         <li class="menu-item @if (str_contains($title, 'Committee') == 1) active @endif">
             <a href="{{ route('admin.committee.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>

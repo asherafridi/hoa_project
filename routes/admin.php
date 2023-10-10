@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MemberTypeController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PropertiesController;
 use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -61,6 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::resource('billing', BillingController::class)->middleware('admin.auth');
     Route::resource('board-member', BoardMemberController::class)->middleware('admin.auth');
     Route::resource('documents', DocumentsController::class)->middleware('admin.auth');
+    Route::resource('payments', PaymentController::class)->middleware('admin.auth');
     
     
     Route::resource('gallery', GalleryController::class)->middleware('admin.auth');

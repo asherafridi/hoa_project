@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('member.layouts.main')
 @section('title', 'Dashboard')
 
 @section('content')
@@ -11,11 +11,11 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="">
-                                <i class='bx bx-home' style="font-size: 48px;"></i>
+                                <i class='bx bx-dollar-circle' style="font-size: 48px;"></i>
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">Total Properties</span>
-                        <h3 class="card-title mb-2">{{ $widget['total_properties'] }}</h3>
+                        <span class="fw-semibold d-block mb-1">Unpaid Bills</span>
+                        <h3 class="card-title mb-2">{{ $widget['total_unpaid_bills'] }}</h3>
                     </div>
                 </div>
             </div>
@@ -24,11 +24,11 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="">
-                                <i class='bx bx-user' style="font-size: 48px;"></i>
+                                <i class='bx bx-money' style="font-size: 48px;"></i>
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">Total Board Members</span>
-                        <h3 class="card-title mb-2">{{ $widget['total_members'] }}</h3>
+                        <span class="fw-semibold d-block mb-1">Pending Payments</span>
+                        <h3 class="card-title mb-2">{{ $widget['total_pending_payments'] }}</h3>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                                 <i class='bx bx-group' style="font-size: 48px;"></i>
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">Total Committees</span>
+                        <span class="fw-semibold d-block mb-1">Committees</span>
                         <h3 class="card-title mb-2">{{ $widget['total_committee'] }}</h3>
                     </div>
                 </div>
@@ -50,10 +50,10 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="">
-                                <i class='bx bx-group' style="font-size: 48px;"></i>
+                                <i class='bx bx-calendar' style="font-size: 48px;"></i>
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">Total Vendors</span>
+                        <span class="fw-semibold d-block mb-1">Upcoming Events</span>
                         <h3 class="card-title mb-2">{{ $widget['total_vendor'] }}</h3>
                     </div>
                 </div>
@@ -76,14 +76,14 @@
                   <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
                           <div class="d-flex flex-column align-items-left gap-1">
-                              <h2 class="mb-0">{{$widget['total_work_orders']}}</h2>
+                              {{-- <h2 class="mb-0">{{$widget['total_work_orders']}}</h2> --}}
                               <span>Total Work Orders</span>
                           </div>
                           {{-- <div id="orderStatisticsChart"></div> --}}
                       </div>
                       <hr>
                       <ul class="p-0 m-0">
-                        @foreach ($widget['work_orders'] as $item)
+                         @foreach ($widget['work_orders'] as $item)
                         <li class="d-flex mb-4 pb-1">
                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                 <div class="me-2">
@@ -96,7 +96,7 @@
                             </div>
                         </li>
                             
-                        @endforeach
+                        @endforeach 
                       </ul>
                   </div>
               </div>
@@ -114,14 +114,14 @@
                   <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
                           <div class="d-flex flex-column align-items-left gap-1">
-                              <h2 class="mb-0">{{$widget['total_bills']}}</h2>
+                              {{-- <h2 class="mb-0">{{$widget['total_bills']}}</h2> --}}
                               <span>Total Bills</span>
                           </div>
                           {{-- <div id="orderStatisticsChart"></div> --}}
                       </div>
                       <hr>
                       <ul class="p-0 m-0">
-                        @foreach ($widget['bills'] as $item)
+                         @foreach ($widget['bills'] as $item)
                         <li class="d-flex mb-4 pb-1">
                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                 <div class="me-2">
@@ -134,7 +134,7 @@
                             </div>
                         </li>
                             
-                        @endforeach
+                        @endforeach 
                       </ul>
                   </div>
               </div>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="p-0 m-0">
-                          @foreach ($widget['announcements'] as $item)
+                           @foreach ($widget['announcements'] as $item)
                           <li class="d-flex mb-4 pb-1">
                               <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                   <div class="me-2">
@@ -163,7 +163,7 @@
                               </div>
                           </li>
                               
-                          @endforeach
+                          @endforeach 
                         </ul>
                     </div>
                 </div>

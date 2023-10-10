@@ -88,3 +88,6 @@ function workOrder_Status(){
 function transactionStatus(){
     return array('Paid','Unpaid');
 }
+function paymentStatus(){
+    return array('Paid','Pending','Declined');
+}

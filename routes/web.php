@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[SiteController::class,'home'])->name('home');
 Route::get('gallery',[SiteController::class,'gallery'])->name('gallery');
-Route::get('events',[SiteController::class,'events'])->name('events');
-Route::get('documents',[SiteController::class,'documents'])->name('documents');
+Route::get('event',[SiteController::class,'events'])->name('event');
+Route::get('document',[SiteController::class,'documents'])->name('document');
 
 
 

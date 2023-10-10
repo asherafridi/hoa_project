@@ -45,8 +45,8 @@ id="layout-navbar"
                 </div>
               </div>
               <div class="flex-grow-1">
-                <span class="fw-semibold d-block">{{auth()->guard('admin')->user()->name}}</span>
-                <small class="text-muted">Admin</small>
+                <span class="fw-semibold d-block">{{auth()->user()->fullname()}}</span>
+                <small class="text-muted">{{auth()->user()->type()->name}}</small>
               </div>
             </div>
           </a>
@@ -55,7 +55,7 @@ id="layout-navbar"
           <div class="dropdown-divider"></div>
         </li>
         <li>
-          <a class="dropdown-item" href="{{route('admin.profile')}}">
+          <a class="dropdown-item" href="{{route('profile.edit')}}">
             <i class="bx bx-user me-2"></i>
             <span class="align-middle">My Profile</span>
           </a>
@@ -63,7 +63,7 @@ id="layout-navbar"
         <li>
           <a class="dropdown-item">
             <i class="bx bx-power-off me-2"></i>
-            <form method="post" action="{{route('admin.logout')}}" style="display: inline-block">
+            <form method="post" action="{{route('logout')}}" style="display: inline-block">
                 @csrf
             <span class="align-middle"><button style="display: inline; background:transparent; border:none; outline:none;" type="submit">Log Out</button></span>
             </form>

@@ -59,7 +59,8 @@ class WordOrderController extends Controller
         $request->validate([
         'invoice' => 'file|mimes:pdf,docx|max:2048',
         ]);
-        $workOrder = new WorkOrder;if ($request->hasFile('invoice')) {
+        $workOrder = new WorkOrder;
+        if ($request->hasFile('invoice')) {
             $file = $request->file('invoice');
             if ($file->isValid()) {
                 $path = $file->store('uploads/invoices/');
