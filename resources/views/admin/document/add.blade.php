@@ -40,7 +40,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">File</label>
-                            <input type="file" class="form-control" required name="file"
+                            <input type="file" class="form-control" required name="doc"
                                 autofocus />
                             @error('file')
                                 <div class="form-text text-danger">

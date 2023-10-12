@@ -48,9 +48,9 @@ class SettingsController extends Controller
             ]);
             if($request->file('logo')) {
                 $fileName = time().'_'.$request->file('logo')->getClientOriginalName();
-                $filePath = $request->file('logo')->storeAs('uploads', $fileName, 'public');
+                $filePath = $request->file('logo')->store('/storage/uploads/website', 'public');
                 
-                $logo->description = '/storage/' . $filePath;
+                $logo->description ="/" . $filePath;
                 $logo->save();
                 return back()
                 ->with('success','File has been uploaded.');
@@ -59,6 +59,18 @@ class SettingsController extends Controller
 
     public function iconUpdate(Request $request){
         $icon=Settings::where('key','website_icon')->firstOrFail();
+        $request->validate([
+            'icon' => 'required|mimes:jpg,png,jpeg|max:2048'
+            ]);
+            if($request->file('icon')) {
+                $fileName = time().'_'.$request->file('icon')->getClientOriginalName();
+                $filePath = $request->file('icon')->store('/storage/uploads/website', 'public');
+                
+                $icon->description ="/" . $filePath;
+                $icon->save();
+                return back()
+                ->with('success','File has been uploaded.');
+            }
     }
 
     public function header(){
@@ -74,7 +86,7 @@ class SettingsController extends Controller
             setting_update('header_title',$request->header_title);
         }
         if($request->header_background){
-            $image_address= $request->header_background->store('uploads/header_background');
+            $image_address= $request->header_background->store('/uploads/header_background');
             setting_update('header_background',$image_address);
         }
 

@@ -90,7 +90,7 @@ class BillsController extends Controller
         
         if ($request->hasFile('referencePic')) {
             $file = $request->file('referencePic');
-            $filename = $file->store('storage/uploads/referencePic');
+            $filename = $file->store('uploads/referencePic','public');
             $request['screenshot']=$filename;
             // Now, $filename contains the path or filename of the stored file.
         }

@@ -12,7 +12,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.documents.update',$document->id) }}">
+                <form method="POST" action="{{ route('admin.documents.update',$document->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-4">
@@ -42,7 +42,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Document</label>
-                            <input type="file" class="form-control" required name="file"  placeholder="Name"
+                            <input type="file" class="form-control" required name="doc"  placeholder="Name"
                                 autofocus />
                             @error('file')
                                 <div class="form-text text-danger">

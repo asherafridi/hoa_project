@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent rewrite processing for existing files or directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    
+    # Allow direct access to files in the storage directory
+    RewriteRule ^storage/(.*)$ storage/app/public/$1 [L]
+    
+    
+</IfModule>
+

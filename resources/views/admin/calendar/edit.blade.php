@@ -60,6 +60,8 @@
                         <div class="col-md-6">
                             <label class="form-label">Committee</label>
                             <select class="form-control" name="committeeId" required>
+                                
+                                <option>Select Committee</option>
                                 @foreach ($committee as $comm)
                                 <option value="{{$comm->id}}" @if ($comm->id==$calendar->committeeId)
                                     Selected

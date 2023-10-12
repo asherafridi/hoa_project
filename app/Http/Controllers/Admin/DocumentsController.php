@@ -36,12 +36,13 @@ class DocumentsController extends Controller
         $validated=$request->validate([
             'name'=>'required',
             'description'=>'required',
-            'file'=>'required'
+            'doc'=>'required'
         ]);
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filename = $file->store('storage/uploads/documents');
-            $request['document']=$filename;
+        if ($request->hasFile('doc')) {
+            $file = $request->file('doc');
+            $filename = $file->store('/storage/uploads/documents', 'public');
+            $request['file']="/" . $filename;
+
             // Now, $filename contains the path or filename of the stored file.
         }
         $request['adminId']=auth()->guard('admin')->user()->id;
@@ -82,16 +83,16 @@ class DocumentsController extends Controller
     $validated = $request->validate([
         'name' => 'required',
         'description' => 'required',
-        'file' => 'required' // Allow 'file' to be optional
+        'doc' => 'required' // Allow 'file' to be optional
     ]);
 
     // Check if a new file has been uploaded
-    if ($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = $file->store('uploads/documents', 'public');
-        $document->document = $filename; // Update the file path
-    }
+    if ($request->hasFile('doc')) {
+        $file = $request->file('doc');
+        $filename = $file->store('/storage/uploads/documents', 'public');
+        $document->file = "/" . $filename; // Update the file path
 
+    }
     // Update other fields
     $document->name = $request->input('name');
     $document->description = $request->input('description');

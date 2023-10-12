@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->integer('propertyType');
             $table->mediumText('address');
-            $table->string('Unit Number')->nullable();
+            $table->string('unit_no')->nullable();
             $table->enum('status',['Owned','Rented','Vacant','Under Construction','For Sale','Other']);
             $table->timestamps();
             $table->softDeletes();

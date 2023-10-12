@@ -27,7 +27,7 @@
               <tr>
                 <td>{{$item->name}}</td>
                 <td>{{$item->description}}</td>
-                <td><a href="{{$item->document}}">Download</a></td>
+                <td><a href="{{$item->file}}">Download</a></td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

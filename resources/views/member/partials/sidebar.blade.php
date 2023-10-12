@@ -1,10 +1,16 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        
+        <a href="{{route('home')}}" class="app-brand-link">
+            @if (settings('website_logo')!=null)
             <span class="app-brand-logo demo">
-                <img src="http://localhost/hoa_project{{settings('website_logo')}}">
+                <img src="{{settings('website_logo')}}" style="height: 40px">
                       </span>
+                
+            @else
             <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform:capitalize;">{{ settings('website_name') }}</span>
+                
+            @endif
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>

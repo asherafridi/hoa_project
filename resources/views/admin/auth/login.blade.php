@@ -1,8 +1,6 @@
 @extends('admin.layouts.app')
 @section('title','Login')
-
 @section('content')
-
 
 <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
@@ -53,15 +51,9 @@
                   {{$message}}
               @enderror
 
-              <button class="btn btn-primary d-grid w-100">Sign up</button>
+              <button class="btn btn-primary d-grid w-100">Sign in</button>
             </form>
 
-            {{-- <p class="text-center">
-              <span>Already have an account?</span>
-              <a href="auth-login-basic.html">
-                <span>Sign in instead</span>
-              </a>
-            </p> --}}
           </div>
         </div>
         <!-- Register Card -->
