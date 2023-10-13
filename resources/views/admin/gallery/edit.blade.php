@@ -12,7 +12,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.gallery.update',$gallery->id) }}">
+                <form method="POST" action="{{ route('admin.gallery.update',$gallery->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-4">

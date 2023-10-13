@@ -46,7 +46,7 @@ id="layout-navbar"
               </div>
               <div class="flex-grow-1">
                 <span class="fw-semibold d-block">{{auth()->user()->fullname()}}</span>
-                <small class="text-muted">{{auth()->user()->type()->name}}</small>
+                <small class="text-muted">{{auth()->user()->type() ? auth()->user()->type()->name : 'New Member'}}</small>
               </div>
             </div>
           </a>

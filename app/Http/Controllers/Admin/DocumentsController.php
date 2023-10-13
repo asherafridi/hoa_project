@@ -40,8 +40,8 @@ class DocumentsController extends Controller
         ]);
         if ($request->hasFile('doc')) {
             $file = $request->file('doc');
-            $filename = $file->store('/storage/uploads/documents', 'public');
-            $request['file']="/" . $filename;
+            $filename = $file->store('uploads/documents', 'public');
+            $request['file']= $filename;
 
             // Now, $filename contains the path or filename of the stored file.
         }
@@ -89,8 +89,8 @@ class DocumentsController extends Controller
     // Check if a new file has been uploaded
     if ($request->hasFile('doc')) {
         $file = $request->file('doc');
-        $filename = $file->store('/storage/uploads/documents', 'public');
-        $document->file = "/" . $filename; // Update the file path
+        $filename = $file->store('uploads/documents', 'public');
+        $document->file =  $filename; // Update the file path
 
     }
     // Update other fields

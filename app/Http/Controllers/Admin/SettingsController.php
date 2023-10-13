@@ -48,9 +48,9 @@ class SettingsController extends Controller
             ]);
             if($request->file('logo')) {
                 $fileName = time().'_'.$request->file('logo')->getClientOriginalName();
-                $filePath = $request->file('logo')->store('/storage/uploads/website', 'public');
+                $filePath = $request->file('logo')->store('uploads/website', 'public');
                 
-                $logo->description ="/" . $filePath;
+                $logo->description ="/". $filePath;
                 $logo->save();
                 return back()
                 ->with('success','File has been uploaded.');
@@ -64,9 +64,9 @@ class SettingsController extends Controller
             ]);
             if($request->file('icon')) {
                 $fileName = time().'_'.$request->file('icon')->getClientOriginalName();
-                $filePath = $request->file('icon')->store('/storage/uploads/website', 'public');
+                $filePath = $request->file('icon')->store('uploads/website', 'public');
                 
-                $icon->description ="/" . $filePath;
+                $icon->description = "/" . $filePath;
                 $icon->save();
                 return back()
                 ->with('success','File has been uploaded.');

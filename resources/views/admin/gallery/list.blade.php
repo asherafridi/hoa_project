@@ -25,7 +25,7 @@
               @forelse ($gallery as $item)
               <tr>
                 <td>{{$item->name}}</td>
-                <td><img src="{{$item->image}}"></td>
+                <td><img src="{{$item->image}}" width="70px"></td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

@@ -9,4 +9,12 @@ class Document extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'description', 'file', 'adminId'];
+
+    public function getFileAttribute($value){
+        if($value!=null){
+            return "/" . $value;
+        }else{
+            return $value;
+        }
+    }
 }

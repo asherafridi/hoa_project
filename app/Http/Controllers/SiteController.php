@@ -31,4 +31,13 @@ class SiteController extends Controller
         $document=Document::paginate(12);
         return view('frontend.basic.document',compact('title','document'));
     }
+    public function contactForm(Request $request){
+        return response()->json(['message' => 'Success'], 200);
+    }
+    public function newsForm(Request $request){
+        $title = "Thanks";
+        return view('frontend.basic.thanks',compact('title'));
+    }
+
+
 }

@@ -1,4 +1,3 @@
-
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
@@ -8,7 +7,8 @@
           <div class="col-lg-6">
             <h4>Join Our Newsletter</h4>
             <p>Stay Informed with Our Newsletter</p>
-            <form action="" method="post">
+            <form action="{{route('news_form')}}" method="post">
+              @csrf
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
           </div>
@@ -21,41 +21,38 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>BizLand<span>.</span></h3>
+            <h3>{{settings('website_name')}}<span>.</span></h3>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              {{settings('address')}}
+              <strong>Phone:</strong> {{settings('phone_number')}}<br>
+              <strong>Email:</strong> {{settings('email')}}<br>
             </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('home')}}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('event')}}">Events</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('document')}}">Documents</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('gallery')}}">Gallery</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('dashboard')}}">Member Panel</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Recent Events</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              @foreach (events() as $item)
+                  
+              <li><i class="bx bx-chevron-right"></i> <a href="#">{{$item->event_name}}</a></li>
+              @endforeach
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <p>Follow Us on Social Media</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

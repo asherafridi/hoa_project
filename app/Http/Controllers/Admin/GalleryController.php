@@ -35,8 +35,8 @@ class GalleryController extends Controller
         ]);
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $filename = $file->store('/storage/uploads/gallery','public');
-            $request['image']="/" . $filename;
+            $filename = $file->store('uploads/gallery','public');
+            $request['image']= $filename;
             // Now, $filename contains the path or filename of the stored file.
         }
         $document = new Gallery;
@@ -81,8 +81,9 @@ class GalleryController extends Controller
     // Check if a new file has been uploaded
     if ($request->hasFile('file')) {
         $file = $request->file('file');
-        $filename = $file->store('/storage/uploads/gallery', 'public');
-        $document->image = "/" . $filename; // Update the file path
+        $filename = $file->store('uploads/gallery', 'public');
+        $document->image =  $filename; // Update the file path
+
     }
 
     // Update other fields

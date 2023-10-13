@@ -334,10 +334,10 @@
             @foreach ($gallery as $item)
                 
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <img src="{{asset('frontend/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
+                <img src="{{$item->image}}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>App 1</h4>
-                  <a href="{{asset('frontend/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="{{$item->image}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                 </div>
               </div>
             @endforeach
@@ -554,7 +554,7 @@
               <div class="info-box mb-4">
                 <i class="bx bx-map"></i>
                 <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>{{settings('address')}}</p>
               </div>
             </div>
   
@@ -562,7 +562,7 @@
               <div class="info-box  mb-4">
                 <i class="bx bx-envelope"></i>
                 <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <p>{{settings('email')}}</p>
               </div>
             </div>
   
@@ -570,7 +570,7 @@
               <div class="info-box  mb-4">
                 <i class="bx bx-phone-call"></i>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>{{settings('phone_number')}}</p>
               </div>
             </div>
   
@@ -583,7 +583,8 @@
             </div>
   
             <div class="col-lg-6">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form action="{{route('contact_form')}}" method="post" role="form" class="php-email-form">
+                @csrf
                 <div class="row">
                   <div class="col form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>

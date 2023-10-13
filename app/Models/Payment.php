@@ -20,4 +20,11 @@ class Payment extends Model
     public function transaction(){
         return Transaction::find($this->transactionId);
     }
+    public function getScreenshotAttribute($value){
+        if($value!=null){
+            return "/" . $value;
+        }else{
+            return $value;
+        }
+    }
 }

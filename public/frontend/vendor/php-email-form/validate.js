@@ -56,19 +56,17 @@
       headers: {'X-Requested-With': 'XMLHttpRequest'}
     })
     .then(response => {
-      if( response.ok ) {
-        return response.text();
+      if( response.status == 200 ) {
+
+        thisForm.querySelector('.loading').classList.remove('d-block');
+        if (response.ok == true) {
+          thisForm.querySelector('.sent-message').classList.add('d-block');
+          thisForm.reset(); 
+        } else {
+          throw new Error(response ? response : 'Form submission failed and no error message returned from: ' + action); 
+        }
       } else {
         throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
-    .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
       }
     })
     .catch((error) => {
