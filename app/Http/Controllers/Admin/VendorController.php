@@ -14,10 +14,24 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $title="Vendor";
-        $vendor = Vendor::paginate(10);
-        return view('admin.vendor.list',compact('title','vendor'));
-        
+        $title = "Vendor";
+        $query = Vendor::query();
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Vendor())->getTable());
+
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $vendor = $query->paginate(10);
+
+        return view('admin.vendor.list', compact('title', 'vendor'));
+
     }
 
     /**
@@ -25,9 +39,9 @@ class VendorController extends Controller
      */
     public function create()
     {
-        $title="Add Vendor";
-        $type=VendorType::get();
-        return view('admin.vendor.add',compact('title','type'));
+        $title = "Add Vendor";
+        $type = VendorType::get();
+        return view('admin.vendor.add', compact('title', 'type'));
     }
 
     /**
@@ -35,15 +49,15 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'contactPerson'=>'required',
-            'contactNumber'=>'required',
-            'serviceDescription'=>'required',
+        $validated = $request->validate([
+            'name' => 'required',
+            'contactPerson' => 'required',
+            'contactNumber' => 'required',
+            'serviceDescription' => 'required',
         ]);
         $vendor = new Vendor;
         $vendor->create($request->all());
-        return redirect('/admin/vendor')->with('success','Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -51,11 +65,11 @@ class VendorController extends Controller
      */
     public function show(string $id)
     {
-        
-        $title="View Vendor";
-        $vendor=Vendor::find($id);
-        $type=VendorType::get();
-        return view('admin.vendor.detail',compact('title','vendor','type'));
+
+        $title = "View Vendor";
+        $vendor = Vendor::find($id);
+        $type = VendorType::get();
+        return view('admin.vendor.detail', compact('title', 'vendor', 'type'));
     }
 
     /**
@@ -63,10 +77,10 @@ class VendorController extends Controller
      */
     public function edit(string $id)
     {
-        $title="Edit Vendor";
-        $vendor=Vendor::find($id);
-        $types=VendorType::get();
-        return view('admin.vendor.edit',compact('title','vendor','types'));
+        $title = "Edit Vendor";
+        $vendor = Vendor::find($id);
+        $types = VendorType::get();
+        return view('admin.vendor.edit', compact('title', 'vendor', 'types'));
     }
 
     /**
@@ -74,17 +88,17 @@ class VendorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $validated=$request->validate([
-            'name'=>'required',
-            'contactPerson'=>'required',
-            'contactNumber'=>'required',
-            'serviceDescription'=>'required',
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'contactPerson' => 'required',
+            'contactNumber' => 'required',
+            'serviceDescription' => 'required',
         ]);
 
         $vendor = Vendor::find($id);
         $vendor->update($request->all());
-        return redirect('/admin/vendor')->with('success','Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -92,9 +106,9 @@ class VendorController extends Controller
      */
     public function destroy(string $id)
     {
-        
-        $vendor=Vendor::find($id);
+
+        $vendor = Vendor::find($id);
         $vendor->delete();
-        return redirect('/admin/vendor')->with('success','Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
     }
 }

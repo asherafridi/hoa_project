@@ -86,8 +86,8 @@ class SettingsController extends Controller
             setting_update('header_title',$request->header_title);
         }
         if($request->header_background){
-            $image_address= $request->header_background->store('/uploads/header_background');
-            setting_update('header_background',$image_address);
+            $filePath = $request->file('header_background')->store('uploads/header', 'public');
+            setting_update('header_background',$filePath);
         }
 
         return redirect()->back()->with('success','Operation Successfull');

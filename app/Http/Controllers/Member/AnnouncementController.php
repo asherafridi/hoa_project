@@ -13,9 +13,23 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $title="Announcements";
-        $announcement = Announcement::paginate(10);
-        return view('member.announcement.list',compact('title','announcement'));
+        $title = "Announcements";
+        $announcementQuery = Announcement::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new Announcement())->getTable());
+
+            $announcementQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $announcement = $announcementQuery->paginate(10);
+
+        return view('member.announcement.list', compact('title', 'announcement'));
     }
 
     /**
@@ -23,8 +37,8 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        $title="Add Announcement";
-        return view('member.announcement.add',compact('title'));
+        $title = "Add Announcement";
+        return view('member.announcement.add', compact('title'));
     }
 
     /**
@@ -40,10 +54,10 @@ class AnnouncementController extends Controller
         //     'committeeId'=>'required'
         // ]);
 
-        $request['adminId']=auth()->user()->id;
+        $request['adminId'] = auth()->user()->id;
         $announcement = new Announcement;
         $announcement->create($request->all());
-        return redirect('/announcement')->with('success','Operation Successfull');
+        return redirect('/announcement')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -51,9 +65,9 @@ class AnnouncementController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Announcement";
-        $announcement=Announcement::find($id);
-        return view('member.announcement.detail',compact('title','announcement'));
+        $title = "View Announcement";
+        $announcement = Announcement::find($id);
+        return view('member.announcement.detail', compact('title', 'announcement'));
     }
 
     /**
@@ -61,11 +75,11 @@ class AnnouncementController extends Controller
      */
     public function edit(string $id)
     {
-        
-        $title="Edit Announcement";
-        $announcement=Announcement::find($id);
-        
-        return view('member.announcement.edit',compact('title','announcement'));
+
+        $title = "Edit Announcement";
+        $announcement = Announcement::find($id);
+
+        return view('member.announcement.edit', compact('title', 'announcement'));
     }
 
     /**
@@ -73,7 +87,7 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
         // $validated=$request->validate([
         //     'eventName'=>'required',
         //     'startDate'=>'required',
@@ -84,7 +98,7 @@ class AnnouncementController extends Controller
 
         $announcement = Announcement::find($id);
         $announcement->update($request->all());
-        return redirect('/announcement')->with('success','Operation Successfull');
+        return redirect('/announcement')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -92,8 +106,8 @@ class AnnouncementController extends Controller
      */
     public function destroy(string $id)
     {
-        $announcement=Announcement::find($id);
+        $announcement = Announcement::find($id);
         $announcement->delete();
-        return redirect('/announcement')->with('success','Operation Successfull');
+        return redirect('/announcement')->with('success', 'Operation Successfull');
     }
 }

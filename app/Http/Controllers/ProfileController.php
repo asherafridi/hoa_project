@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +18,9 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $title= "Profile";
+        $user=$request->user();
+        return view('member.profile', compact('title','user'));
     }
 
     /**
@@ -35,6 +37,41 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function updateMine(Request $request){
+        
+        $admin= User::find(Auth::user()->id);
+        $admin->firstName=$request->firstName;
+        $admin->lastName=$request->lastName;
+            $admin->email=$request->email;
+            $admin->save();
+            return redirect('/profile')->with('success','Operation Successfull');
+        
+    }
+
+    public function updatePassword(Request $request){
+
+    // Validate the request data
+    $request->validate([
+        'old_password' => 'required',
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    // Get the authenticated user
+    $user = auth()->user();
+
+    // Verify the old password
+    if (!Hash::check($request->old_password, $user->password)) {
+        return redirect()->back()->with('error', 'The old password is incorrect.');
+    }
+
+    // Update the password
+    $user->update([
+        'password' => Hash::make($request->password),
+    ]);
+
+    return redirect()->route('profile.edit')->with('success', 'Password updated successfully.');
     }
 
     /**

@@ -17,7 +17,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Title</label>
-                            <input type="text" value="{{$announcement->title}}" class="form-control" required name="title" placeholder="Arrangement"
+                            <input type="text" value="{{$announcement->title}}" class="form-control" required name="title" readonly placeholder="Arrangement"
                                 autofocus />
                             @error('title')
                                 <div class="form-text text-danger">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Date</label>
-                            <input type="datetime-local"  value="{{$announcement->date}}" class="form-control" required name="date" placeholder="Arrangement"
+                            <input type="datetime-local"  readonly  value="{{$announcement->date}}" class="form-control" required name="date" placeholder="Arrangement"
                                 autofocus />
                             @error('date')
                                 <div class="form-text text-danger">
@@ -41,7 +41,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
-                            <textarea type="text" name="description" class="form-control" placeholder="Description..." rows="3"> {{$announcement->description}}</textarea>
+                            <textarea type="text"  readonly name="description" class="form-control" placeholder="Description..." rows="3"> {{$announcement->description}}</textarea>
                             @error('description')
                                 <div class="form-text text-danger">
                                     {{ $message }}

@@ -1,4 +1,5 @@
 <?php
+use App\Models\Calendar;
 use App\Models\Document;
 use App\Models\Events;
 use App\Models\Settings;
@@ -63,7 +64,7 @@ function setting_update($key, $update_value){
     ]);
 }
 function events(){
-    return Events::limit(5)->get();
+    return Calendar::limit(5)->orderBy('id','DESC')->get();
 }
 function documents(){
     return Document::limit(5)->get();

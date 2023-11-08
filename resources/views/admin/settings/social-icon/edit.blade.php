@@ -31,7 +31,7 @@
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <label class="form-label">Url</label>
-                        <input type="text" class="form-control" name="url" value="{{ $setting->description->url ?? '' }}"
+                        <input type="text" class="form-control" value="{{ $setting->description->url ?? '' }}"
                             required name="Url" placeholder="Link" autofocus />
                     </div>
                 </div>

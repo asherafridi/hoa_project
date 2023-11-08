@@ -75,13 +75,13 @@
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label">Transaction Screenshot</label>
-                                    <input type="file" class="form-control" name="referencePic"/>
+                                    <input type="file" class="form-control" name="referencePic" required />
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label">Reference / TID</label>
-                                    <textarea class="form-control" name="reference"></textarea>
+                                    <textarea class="form-control" name="reference" required ></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">

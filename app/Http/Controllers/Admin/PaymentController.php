@@ -14,10 +14,23 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        
-        $title="Payments";
-        $payments = Payment::orderBy('id','DESC')->paginate(10);
-        return view('admin.payments.list',compact('title','payments'));
+        $title = "Payments";
+        $query = Payment::orderBy('id', 'DESC');
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Payment())->getTable());
+
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $payments = $query->paginate(10);
+
+        return view('admin.payments.list', compact('title', 'payments'));
     }
 
     /**
@@ -40,11 +53,11 @@ class PaymentController extends Controller
      */
     public function show(string $id)
     {
-        
-        $title="Payment";
-        $payment=Payment::find($id);
-        
-        return view('admin.payments.detail',compact('title','payment'));
+
+        $title = "Payment";
+        $payment = Payment::find($id);
+
+        return view('admin.payments.detail', compact('title', 'payment'));
     }
 
     /**
@@ -53,9 +66,9 @@ class PaymentController extends Controller
     public function edit(string $id)
     {
         $title = "Update Payment Status";
-        $payment= Payment::find($id);
-        
-        return view('admin.payments.edit',compact('title','payment'));
+        $payment = Payment::find($id);
+
+        return view('admin.payments.edit', compact('title', 'payment'));
     }
 
     /**
@@ -63,20 +76,20 @@ class PaymentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $payment=Payment::find($id);
+        $payment = Payment::find($id);
         $transaction = Transaction::find($payment->transactionId);
 
-        if($request->status==='Paid'){
+        if ($request->status === 'Paid') {
             $transaction->update([
-                'status'=> 'Paid'
+                'status' => 'Paid'
             ]);
         }
-        
+
         $payment->update([
-            'status'=> $request->status
+            'status' => $request->status
         ]);
 
-        return redirect('/admin/payments')->with('success','Payment Status Updated');
+        return redirect('/admin/payments')->with('success', 'Payment Status Updated');
 
     }
 

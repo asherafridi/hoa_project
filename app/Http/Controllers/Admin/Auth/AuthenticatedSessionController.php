@@ -51,8 +51,8 @@ class AuthenticatedSessionController extends Controller
 
     public function profile(){
         $admin=Auth::guard('admin')->user();
-
-        return view('admin.auth.profile');
+        $title = "Profile";
+        return view('admin.auth.profile',compact('title'));
     }
 
     public function profileUpdate(Request $request){

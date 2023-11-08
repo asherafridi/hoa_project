@@ -42,7 +42,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label">Assigned To</label>
-                    <input type="text" class="form-control" value="{{ $workOrder->vendor() ? $workOrder->vendor() : 'Work Not Assigned' }}" readonly />
+                    <input type="text" class="form-control" value="{{$workOrder->vendor() ? $workOrder->vendor()->name : 'Work not Assigned Yet'}}" readonly />
                 </div>
             </div>
 

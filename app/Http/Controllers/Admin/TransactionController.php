@@ -15,9 +15,23 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $title="Transactions";
-        $transactions = Transaction::paginate(10);
-        return view('admin.transaction.list',compact('title','transactions'));
+        $title = "Transactions";
+        $query = Transaction::query();
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Transaction())->getTable());
+
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $transactions = $query->paginate(10);
+
+        return view('admin.transaction.list', compact('title', 'transactions'));
     }
 
     /**
@@ -25,10 +39,10 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $title="Add Transaction";
-        $type=TransactionType::all();
-        $users=User::all();
-        return view('admin.transaction.add',compact('title','type','users'));
+        $title = "Add Transaction";
+        $type = TransactionType::all();
+        $users = User::all();
+        return view('admin.transaction.add', compact('title', 'type', 'users'));
     }
 
     /**
@@ -36,18 +50,18 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'userId'=>'required',
-            'transactionType'=>'required',
-            'transactionDate'=>'required',
-            'amount'=>'required',
-            'status'=>'required',
-            'description'=>'required',
+        $validated = $request->validate([
+            'userId' => 'required',
+            'transactionType' => 'required',
+            'transactionDate' => 'required',
+            'amount' => 'required',
+            'status' => 'required',
+            'description' => 'required',
         ]);
 
         $transactions = new Transaction;
         $transactions->create($request->all());
-        return redirect()->route('admin.transaction.index')->with('success','Transaction Added Successfully');
+        return redirect()->route('admin.transaction.index')->with('success', 'Transaction Added Successfully');
     }
 
     /**
@@ -55,11 +69,11 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Property";
-        $property=Properties::find($id);
-        
-        $type=PropertyType::all();
-        return view('admin.properties.detail',compact('title','property','type'));
+        $title = "View Property";
+        $property = Properties::find($id);
+
+        $type = PropertyType::all();
+        return view('admin.properties.detail', compact('title', 'property', 'type'));
     }
 
     /**
@@ -67,12 +81,12 @@ class TransactionController extends Controller
      */
     public function edit(string $id)
     {
-        
-        $title="Edit Transaction";
-        $type=TransactionType::all();
-        $users=User::all();
-        $transaction=Transaction::findOrFail($id);
-        return view('admin.transaction.edit',compact('title','type','users','transaction'));
+
+        $title = "Edit Transaction";
+        $type = TransactionType::all();
+        $users = User::all();
+        $transaction = Transaction::findOrFail($id);
+        return view('admin.transaction.edit', compact('title', 'type', 'users', 'transaction'));
     }
 
     /**
@@ -85,7 +99,7 @@ class TransactionController extends Controller
         if (!$transaction) {
             return redirect()->route('admin.transaction.index')->with('error', 'Transaction not found');
         }
-    
+
         // Update the transaction with the new data from the request.
         $transaction->update([
             'userId' => $request->userId,
@@ -95,7 +109,7 @@ class TransactionController extends Controller
             'status' => $request->status,
             'description' => $request->description,
         ]);
-    
+
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction updated successfully');
     }
 
@@ -104,8 +118,8 @@ class TransactionController extends Controller
      */
     public function destroy(string $id)
     {
-        $properties=Transaction::find($id);
+        $properties = Transaction::find($id);
         $properties->delete();
-        return redirect()->route('admin.transaction.index')->with('success','Property Deleted Successfully');
+        return redirect()->route('admin.transaction.index')->with('success', 'Property Deleted Successfully');
     }
 }

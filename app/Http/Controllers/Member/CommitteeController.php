@@ -10,10 +10,24 @@ class CommitteeController extends Controller
 {
     public function index()
     {
-        
-        $title="Committee";
-        $committee = Committee::paginate(10);
-        return view('member.committee.list',compact('title','committee'));
+
+        $title = "Committee";
+        $committeeQuery = Committee::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new Committee())->getTable());
+
+            $committeeQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $committee = $committeeQuery->paginate(10);
+
+        return view('member.committee.list', compact('title', 'committee'));
     }
 
     /**
@@ -21,8 +35,8 @@ class CommitteeController extends Controller
      */
     public function create()
     {
-        $title="Add Committee";
-        return view('member.committee.add',compact('title'));
+        $title = "Add Committee";
+        return view('member.committee.add', compact('title'));
     }
 
     /**
@@ -30,14 +44,14 @@ class CommitteeController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'description'=>'required',
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
         ]);
-        $request['adminId']=auth()->user()->id;
+        $request['adminId'] = auth()->user()->id;
         $calendar = new Committee;
         $calendar->create($request->all());
-        return redirect('/committee')->with('success','Operation Successfull');
+        return redirect('/committee')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -45,9 +59,9 @@ class CommitteeController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Committee";
-        $committee=Committee::find($id);
-        return view('member.committee.detail',compact('title','committee'));
+        $title = "View Committee";
+        $committee = Committee::find($id);
+        return view('member.committee.detail', compact('title', 'committee'));
     }
 
     /**
@@ -55,9 +69,9 @@ class CommitteeController extends Controller
      */
     public function edit(string $id)
     {
-        $title="Edit Committee";
-        $committee=Committee::find($id);
-        return view('member.committee.edit',compact('title','committee'));
+        $title = "Edit Committee";
+        $committee = Committee::find($id);
+        return view('member.committee.edit', compact('title', 'committee'));
     }
 
     /**
@@ -65,24 +79,24 @@ class CommitteeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $validated=$request->validate([
-            'name'=>'required',
-            'description'=>'required',
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
         $committee = Committee::find($id);
         $committee->update($request->all());
-        return redirect('/committee')->with('success','Operation Successfull');
+        return redirect('/committee')->with('success', 'Operation Successfull');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {        
-        $product=Committee::find($id);
+    {
+        $product = Committee::find($id);
         $product->delete();
-        return redirect('/committee')->with('success','Operation Successfull');
+        return redirect('/committee')->with('success', 'Operation Successfull');
     }
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Models\WorkOrder;
+
 class WorkOrderController extends Controller
 {
     /**
@@ -15,27 +16,38 @@ class WorkOrderController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $title="Work Order";
-        
-        $workOrderQuery = WorkOrder::query();
-        $workOrderQuery->where('requestedBy',auth()->user()->id);
-    if ($request->priority !== null) {
-        $workOrderQuery->where('priority', $request->priority);
-    }
-    if ($request->status !== null) {
-        $workOrderQuery->where('status', $request->status);
-    }
-    if ($request->date !== null) {
-        $date = explode(' to ', $request->date);
-        $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
-    $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
-        
-        $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
-    }
 
-    $workOrder = $workOrderQuery->paginate(10);
-        return view('member.work-order.index',compact('title','workOrder'));
+        $title = "Work Order";
+        $workOrderQuery = WorkOrder::where('requestedBy', auth()->user()->id);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
+
+            $workOrderQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        if ($request->priority !== null) {
+            $workOrderQuery->where('priority', $request->priority);
+        }
+        if ($request->status !== null) {
+            $workOrderQuery->where('status', $request->status);
+        }
+        if ($request->date !== null) {
+            $date = explode(' to ', $request->date);
+            $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
+            $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
+
+            $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
+        }
+
+        $workOrder = $workOrderQuery->paginate(10);
+
+        return view('member.work-order.index', compact('title', 'workOrder'));
     }
 
     /**
@@ -43,11 +55,11 @@ class WorkOrderController extends Controller
      */
     public function create()
     {
-        $title="Create Work Order Request";
-        $vendor=Vendor::all();
-        $property=Properties::all();
-        $members=User::all();
-        return view('member.work-order.work-request',compact('title','vendor','property','members'));
+        $title = "Create Work Order Request";
+        $vendor = Vendor::all();
+        $property = Properties::all();
+        $members = User::all();
+        return view('member.work-order.work-request', compact('title', 'vendor', 'property', 'members'));
     }
 
     /**
@@ -59,8 +71,8 @@ class WorkOrderController extends Controller
         $request['requestedBy'] = auth()->user()->id;
         $request['status'] = "Customer-Requested";
         WorkOrder::create($request->all());
-        
-        return redirect('/work-order')->with('success','Operation Successfull');
+
+        return redirect('/work-order')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -68,14 +80,14 @@ class WorkOrderController extends Controller
      */
     public function show(string $id)
     {
-        
-        $title="View Work Order";
-        $workOrder=WorkOrder::find($id);
-        
-        $vendor=Vendor::all();
-        $properties=Properties::all();
-        $members=User::all();
-        return view('member.work-order.details',compact('title','workOrder','properties','members','vendor'));
+
+        $title = "View Work Order";
+        $workOrder = WorkOrder::find($id);
+
+        $vendor = Vendor::all();
+        $properties = Properties::all();
+        $members = User::all();
+        return view('member.work-order.details', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
     }
 
     /**

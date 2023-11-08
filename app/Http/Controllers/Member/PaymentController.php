@@ -13,17 +13,28 @@ class PaymentController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $title="Payment History";
-        $payment = Payment::query();
-        $payment->where('userId',auth()->user()->id);
-        
-    if ($request->status !== null) {
-        $payment->where('status', $request->status);
-    }
-    
-    $payment = $payment->paginate(10);
-        return view('member.payments.index',compact('title','payment'));
+
+        $title = "Payment History";
+        $paymentQuery = Payment::where('userId', auth()->user()->id);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new Payment())->getTable());
+
+            $paymentQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        if ($request->status !== null) {
+            $paymentQuery->where('status', $request->status);
+        }
+
+        $payment = $paymentQuery->paginate(10);
+
+        return view('member.payments.index', compact('title', 'payment'));
 
     }
 

@@ -187,11 +187,11 @@
                         <div data-i18n="Without menu">General Settings</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                {{-- <li class="menu-item">
                     <a href="{{ route('admin.settings.header') }}" class="menu-link">
                         <div data-i18n="Without menu">Header Settings</div>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 

@@ -88,7 +88,7 @@
                             <select class="form-control" required name="propertyId">
                                 <option value="">Select Property</option>
                                 @foreach ($properties as $property)
-                                    <option value="{{ $property->id }}">{{ $property->type }}</option>
+                                    <option value="{{ $property->id }}">{{ $property->address }} - {{ $property->type() ? $property->type()->name : "No Property Type" }}</option>
                                 @endforeach
                             </select>
                             @error('propertyId')

@@ -14,17 +14,29 @@ class BillsController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $title="Bills";
-        $transactions = Transaction::query();
-        $transactions->where('userId',auth()->user()->id);
-        
-    if ($request->status !== null) {
-        $transactions->where('status', $request->status);
-    }
-    
-    $transactions = $transactions->paginate(10);
-        return view('member.bills.index',compact('title','transactions'));
+
+        $title = "Bills";
+        $transactionsQuery = Transaction::where('userId', auth()->user()->id);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new Transaction())->getTable());
+
+            $transactionsQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        if ($request->status !== null) {
+            $transactionsQuery->where('status', $request->status);
+        }
+
+        $transactions = $transactionsQuery->paginate(10);
+
+        return view('member.bills.index', compact('title', 'transactions'));
+
     }
 
     /**
@@ -75,30 +87,32 @@ class BillsController extends Controller
         //
     }
 
-    public function payBill(string $id){
-        $title="Pay Bill";
+    public function payBill(string $id)
+    {
+        $title = "Pay Bill";
         $bill = Transaction::find($id);
-        return view('member.bills.pay-bill',compact('bill','title'));
+        return view('member.bills.pay-bill', compact('bill', 'title'));
     }
-    public function manualBillPay(Request $request){
+    public function manualBillPay(Request $request)
+    {
 
-        $bill=Transaction::find($request->transactionId);
-        if($bill->payment()){
-            
-        return redirect('/bill')->with('error','Transaction already in process');
+        $bill = Transaction::find($request->transactionId);
+        if ($bill->payment()) {
+
+            return redirect('/bill')->with('error', 'Transaction already in process');
         }
-        
+
         if ($request->hasFile('referencePic')) {
             $file = $request->file('referencePic');
-            $filename = $file->store('uploads/referencePic','public');
-            $request['screenshot']=$filename;
+            $filename = $file->store('uploads/referencePic', 'public');
+            $request['screenshot'] = $filename;
             // Now, $filename contains the path or filename of the stored file.
         }
-        $request['paymentDate']=date('Y-m-d');
-        $request['amount']=$bill->amount;
-        $request['status']="Pending";
+        $request['paymentDate'] = date('Y-m-d');
+        $request['amount'] = $bill->amount;
+        $request['status'] = "Pending";
         Payment::create($request->all());
-        
-        return redirect('/bills')->with('error','Wait for Admin Approval');
+
+        return redirect('/bills')->with('error', 'Wait for Admin Approval');
     }
 }

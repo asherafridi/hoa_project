@@ -6,6 +6,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Transactions /</span> List</h4>
 
+    @include('admin.partials.search-bar')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5>{{$title}}<h5>
@@ -30,7 +31,7 @@
               @forelse ($transactions as $item)
               <tr>
                 <td>{{$loop->index+1}}</td>
-                <td>{{$item->user()->fullname()}}</td>
+                <td>{{$item->user() ? $item->user()->fullname() : 'No User Found'}}</td>
                 <td>{{$item->transactionDate}}</td>
                 <td>{{$item->type() ? $item->type()->name : ''}}</td>
                 <td>{{settings('currency_symbol')}} {{ number_format($item->amount,2)}}</td>

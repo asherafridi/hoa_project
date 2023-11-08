@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[SiteController::class,'home'])->name('home');
 Route::get('gallery',[SiteController::class,'gallery'])->name('gallery');
 Route::get('event',[SiteController::class,'events'])->name('event');
+Route::get('event/{id}',[SiteController::class,'eventPage'])->name('event.page');
 Route::get('document',[SiteController::class,'documents'])->name('document');
 Route::get('thank-you',[SiteController::class,'thankYou'])->name('thanks');
 

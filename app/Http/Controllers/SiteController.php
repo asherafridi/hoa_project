@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use App\Models\Document;
 use App\Models\Events;
 use App\Models\Gallery;
@@ -23,9 +24,14 @@ class SiteController extends Controller
     }
     public function events(){
         $title="Events";
-        $events=Events::paginate(12);
+        $events=Calendar::paginate(12);
         return view('frontend.basic.event',compact('title','events'));
     }
+    public function eventPage($id){
+        $event = Calendar::find($id);
+        $title = $event->eventName;
+        return view('frontend.basic.eventPage',compact('title','event'));
+   }
     public function documents(){
         $title="Documents";
         $document=Document::paginate(12);

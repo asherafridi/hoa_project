@@ -91,7 +91,7 @@
                                     <small class="text-muted">{{$item->vendor() ? $item->vendor()->name : 'No Vendor'}}</small>
                                 </div>
                                 <div class="user-progress">
-                                    <small class="fw-semibold">{{date("d-M-Y", strtotime($item->date))}}</small>
+                                    <small class="fw-semibold">{{date("d-M-Y", strtotime($item->requested_date))}}</small>
                                 </div>
                             </div>
                         </li>

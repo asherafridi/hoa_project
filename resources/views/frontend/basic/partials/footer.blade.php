@@ -45,7 +45,7 @@
             <ul>
               @foreach (events() as $item)
                   
-              <li><i class="bx bx-chevron-right"></i> <a href="#">{{$item->event_name}}</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('event.page',$item->id)}}">{{$item->eventName}}</a></li>
               @endforeach
             </ul>
           </div>

@@ -89,7 +89,7 @@
                         <select class="form-control" required name="propertyId">
                             <option value="">Select Property</option>
                             @foreach ($properties as $property)
-                            <option value="{{ $property->id }}" @if ($property->id == $member->propertyId) selected @endif>{{ $property->type }}</option>
+                            <option value="{{ $property->id }}" @if ($property->id == $member->propertyId) selected @endif>{{ $property->address }} - {{$property->type() ? $property->type()->name : 'Property'}}</option>
                             @endforeach
                         </select>
                         @error('propertyId')

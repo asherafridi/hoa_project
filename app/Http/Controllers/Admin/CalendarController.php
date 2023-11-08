@@ -14,9 +14,23 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $title="Calendar";
-        $calendar = Calendar::paginate(10);
-        return view('admin.calendar.list',compact('title','calendar'));
+        $title = "Event";
+        $query = Calendar::query();
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Calendar())->getTable());
+
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $calendar = $query->paginate(10);
+
+        return view('admin.calendar.list', compact('title', 'calendar'));
     }
 
     /**
@@ -24,9 +38,9 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        $title="Add Calendar";
-        $committee=Committee::all();
-        return view('admin.calendar.add',compact('title','committee'));
+        $title = "Add Event";
+        $committee = Committee::all();
+        return view('admin.calendar.add', compact('title', 'committee'));
     }
 
     /**
@@ -34,17 +48,17 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'eventName'=>'required',
-            'startDate'=>'required',
-            'endDate'=>'required',
-            'location'=>'required',
-            'committeeId'=>'required'
+        $validated = $request->validate([
+            'eventName' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
+            'location' => 'required',
+            'committeeId' => 'required'
         ]);
 
         $calendar = new Calendar;
         $calendar->create($request->all());
-        return redirect('/admin/calendar')->with('success','Operation Successfull');
+        return redirect('/admin/calendar')->with('success', 'Operation Successfull');
 
     }
 
@@ -53,10 +67,10 @@ class CalendarController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Calendar";
-        $calendar=Calendar::find($id);
-        $committee=Committee::find($calendar->committeeId);
-        return view('admin.calendar.detail',compact('title','calendar','committee'));
+        $title = "View Event";
+        $calendar = Calendar::find($id);
+        $committee = Committee::find($calendar->committeeId);
+        return view('admin.calendar.detail', compact('title', 'calendar', 'committee'));
     }
 
     /**
@@ -64,11 +78,11 @@ class CalendarController extends Controller
      */
     public function edit(string $id)
     {
-        $title="Edit Calendar";
-        $calendar=Calendar::find($id);
-        
-        $committee=Committee::all();
-        return view('admin.calendar.edit',compact('title','calendar','committee'));
+        $title = "Edit Event";
+        $calendar = Calendar::find($id);
+
+        $committee = Committee::all();
+        return view('admin.calendar.edit', compact('title', 'calendar', 'committee'));
     }
 
     /**
@@ -76,17 +90,17 @@ class CalendarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated=$request->validate([
-            'eventName'=>'required',
-            'startDate'=>'required',
-            'endDate'=>'required',
-            'location'=>'required',
-            'committeeId'=>'required'
+        $validated = $request->validate([
+            'eventName' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
+            'location' => 'required',
+            'committeeId' => 'required'
         ]);
 
         $calendar = Calendar::find($id);
         $calendar->update($request->all());
-        return redirect('/admin/calendar')->with('success','Operation Successfull');
+        return redirect('/admin/calendar')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -94,8 +108,8 @@ class CalendarController extends Controller
      */
     public function destroy(string $id)
     {
-        $product=Calendar::find($id);
+        $product = Calendar::find($id);
         $product->delete();
-        return redirect('/admin/calendar')->with('success','Operation Successfull');
+        return redirect('/admin/calendar')->with('success', 'Operation Successfull');
     }
 }

@@ -17,26 +17,37 @@ class WordOrderController extends Controller
      */
     public function index(Request $request)
     {
-        $title="Work Order";
-        
+        $title = "Work Order";
         $workOrderQuery = WorkOrder::query();
 
-    if ($request->priority !== null) {
-        $workOrderQuery->where('priority', $request->priority);
-    }
-    if ($request->status !== null) {
-        $workOrderQuery->where('status', $request->status);
-    }
-    if ($request->date !== null) {
-        $date = explode(' to ', $request->date);
-        $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
-    $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
-        
-        $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
-    }
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
 
-    $workOrder = $workOrderQuery->paginate(10);
-        return view('admin.work-order.list',compact('title','workOrder'));
+            $workOrderQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        if ($request->priority !== null) {
+            $workOrderQuery->where('priority', $request->priority);
+        }
+        if ($request->status !== null) {
+            $workOrderQuery->where('status', $request->status);
+        }
+        if ($request->date !== null) {
+            $date = explode(' to ', $request->date);
+            $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
+            $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
+
+            $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
+        }
+
+        $workOrder = $workOrderQuery->paginate(10);
+
+        return view('admin.work-order.list', compact('title', 'workOrder'));
     }
 
     /**
@@ -44,11 +55,11 @@ class WordOrderController extends Controller
      */
     public function create()
     {
-        $title="Add Work Order";
-        $vendor=Vendor::all();
-        $property=Properties::all();
-        $members=User::all();
-        return view('admin.work-order.add',compact('title','vendor','property','members'));
+        $title = "Add Work Order";
+        $vendor = Vendor::all();
+        $property = Properties::all();
+        $members = User::all();
+        return view('admin.work-order.add', compact('title', 'vendor', 'property', 'members'));
     }
 
     /**
@@ -57,7 +68,7 @@ class WordOrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'invoice' => 'file|mimes:pdf,docx|max:2048',
+            'invoice' => 'file|mimes:pdf,docx|max:2048',
         ]);
         $workOrder = new WorkOrder;
         if ($request->hasFile('invoice')) {
@@ -70,7 +81,7 @@ class WordOrderController extends Controller
             }
         }
         $workOrder->create($request->all());
-        return redirect('/admin/work-order')->with('success','Operation Successfull');
+        return redirect('/admin/work-order')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -78,13 +89,13 @@ class WordOrderController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Work Order";
-        $workOrder=WorkOrder::find($id);
-        
-        $vendor=Vendor::all();
-        $properties=Properties::all();
-        $members=User::all();
-        return view('admin.work-order.detail',compact('title','workOrder','properties','members','vendor'));
+        $title = "View Work Order";
+        $workOrder = WorkOrder::find($id);
+
+        $vendor = Vendor::all();
+        $properties = Properties::all();
+        $members = User::all();
+        return view('admin.work-order.detail', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
     }
 
     /**
@@ -92,13 +103,13 @@ class WordOrderController extends Controller
      */
     public function edit(string $id)
     {
-        $title="Edit Work Order";
-        $workOrder=WorkOrder::find($id);
-        
-        $vendor=Vendor::all();
-        $properties=Properties::all();
-        $members=User::all();
-        return view('admin.work-order.edit',compact('title','workOrder','properties','members','vendor'));
+        $title = "Edit Work Order";
+        $workOrder = WorkOrder::find($id);
+
+        $vendor = Vendor::all();
+        $properties = Properties::all();
+        $members = User::all();
+        return view('admin.work-order.edit', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
     }
 
     /**
@@ -106,28 +117,28 @@ class WordOrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-    $workOrder = WorkOrder::findOrFail($id);
 
-    // Handle file upload
-    if ($request->hasFile('invoice')) {
-        $file = $request->file('invoice');
-        if ($file->isValid()) {
-            // Delete the old invoice file if it exists
-            if ($workOrder->invoice) {
-                Storage::delete($workOrder->invoice);
+        $workOrder = WorkOrder::findOrFail($id);
+
+        // Handle file upload
+        if ($request->hasFile('invoice')) {
+            $file = $request->file('invoice');
+            if ($file->isValid()) {
+                // Delete the old invoice file if it exists
+                if ($workOrder->invoice) {
+                    Storage::delete($workOrder->invoice);
+                }
+
+                $path = $file->store('uploads/invoices/');
+                $request->merge(['invoice' => $path]);
+            } else {
+                return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
             }
-
-            $path = $file->store('uploads/invoices/');
-            $request->merge(['invoice' => $path]);
-        } else {
-            return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
         }
-    }
 
-    $workOrder->update($request->all());
+        $workOrder->update($request->all());
 
-    return redirect('/admin/work-order')->with('success', 'Operation successful');
+        return redirect('/admin/work-order')->with('success', 'Operation successful');
     }
 
     /**
@@ -135,8 +146,8 @@ class WordOrderController extends Controller
      */
     public function destroy(string $id)
     {
-        $workOrder=WorkOrder::find($id);
+        $workOrder = WorkOrder::find($id);
         $workOrder->delete();
-        return redirect('/admin/work-order')->with('success','Operation Successfull');
+        return redirect('/admin/work-order')->with('success', 'Operation Successfull');
     }
 }

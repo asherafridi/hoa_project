@@ -10,10 +10,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{$item->name}}</h5>
                     <p class="card-text">{{$item->description}}</p>
+                    
                 </div>
                 <div class="card-footer">
-                    <a href="{{$item->document}}" class="btn btn-primary">View</a>
-                    <a href="{{$item->document}}" class="btn btn-success">Download</a>
+                    <a href="{{$item->file}}" class="btn btn-success">Download</a>
                 </div>
             </div>
         </div>

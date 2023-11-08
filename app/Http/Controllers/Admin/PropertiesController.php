@@ -15,9 +15,23 @@ class PropertiesController extends Controller
      */
     public function index()
     {
-        $title="Property";
-        $properties = Properties::paginate(10);
-        return view('admin.properties.list',compact('title','properties'));
+        $title = "Property";
+        $query = Properties::query();
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Properties())->getTable());
+
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
+
+        $properties = $query->paginate(10);
+
+        return view('admin.properties.list', compact('title', 'properties'));
     }
 
     /**
@@ -25,9 +39,9 @@ class PropertiesController extends Controller
      */
     public function create()
     {
-        $title="Add Property";
-        $type=PropertyType::all();
-        return view('admin.properties.add',compact('title','type'));
+        $title = "Add Property";
+        $type = PropertyType::all();
+        return view('admin.properties.add', compact('title', 'type'));
     }
 
     /**
@@ -35,17 +49,17 @@ class PropertiesController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'propertyType'=>'required',
-            'address'=>'required',
-            'unit_no'=>'required',
-            'status'=>'required'
+        $validated = $request->validate([
+            'name' => 'required',
+            'propertyType' => 'required',
+            'address' => 'required',
+            'unit_no' => 'required',
+            'status' => 'required'
         ]);
 
         $properties = new Properties;
         $properties->create($request->all());
-        return redirect()->route('admin.properties.index')->with('success','Property Added Successfully');
+        return redirect()->route('admin.properties.index')->with('success', 'Property Added Successfully');
     }
 
     /**
@@ -53,11 +67,11 @@ class PropertiesController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Property";
-        $property=Properties::find($id);
-        
-        $type=PropertyType::all();
-        return view('admin.properties.detail',compact('title','property','type'));
+        $title = "View Property";
+        $property = Properties::find($id);
+
+        $type = PropertyType::all();
+        return view('admin.properties.detail', compact('title', 'property', 'type'));
     }
 
     /**
@@ -65,12 +79,12 @@ class PropertiesController extends Controller
      */
     public function edit(string $id)
     {
-        
-        $title="Edit Property";
-        $property=Properties::find($id);
-        
-        $types=PropertyType::all();
-        return view('admin.properties.edit',compact('title','property','types'));
+
+        $title = "Edit Property";
+        $property = Properties::find($id);
+
+        $types = PropertyType::all();
+        return view('admin.properties.edit', compact('title', 'property', 'types'));
     }
 
     /**
@@ -78,17 +92,17 @@ class PropertiesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'propertyType'=>'required',
-            'address'=>'required',
-            'unit_no'=>'required',
-            'status'=>'required'
+        $validated = $request->validate([
+            'name' => 'required',
+            'propertyType' => 'required',
+            'address' => 'required',
+            'unit_no' => 'required',
+            'status' => 'required'
         ]);
 
         $properties = Properties::find($id);
         $properties->update($request->all());
-        return redirect()->route('admin.properties.index')->with('success','Property Updated Successfully');
+        return redirect()->route('admin.properties.index')->with('success', 'Property Updated Successfully');
     }
 
     /**
@@ -96,8 +110,8 @@ class PropertiesController extends Controller
      */
     public function destroy(string $id)
     {
-        $properties=Properties::find($id);
+        $properties = Properties::find($id);
         $properties->delete();
-        return redirect()->route('admin.properties.index')->with('success','Property Deleted Successfully');
+        return redirect()->route('admin.properties.index')->with('success', 'Property Deleted Successfully');
     }
 }
