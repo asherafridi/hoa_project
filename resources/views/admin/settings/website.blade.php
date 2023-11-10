@@ -54,7 +54,7 @@
         </div>
 
         {{-- Icon  --}}
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin.settings.icon.update') }}">
                     @csrf
@@ -70,6 +70,37 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row px-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="POST"  enctype="multipart/form-data"  action="{{ route('admin.settings.about.update') }}">
+                    @csrf
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" value="{{settings('email')}}" name="email"
+                                autofocus />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" value="{{settings('phone_number')}}" name="phone_number"
+                                autofocus />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" value="{{settings('address')}}" name="address"
+                                autofocus />
+                        </div>
+                    </div>
+
+
                     <div class="row px-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

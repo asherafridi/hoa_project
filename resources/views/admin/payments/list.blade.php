@@ -33,7 +33,7 @@
               <tr>
                 <td>{{$loop->index+1}}</td>
                 <td>{{$item->user() ? $item->user()->fullname() : 'User Not Found'}}</td>
-                <td>{{$item->transaction()->description}}</td>
+                <td>{{$item->transaction() ? $item->transaction()->description : 'Transaction Not Found'}}</td>
                 <td>{{$item->paymentDate}}</td>
                 <td>{{settings('currency_symbol')}} {{ number_format($item->amount,2)}}</td>
                 <td>{{$item->reference}}</td>
