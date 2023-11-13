@@ -43,6 +43,8 @@
                       <a class="dropdown-item" href="{{route('events.show',$item->id)}}"
                         ><i class="bx bx-menu me-1"></i> View</a
                       >
+                      
+                      @if($item->adminId == auth()->user()->id)
                       <a class="dropdown-item" href="{{route('events.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >
@@ -52,7 +54,9 @@
                       <button class="dropdown-item" type="submit"
                         ><i class="bx bx-trash me-1"></i> Delete</button
                       >
+
                       </form>
+                      @endif
                     </div>
                   </div>
                 </td>

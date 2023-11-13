@@ -17,7 +17,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon"><i class="bx bx-file"></i></div>
-                <h4 class="title"><a href="">Security and Safety</a></h4>
+                <h4 class="title"><a href="#">Security and Safety</a></h4>
                 <p class="description">Your safety is our top priority. We work closely with local law enforcement and implement security measures to keep our neighborhood secure.</p>
               </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4 class="title"><a href="">Events and Activities</a></h4>
+                <h4 class="title"><a href="#">Events and Activities</a></h4>
                 <p class="description">We organize various events and activities throughout the year to foster a sense of belonging and fun. From community picnics to holiday celebrations, there's always something happening in our neighborhood.</p>
               </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon"><i class="bx bx-world"></i></div>
-                <h4 class="title"><a href="">Communication Hub</a></h4>
+                <h4 class="title"><a href="#">Communication Hub</a></h4>
                 <p class="description">Stay informed and connected through our website, newsletters, and social media channels. Our website serves as a valuable resource for important updates, news, and community announcements.</p>
               </div>
             </div>
@@ -180,7 +180,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                <h4><a href="">Landscape and Greenery Care</a></h4>
+                <h4><a href="#">Landscape and Greenery Care</a></h4>
                 <p>Our dedicated team ensures the lush greenery and aesthetics of our neighborhood, maintaining beautiful landscapes and well-kept green spaces.</p>
               </div>
             </div>
@@ -188,7 +188,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-file"></i></div>
-                <h4><a href="">Neighborhood Watch and Security</a></h4>
+                <h4><a href="#">Neighborhood Watch and Security</a></h4>
                 <p>Your safety is our top priority. We collaborate closely with local law enforcement and employ security measures to provide a secure living environment for all residents.</p>
               </div>
             </div>
@@ -196,7 +196,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4><a href="">Community Gatherings and Activities</a></h4>
+                <h4><a href="#">Community Gatherings and Activities</a></h4>
                 <p>Join the fun! We host a variety of engaging community events and activities throughout the year, fostering a strong sense of togetherness and creating lasting memories for our residents.</p>
               </div>
             </div>
@@ -204,7 +204,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-world"></i></div>
-                <h4><a href="">Information Hub and Updates</a></h4>
+                <h4><a href="#">Information Hub and Updates</a></h4>
                 <p>Stay connected with our website, newsletters, and community announcements. We keep you informed about important updates and neighborhood news.</p>
               </div>
             </div>
@@ -212,7 +212,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-slideshow"></i></div>
-                <h4><a href="">Environmental Stewardship</a></h4>
+                <h4><a href="#">Environmental Stewardship</a></h4>
                 <p>We are committed to sustainable practices and environmental responsibility. Our initiatives focus on preserving the natural beauty of our surroundings, promoting eco-friendly living, and reducing our carbon footprint.</p>
               </div>
             </div>
@@ -220,7 +220,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-arch"></i></div>
-                <h4><a href="">Educational Workshops and Resources</a></h4>
+                <h4><a href="#">Educational Workshops and Resources</a></h4>
                 <p>We believe in the power of knowledge. Join our educational workshops and access valuable resources on various topics, from home improvement to financial planning, empowering you with information to enhance your quality of life.</p>
               </div>
             </div>
@@ -579,7 +579,7 @@
           <div class="row" data-aos="fade-up" data-aos-delay="100">
   
             <div class="col-lg-6 ">
-              <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+              <iframe class="mb-4 mb-lg-0" src="{{settings('map_location')}}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
             </div>
   
             <div class="col-lg-6">

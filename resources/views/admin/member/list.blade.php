@@ -24,6 +24,7 @@
                 <th>Member Type</th>
                 <th>Property</th>
                 <th>Balance</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -37,6 +38,7 @@
                 <td>{{$item->type() ? $item->type()->name : 'Type Not Found'}}</td>
                 <td>{{$item->property() ? $item->property()->name : 'No Property'}}</td>
                 <td>{{$item->balance}}</td>
+                <td>{{$item->status==1 ? 'Approved' : 'Non Approved'}}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

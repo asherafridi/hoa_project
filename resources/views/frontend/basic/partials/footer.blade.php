@@ -1,7 +1,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-newsletter">
+    {{-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="footer-top">
       <div class="container">
@@ -54,11 +54,14 @@
             <h4>Our Social Networks</h4>
             <p>Follow Us on Social Media</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              @foreach (social_icon() as $item)
+              @php
+              $desc = json_decode($item->description);
+
+              @endphp
+                
+              <a href="{{$desc->url}}" class="twitter">{!! $desc->social_icon !!}</a>
+              @endforeach
             </div>
           </div>
 

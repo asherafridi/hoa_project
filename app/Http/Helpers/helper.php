@@ -5,12 +5,14 @@ use App\Models\Events;
 use App\Models\Settings;
 
 
-function activeTemplate() {
-    $front = Settings::where('key','website_frontend')->firstOrFail();
+function activeTemplate()
+{
+    $front = Settings::where('key', 'website_frontend')->firstOrFail();
     return $front->description;
 }
-function getPageSections($arr = false) {
-    $jsonUrl  = resource_path('views/frontend/') . str_replace('.', '/', activeTemplate()) . '/sections.json';
+function getPageSections($arr = false)
+{
+    $jsonUrl = resource_path('views/frontend/') . str_replace('.', '/', activeTemplate()) . '/sections.json';
     $sections = json_decode(file_get_contents($jsonUrl));
 
     if ($arr) {
@@ -21,12 +23,14 @@ function getPageSections($arr = false) {
     return $sections;
 }
 
-function keyToTitle($text) {
+function keyToTitle($text)
+{
     return ucfirst(preg_replace("/[^A-Za-z0-9 ]/", ' ', $text));
 }
 
 
-function getImage($image, $size = null) {
+function getImage($image, $size = null)
+{
     $clean = '';
 
     if (file_exists($image) && is_file($image)) {
@@ -40,55 +44,84 @@ function getImage($image, $size = null) {
     return asset('assets/images/default.png');
 }
 
-function settings($key, $exeception=null){
-    $setting = Settings::where('key',$key)->first();
-    if($setting){
+function settings($key, $exeception = null)
+{
+    $setting = Settings::where('key', $key)->first();
+    if ($setting) {
         return $setting->description;
-    }else{
+    } else {
         return $exeception;
     }
 }
 
-function setting_list($key){
+function setting_list($key)
+{
 
-    $setting = Settings::select('description')->where('key',$key)->get();
+    $setting = Settings::select('description')->where('key', $key)->get();
     return $setting;
 }
 
-function setting_update($key, $update_value){
-    
-    $setting = Settings::where('key',$key)->firstOrFail();
-    
+function setting_update($key, $update_value)
+{
+
+    $setting = Settings::where('key', $key)->firstOrFail();
+
     $setting->update([
-        "description"=>$update_value
+        "description" => $update_value
     ]);
 }
-function events(){
-    return Calendar::limit(5)->orderBy('id','DESC')->get();
+function events()
+{
+    return Calendar::limit(5)->orderBy('id', 'DESC')->get();
 }
-function documents(){
+function documents()
+{
     return Document::limit(5)->get();
 }
-function contacts(){
-    return array("Email","Phone","Address","Address1");
+function contacts()
+{
+    return array("Email", "Phone", "Address", "Address1");
 }
 
-function propertyStatus(){
-    return array('Owned','Rented','Vacant','Under Construction','For Sale','Other');
+function propertyStatus()
+{
+    return array('Owned', 'Rented', 'Vacant', 'Under Construction', 'For Sale', 'Other');
 }
 
-function priority_level(){
-    return array('High Priority','Medium Priority','Low Priority','Routine Maintenance','Scheduled/Planned','Deffered','No Priority/Unassigned','Emergency','Non-Emergency','On-Hold','Scheduled Maintenance','Customer-Requested');
+function priority_level()
+{
+    return array('High Priority', 'Medium Priority', 'Low Priority', 'Routine Maintenance', 'Scheduled/Planned', 'Deffered', 'No Priority/Unassigned', 'Emergency', 'Non-Emergency', 'On-Hold', 'Scheduled Maintenance', 'Customer-Requested');
 }
 
-function workOrder_Status(){
-    return array('New','Assigned','In Progress','On Hold','Completed','Canceled','Reopened'
-                ,'Overdue','Scheduled','Pending Approval','In Review','Customer-Requested');
+function workOrder_Status()
+{
+    return array(
+        'New',
+        'Assigned',
+        'In Progress',
+        'On Hold',
+        'Completed',
+        'Canceled',
+        'Reopened'
+        ,
+        'Overdue',
+        'Scheduled',
+        'Pending Approval',
+        'In Review',
+        'Customer-Requested'
+    );
 }
 
-function transactionStatus(){
-    return array('Paid','Unpaid');
+function transactionStatus()
+{
+    return array('Paid', 'Unpaid');
 }
-function paymentStatus(){
-    return array('Paid','Pending','Declined');
+function paymentStatus()
+{
+    return array('Paid', 'Pending', 'Declined');
+}
+
+function social_icon()
+{
+    return Settings::where('key', 'social_icon')->get();
 }

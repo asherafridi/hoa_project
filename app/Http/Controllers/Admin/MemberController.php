@@ -101,22 +101,37 @@ class MemberController extends Controller
             'userType' => 'required',
             'propertyId' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
         ]);
 
         // Find the user to update by their ID
         $user = User::findOrFail($id);
 
+
         // Update the user's data
-        $user->update([
-            'firstName' => $request->input('firstName'),
-            'lastName' => $request->input('lastName'),
-            'phone' => $request->input('phone'),
-            'userType' => $request->input('userType'),
-            'propertyId' => $request->input('propertyId'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        if ($request->has('password')) {
+
+            $user->update([
+                'firstName' => $request->input('firstName'),
+                'lastName' => $request->input('lastName'),
+                'phone' => $request->input('phone'),
+                'userType' => $request->input('userType'),
+                'propertyId' => $request->input('propertyId'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'status' => $request->input('status'),
+            ]);
+        } else {
+            $user->update([
+                'firstName' => $request->input('firstName'),
+                'lastName' => $request->input('lastName'),
+                'phone' => $request->input('phone'),
+                'userType' => $request->input('userType'),
+                'propertyId' => $request->input('propertyId'),
+                'email' => $request->input('email'),
+                'status' => $request->input('status'),
+            ]);
+        }
+
 
         return redirect()->route('admin.member.index')->with('success', 'Member Updated Successfully');
     }
