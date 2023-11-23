@@ -44,7 +44,7 @@
                         ><i class="bx bx-menu me-1"></i> View</a
                       >
                       
-                      @if($item->adminId == auth()->user()->id)
+                      @if($item->user_id == auth()->user()->id)
                       <a class="dropdown-item" href="{{route('events.edit',$item->id)}}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >

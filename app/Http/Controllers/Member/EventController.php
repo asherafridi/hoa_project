@@ -56,7 +56,10 @@ class EventController extends Controller
         ]);
 
         $calendar = new Calendar;
-        $calendar->create($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        $calendar->create($data);
         return redirect('/events')->with('success', 'Operation Successfull');
 
     }
