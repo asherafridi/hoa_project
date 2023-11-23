@@ -212,7 +212,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-slideshow"></i></div>
-                <h4>>Environmental Stewardship</h4>
+                <h4>Environmental Stewardship</h4>
                 <p>We are committed to sustainable practices and environmental responsibility. Our initiatives focus on preserving the natural beauty of our surroundings, promoting eco-friendly living, and reducing our carbon footprint.</p>
               </div>
             </div>
