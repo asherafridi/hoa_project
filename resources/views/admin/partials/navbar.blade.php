@@ -30,7 +30,7 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
 
-                        <img src="{{ auth()->guard('admin')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->guard('admin')->user()->picture }}"
+                        <img src="{{ auth()->guard('admin')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): '/' .auth()->guard('admin')->user()->picture }}"
                             alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
