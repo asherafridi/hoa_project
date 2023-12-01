@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,7 +18,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->float('balance',8,2)->default(0.00);
+            $table->string('picture', 250);
+            $table->float('balance', 8, 2)->default(0.00);
             $table->integer('userType')->nullable();
             $table->integer('propertyId')->nullable();
             $table->rememberToken();

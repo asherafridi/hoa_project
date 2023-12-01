@@ -13,12 +13,12 @@ use App\Models\Committee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Member\WorkOrderController;
 
-Route::get('/dashboard', [HomeController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 Route::resource('work-order', WorkOrderController::class)->middleware(['auth']);
 Route::resource('bills', BillsController::class)->middleware(['auth']);
-Route::get('pay-bill/{id}',[BillsController::class , 'payBill'])->middleware(['auth'])->name('pay-bill');
-Route::post('manual-pay',[BillsController::class , 'manualBillPay'])->middleware(['auth'])->name('manual-bill.pay');
+Route::get('pay-bill/{id}', [BillsController::class, 'payBill'])->middleware(['auth'])->name('pay-bill');
+Route::post('manual-pay', [BillsController::class, 'manualBillPay'])->middleware(['auth'])->name('manual-bill.pay');
 Route::resource('payment', PaymentController::class)->middleware(['auth']);
 Route::resource('committee', CommitteeController::class)->middleware(['auth']);
 Route::resource('events', EventController::class)->middleware(['auth']);
@@ -30,5 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile-update', [ProfileController::class, 'updateMine'])->name('profile.updatemine');
+    Route::post('/profile-picture', [ProfileController::class, 'pictureUpdate'])->name('profile.picture');
     Route::post('/profile-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 });
