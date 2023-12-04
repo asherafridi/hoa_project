@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Properties;
 use App\Models\User;
 use App\Models\UserType;
+use GuzzleHttp\Psr7\Response;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
@@ -33,6 +34,32 @@ class MemberController extends Controller
         }
 
         $boardmember = $query->paginate(10);
+
+        if (request()->has('download')) {
+            $users = $boardmember;
+
+            // Extract the attributes from the first user to dynamically generate CSV header
+            $attributes = $users->isEmpty() ? [] : array_keys($users->first()->getAttributes());
+
+            // Prepare CSV content with dynamic header
+            $csvContent = implode(',', $attributes) . "\n";
+
+            foreach ($users->all() as $user) {
+                $csvContent .= implode(',', $user->toArray()) . "\n";
+            }
+
+            // Prepare the response with appropriate headers
+            $headers = [
+                'Content-type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename=users.csv',
+                'Pragma' => 'no-cache',
+                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+                'Expires' => '0',
+            ];
+
+            return response()->make($csvContent, 200, $headers);
+
+        }
 
         return view('admin.member.list', compact('title', 'boardmember'));
     }
