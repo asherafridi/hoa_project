@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('picture', 250);
             $table->float('balance', 8, 2)->default(0.00);
             $table->integer('userType')->nullable();
+            $table->integer('status', 1)->default(0);
             $table->integer('propertyId')->nullable();
             $table->rememberToken();
             $table->timestamps();

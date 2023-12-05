@@ -35,4 +35,5 @@ Route::get('placeholder-image/{size}', [ProfileController::class, 'placeholderIm
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/member.php';
+require __DIR__ . '/vendor.php';
 

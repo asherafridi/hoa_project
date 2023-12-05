@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\RedirectIfAdminAuthenticated;
+use App\Http\Middleware\RedirectIfVendorAuthenticated;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthentication::class,
         'guest.admin' => \App\Http\Middleware\RedirectIfAdminAuthenticated::class,
+        'guest.vendor' => \App\Http\Middleware\RedirectIfVendorAuthenticated::class,
     ];
 }
