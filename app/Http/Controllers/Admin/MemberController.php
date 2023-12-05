@@ -45,7 +45,7 @@ class MemberController extends Controller
         $boardmember = $query->paginate(10);
 
         if (request()->has('download')) {
-            $query->get();
+            // $query->get();
             $users = $query;
 
             // Extract the attributes from the first user to dynamically generate CSV header
