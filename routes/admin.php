@@ -35,6 +35,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('profile', [AuthenticatedSessionController::class, 'profile'])->name('profile');
 
         Route::post('profile/update', [AuthenticatedSessionController::class, 'profileUpdate'])->name('profile.update');
+        Route::post('profile/image', [AuthenticatedSessionController::class, 'pictureUpdate'])->name('profile.picture');
         Route::post('profile/password/update', [AuthenticatedSessionController::class, 'profilePasswordUpdate'])->name('profile.password_update');
     });
 

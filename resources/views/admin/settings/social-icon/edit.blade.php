@@ -23,7 +23,8 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-12">
-                        <label class="form-label">Icon</label>
+                        
+                        <label class="form-label">Search icon here <a href="https://boxicons.com/?query=" target="_blank">Boxicon</a></label>
                         <input type="text" class="form-control" name="social_icon" value="{{ $setting->description->social_icon ?? '' }}"
                             required name="social_icon" placeholder="Fontawsome i Tag" autofocus />
                     </div>

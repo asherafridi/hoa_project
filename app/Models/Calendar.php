@@ -9,9 +9,10 @@ use App\Models\Committee;
 class Calendar extends Model
 {
     use HasFactory;
-    protected $fillable = ['eventName', 'description', 'startDate','endDate','location','committeeId'];  
+    protected $fillable = ['eventName', 'description', 'startDate', 'endDate', 'location', 'committeeId', 'user_id'];
 
-    function committee(){
+    function committee()
+    {
         $committee = Committee::find($this->committeeId);
         return $committee;
     }

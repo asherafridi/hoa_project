@@ -49,29 +49,47 @@ class AuthenticatedSessionController extends Controller
         return redirect('/admin/login');
     }
 
-    public function profile(){
-        $admin=Auth::guard('admin')->user();
+    public function profile()
+    {
+        $admin = Auth::guard('admin')->user();
         $title = "Profile";
-        return view('admin.auth.profile',compact('title'));
+        return view('admin.auth.profile', compact('title'));
     }
 
-    public function profileUpdate(Request $request){
-        
+    public function profileUpdate(Request $request)
+    {
+
         try {
-            $admin= Admin::find(Auth::guard('admin')->user()->id);
-            $admin->name=$request->firstName;
-            $admin->email=$request->email;
+            $admin = Admin::find(Auth::guard('admin')->user()->id);
+            $admin->name = $request->firstName;
+            $admin->email = $request->email;
             $admin->save();
-            return redirect('/admin/profile')->with('success','Operation Successfull');
+            return redirect('/admin/profile')->with('success', 'Operation Successfull');
         } catch (\Throwable $th) {
-            return redirect('/admin/profile')->with('error',$th);
+            return redirect('/admin/profile')->with('error', $th);
         }
-        
+
     }
 
-    public function profilePasswordUpdate(Request $request){
+    public function pictureUpdate(Request $request)
+    {
 
-        
+        try {
+
+            $admin = Admin::find(auth()->guard('admin')->user()->id);
+            $filePath = $request->file('picture')->store('uploads/admin', 'public');
+            $admin->picture = $filePath;
+            $admin->save();
+            return redirect('/admin/profile')->with('success', 'Operation Successfull');
+        } catch (\Throwable $th) {
+            return redirect('/admin/profile')->with('error', $th);
+        }
+    }
+
+    public function profilePasswordUpdate(Request $request)
+    {
+
+
         // $admin= Admin::find(Auth::guard('admin')->user()->id);
         // $admin_pass=$admin->password;
         // $old_pass=bcrypt($request->old_password);
@@ -84,7 +102,7 @@ class AuthenticatedSessionController extends Controller
         // //     
         // // }
 
-        return redirect('/admin/profile')->with('error','Operation Not Successfull');
+        return redirect('/admin/profile')->with('error', 'Operation Not Successfull');
 
     }
 }

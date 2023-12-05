@@ -99,6 +99,24 @@
                         @enderror
                     </div>
                 </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label">Status</label>
+                        <select class="form-control" required name="status">
+                            <option value="">Select Status</option>
+                            <option value="1" @if ($member->status == 1) selected @endif>Approved</option>
+                            <option value="0" @if ($member->status == 0) selected @endif>Non Approved</option>
+                            
+                        </select>
+                        @error('status')
+                            <div class="form-text text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                </div>
                 <div class="row px-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'userType',
         'propertyId',
         'balance',
+        'status',
     ];
 
     /**
@@ -47,16 +48,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    function type(){
+    function type()
+    {
         $user = UserType::withTrashed()->find($this->userType);
         return $user;
     }
-    function property(){
+    function property()
+    {
         $user = Properties::withTrashed()->find($this->propertyId);
         return $user;
     }
 
-    function fullName(){
+    function fullName()
+    {
         return $this->firstName . ' ' . $this->lastName;
     }
 }

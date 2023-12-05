@@ -6,7 +6,7 @@
       <h2>{{settings('header_subtitle')}}</h2>
       <div class="d-flex">
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        <a href="{{settings('header_video')}}" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>
     </div>
   </section><!-- End Hero -->
