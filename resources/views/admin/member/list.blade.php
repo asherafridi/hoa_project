@@ -18,6 +18,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Lot Number</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -32,6 +33,7 @@
                     <tbody class="table-border-bottom-0">
                         @forelse ($boardmember as $item)
                             <tr>
+                                <td>{{ $item->lot_number === null ? 'Not Assigned Yet' : $item->lot_number }}</td>
                                 <td>{{ $item->firstName }}</td>
                                 <td>{{ $item->lastName }}</td>
                                 <td>{{ $item->email }}</td>
@@ -64,7 +66,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="6">Data Not Found</td>
+                                <td class="text-center" colspan="12">Data Not Found</td>
                             </tr>
                         @endforelse
 

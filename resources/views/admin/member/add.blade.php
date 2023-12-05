@@ -47,7 +47,16 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label class="form-label">Lot Number</label>
+                            <input type="number" class="form-control" name="lot_number" placeholder="" autofocus />
+                            @error('lot_number')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-4">
                             <label class="form-label">Phone Number</label>
                             <input type="text" class="form-control" required name="phone" placeholder="000-000-0000"
                                 autofocus />
@@ -57,10 +66,10 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label">Password</label>
-                            <input type="text" class="form-control" required name="password" placeholder="Enter Your Password"
-                                autofocus />
+                            <input type="text" class="form-control" required name="password"
+                                placeholder="Enter Your Password" autofocus />
                             @error('password')
                                 <div class="form-text text-danger">
                                     {{ $message }}
@@ -88,7 +97,8 @@
                             <select class="form-control" required name="propertyId">
                                 <option value="">Select Property</option>
                                 @foreach ($properties as $property)
-                                    <option value="{{ $property->id }}">{{ $property->address }} - {{ $property->type() ? $property->type()->name : "No Property Type" }}</option>
+                                    <option value="{{ $property->id }}">{{ $property->address }} -
+                                        {{ $property->type() ? $property->type()->name : 'No Property Type' }}</option>
                                 @endforeach
                             </select>
                             @error('propertyId')
@@ -105,7 +115,7 @@
                                 <option value="">Select Status</option>
                                 <option value="1">Approved</option>
                                 <option value="0">Non Approved</option>
-                                
+
                             </select>
                             @error('status')
                                 <div class="form-text text-danger">

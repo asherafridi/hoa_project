@@ -6,37 +6,39 @@
             <form method="get" class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label for="" class="form-label">Priority</label>
-                        <select class="form-control" name="priority">
-                            <option value="">Filter By Priority</option>
-                            @foreach (priority_level() as $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                        <label for="" class="form-label">Filter By Lot Number</label>
+                        <input type="number" class="form-control" name="lot_number" value="{{ request('lot_number') }}"
+                            id="" placeholder="Search...">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="" class="form-label">Filter By Properties</label>
+                        <select class="form-control" name="property">
+                            <option value="">Select Property</option>
+                            @foreach ($properties as $item)
+                                <option value="{{ $item->id }}"
+                                    {{ request('property') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label for="" class="form-label">Priority</label>
+                        <label for="" class="form-label">Filter By Status</label>
                         <select class="form-control" name="status">
-                            <option value="">Filter By Status</option>
-                            @foreach (workOrder_Status() as $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
-                            @endforeach
+                            <option value="">Select Status</option>
+                            <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unapproved</option>
+                            <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Approved</option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="" class="form-label">Date</label>
-                        <input type="text" class="form-control flatpickr-input" name="date" id="flatpickr-range">
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">Search</label>
-                        <input type="text" class="form-control" name="search" id=""
-                            placeholder="Search...">
+                        <input type="text" class="form-control" name="search" value="{{ request('search') }}"
+                            id="" placeholder="Search...">
                     </div>
                 </div>
                 <div class="col-md-2">

@@ -16,7 +16,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $title = "Members";
@@ -32,11 +32,21 @@ class MemberController extends Controller
                 }
             });
         }
+        if ($request->property !== null) {
+            $query->where('propertyId', $request->property);
+        }
+        if ($request->status !== null) {
+            $query->where('status', $request->status);
+        }
+        if ($request->lot_number !== null) {
+            $query->where('lot_number', $request->lot_number);
+        }
 
         $boardmember = $query->paginate(10);
 
         if (request()->has('download')) {
-            $users = $boardmember;
+            $query->get();
+            $users = $query;
 
             // Extract the attributes from the first user to dynamically generate CSV header
             $attributes = $users->isEmpty() ? [] : array_keys($users->first()->getAttributes());
@@ -51,7 +61,7 @@ class MemberController extends Controller
             // Prepare the response with appropriate headers
             $headers = [
                 'Content-type' => 'text/csv',
-                'Content-Disposition' => 'attachment; filename=users.csv',
+                'Content-Disposition' => 'attachment; filename=members.csv',
                 'Pragma' => 'no-cache',
                 'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
                 'Expires' => '0',
@@ -60,8 +70,9 @@ class MemberController extends Controller
             return response()->make($csvContent, 200, $headers);
 
         }
+        $properties = Properties::get();
 
-        return view('admin.member.list', compact('title', 'boardmember'));
+        return view('admin.member.list', compact('title', 'boardmember', 'properties'));
     }
 
     /**
@@ -141,6 +152,7 @@ class MemberController extends Controller
                 'firstName' => $request->input('firstName'),
                 'lastName' => $request->input('lastName'),
                 'phone' => $request->input('phone'),
+                'lot_number' => $request->input('lot_number'),
                 'userType' => $request->input('userType'),
                 'propertyId' => $request->input('propertyId'),
                 'email' => $request->input('email'),
@@ -152,6 +164,7 @@ class MemberController extends Controller
                 'firstName' => $request->input('firstName'),
                 'lastName' => $request->input('lastName'),
                 'phone' => $request->input('phone'),
+                'lot_number' => $request->input('lot_number'),
                 'userType' => $request->input('userType'),
                 'propertyId' => $request->input('propertyId'),
                 'email' => $request->input('email'),
