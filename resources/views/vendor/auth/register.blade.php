@@ -76,12 +76,12 @@
                             <button class="btn btn-primary d-grid w-100">Sign up</button>
                         </form>
 
-                        <p class="text-center">
+                        {{-- <p class="text-center">
                             <span>Already Have an Account?</span>
-                            <a href="{{ route('login') }}">
+                            <a href="{{ route('vendor.login') }}">
                                 <span>Sign In</span>
                             </a>
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
                 <!-- Register Card -->

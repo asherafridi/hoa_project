@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Vendor extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['name','vendorType', 'contactNumber', 'contactPerson', 'contactEmail','serviceDescription']; 
+    protected $fillable = ['name', 'vendorType', 'contactNumber', 'contactPerson', 'contactEmail', 'password', 'picture', 'status', 'serviceDescription'];
 
-    function type(){
+    function type()
+    {
         return VendorType::withTrashed()->find($this->vendorType);
     }
 }

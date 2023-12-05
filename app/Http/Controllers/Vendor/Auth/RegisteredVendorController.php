@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vendor;
 use App\Models\VendorType;
 use Illuminate\Http\Request;
 
@@ -35,22 +36,24 @@ class RegisteredVendorController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'firstName' => ['required', 'string', 'max:255'],
-            'lastName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'name' => ['required', 'string', 'max:255'],
+            'contactNumber' => ['required', 'string', 'max:255'],
+            'vendorType' => ['required'],
+            'contactEmail' => ['required', 'string', 'email', 'max:255', 'unique:' . Vendor::class],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'email' => $request->email,
+        $user = Vendor::create([
+            'name' => $request->name,
+            'contactNumber' => $request->contactNumber,
+            'contactEmail' => $request->contactEmail,
+            'vendorType' => $request->vendorType,
             'password' => Hash::make($request->password),
         ]);
 
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        // Auth::login($user);
+        // RouteServiceProvider::HOME
+        return redirect()->route('home');
     }
 }
