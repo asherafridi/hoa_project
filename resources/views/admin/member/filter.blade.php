@@ -7,14 +7,14 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">Filter By Lot Number</label>
-                        <input type="number" class="form-control" name="lot_number" value="{{ request('lot_number') }}"
+                        <input type="text" class="form-contro" name="lot_number" value="{{ request('lot_number') }}"
                             id="" placeholder="Search...">
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">Filter By Properties</label>
-                        <select class="form-control" name="property">
+                        <select class="form-control select2" name="property">
                             <option value="">Select Property</option>
                             @foreach ($properties as $item)
                                 <option value="{{ $item->id }}"
@@ -26,10 +26,37 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
+                        <label for="" class="form-label">Filter By Phase</label>
+                        <select class="form-control select2" name="phase">
+                            <option value="">Select Phase</option>
+                            @foreach ($phase as $item)
+                                <option value="{{ $item->id }}"
+                                    {{ request('phase') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="" class="form-label">Filter By Block</label>
+                        <select class="form-control select2" name="block">
+                            <option value="">Select Block</option>
+                            @foreach ($block as $item)
+                                <option value="{{ $item->id }}"
+                                    {{ request('block') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
                         <label for="" class="form-label">Filter By Status</label>
-                        <select class="form-control" name="status">
+                        <select class="form-control select2" name="status" id="">
                             <option value="">Select Status</option>
-                            <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unapproved</option>
+                            <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unapproved
+                            </option>
                             <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Approved</option>
                         </select>
                     </div>
@@ -37,7 +64,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">Search</label>
-                        <input type="text" class="form-control" name="search" value="{{ request('search') }}"
+                        <input type="text" class="form-contro" name="search" value="{{ request('search') }}"
                             id="" placeholder="Search...">
                     </div>
                 </div>

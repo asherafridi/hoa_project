@@ -48,7 +48,9 @@
     <script src="{{ asset('admin/assets/js/config.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+    </style>
 </head>
 
 <body>
@@ -116,51 +118,62 @@
         </div>
     @endif
 
-        <!-- / Layout wrapper -->
+    <!-- / Layout wrapper -->
 
 
-        <script src="{{ asset('admin/assets/js/ui-toasts.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/ui-toasts.js') }}"></script>
 
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-        <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
-        <!-- endbuild -->
+    <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
+    <!-- endbuild -->
 
-        <!-- Vendors JS -->
-        <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <!-- Vendors JS -->
+    <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
-        <!-- Main JS -->
-        <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+    <!-- Main JS -->
+    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
-        <!-- Page JS -->
-        <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
+    <!-- Page JS -->
+    <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
 
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-        <script>
-          @if (Session::has('success'))
-              const toastLiveExample = document.getElementById('liveToast');
-              const toast = new bootstrap.Toast(toastLiveExample);
-              toast.show();
-          @endif
+    <script>
+        @if (Session::has('success'))
+            const toastLiveExample = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+        @endif
 
-            @if (Session::has('error'))
-                const toastLiveExample = document.getElementById('liveToast');
-                const toast = new bootstrap.Toast(toastLiveExample);
-                toast.show();
-            @endif
+        @if (Session::has('error'))
+            const toastLiveExample = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+        @endif
 
-            flatpickr("#flatpickr-range",{
-                mode:'range',
-                dateFormat: 'Y-m-d',
-            });
-        </script>
+        flatpickr("#flatpickr-range", {
+            mode: 'range',
+            dateFormat: 'Y-m-d',
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 
 </body>
 

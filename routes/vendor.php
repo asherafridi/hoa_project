@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Vendor\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Vendor\Auth\RegisteredVendorController;
+use App\Http\Controllers\Vendor\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,5 +23,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::post('profile/image', [AuthenticatedSessionController::class, 'pictureUpdate'])->name('profile.picture');
         Route::post('profile/password/update', [AuthenticatedSessionController::class, 'profilePasswordUpdate'])->name('profile.password_update');
     });
+
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 });

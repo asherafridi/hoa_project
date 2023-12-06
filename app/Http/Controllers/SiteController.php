@@ -8,6 +8,7 @@ use App\Models\Events;
 use App\Models\Gallery;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class SiteController extends Controller
 {
@@ -17,6 +18,12 @@ class SiteController extends Controller
         $vendor = Vendor::limit(4)->get();
         $gallery = Gallery::limit(4)->get();
         return view('frontend.basic.home', compact('title', 'vendor', 'gallery'));
+    }
+    public function reset()
+    {
+        Artisan::run('migrate:fresh');
+        Artisan::run('db:seed');
+        return redirect('/');
     }
     public function gallery()
     {

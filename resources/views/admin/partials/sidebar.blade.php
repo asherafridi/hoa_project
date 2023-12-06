@@ -1,14 +1,13 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="{{route('home')}}" class="app-brand-link">
-            @if (settings('website_logo')!=null)
-            <span class="app-brand-logo demo">
-                <img src="{{settings('website_logo')}}" style="height: 40px">
-                      </span>
-                
+        <a href="{{ route('home') }}" class="app-brand-link">
+            @if (settings('website_logo') != null)
+                <span class="app-brand-logo demo">
+                    <img src="{{ settings('website_logo') }}" style="height: 40px">
+                </span>
             @else
-            <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform:capitalize;">{{ settings('website_name') }}</span>
-                
+                <span class="app-brand-text demo menu-text fw-bolder ms-2"
+                    style="text-transform:capitalize;">{{ settings('website_name') }}</span>
             @endif
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -28,7 +27,7 @@
         </li>
 
         <li class="menu-item @if (str_contains($title, 'Member') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Layouts">Members</div>
@@ -50,8 +49,8 @@
             </ul>
         </li>
 
-        <li class="menu-item @if (str_contains($title, 'Property') == 1) active open @endif">
-            
+        <li class="menu-item @if (str_contains($title, 'Property') == 1 || str_contains($title, 'Phase') == 1 || str_contains($title, 'Block') == 1) active open @endif">
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home"></i>
                 <div data-i18n="Layouts">Properties</div>
@@ -59,6 +58,16 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.phase.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Phase</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.block.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Block</div>
+                    </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('admin.properties.index') }}" class="menu-link">
@@ -74,7 +83,7 @@
         </li>
 
         <li class="menu-item @if (str_contains($title, 'Vendor') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-briefcase-alt-2"></i>
                 <div data-i18n="Layouts">Vendors</div>
@@ -103,9 +112,9 @@
             </a>
         </li>
 
-        
+
         <li class="menu-item @if (str_contains($title, 'Transaction') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
                 <div data-i18n="Layouts">Transactions</div>

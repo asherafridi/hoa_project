@@ -49,7 +49,7 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Lot Number</label>
-                            <input type="number" class="form-control" name="lot_number" placeholder="" autofocus />
+                            <input type="text" class="form-control" name="lot_number" placeholder="" autofocus />
                             @error('lot_number')
                                 <div class="form-text text-danger">
                                     {{ $message }}

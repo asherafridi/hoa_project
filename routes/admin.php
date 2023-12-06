@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\BillingController;
+use App\Http\Controllers\Admin\BlockController;
 use App\Http\Controllers\Admin\BoardMemberController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\DocumentsController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MemberTypeController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PhaseController;
 use App\Http\Controllers\Admin\PropertiesController;
 use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -43,6 +45,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('member', MemberController::class)->middleware('admin.auth');
     Route::resource('member-type', MemberTypeController::class)->middleware('admin.auth');
+
+
+    Route::resource('phase', PhaseController::class)->middleware('admin.auth');
+
+    Route::resource('block', BlockController::class)->middleware('admin.auth');
 
     Route::resource('properties', PropertiesController::class)->middleware('admin.auth');
     Route::resource('property-type', PropertyTypeController::class)->middleware('admin.auth');

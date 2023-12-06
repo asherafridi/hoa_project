@@ -14,12 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('name', 100);
             $table->integer('vendorType');
-            $table->string('contactPerson', 100);
+            $table->string('contactPerson', 100)->nullable();
             $table->string('contactNumber', 100);
             $table->string('contactEmail', 100);
             $table->string('password');
-            $table->string('picture', 250);
-            $table->mediumText('serviceDescription');
+            $table->string('picture', 250)->nullable();
+            $table->mediumText('serviceDescription')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Block;
 use App\Models\Properties;
 use App\Models\PropertyType;
 use App\Models\User;
@@ -41,7 +42,8 @@ class PropertiesController extends Controller
     {
         $title = "Add Property";
         $type = PropertyType::all();
-        return view('admin.properties.add', compact('title', 'type'));
+        $block = Block::all();
+        return view('admin.properties.add', compact('title', 'type', 'block'));
     }
 
     /**
@@ -54,10 +56,13 @@ class PropertiesController extends Controller
             'propertyType' => 'required',
             'address' => 'required',
             'unit_no' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'block_id' => 'required'
         ]);
 
         $properties = new Properties;
+        $block = Block::find($request->block_id);
+        $request['phase_id'] = $block->phase_id;
         $properties->create($request->all());
         return redirect()->route('admin.properties.index')->with('success', 'Property Added Successfully');
     }
@@ -82,9 +87,9 @@ class PropertiesController extends Controller
 
         $title = "Edit Property";
         $property = Properties::find($id);
-
+        $block = Block::all();
         $types = PropertyType::all();
-        return view('admin.properties.edit', compact('title', 'property', 'types'));
+        return view('admin.properties.edit', compact('title', 'property', 'types', 'block'));
     }
 
     /**
@@ -97,10 +102,13 @@ class PropertiesController extends Controller
             'propertyType' => 'required',
             'address' => 'required',
             'unit_no' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'block_id' => 'required'
         ]);
 
         $properties = Properties::find($id);
+        $block = Block::find($request->block_id);
+        $request['phase_id'] = $block->phase_id;
         $properties->update($request->all());
         return redirect()->route('admin.properties.index')->with('success', 'Property Updated Successfully');
     }

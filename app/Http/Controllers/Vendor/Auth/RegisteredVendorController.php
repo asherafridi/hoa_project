@@ -54,6 +54,7 @@ class RegisteredVendorController extends Controller
 
         // Auth::login($user);
         // RouteServiceProvider::HOME
-        return redirect()->route('home');
+        Auth::guard('vendor')->login($user);
+        return redirect(RouteServiceProvider::HOME);
     }
 }

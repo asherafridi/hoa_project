@@ -15,7 +15,7 @@
                 <form method="POST" action="{{ route('admin.properties.store') }}">
                     @csrf
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" required name="name" placeholder="Block C-3"
                                 autofocus />
@@ -25,7 +25,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label">Property Type</label>
                             <select class="form-control" required name="propertyType">
                                 <option value="">Select Type</option>
@@ -34,6 +34,21 @@
                                 @endforeach
                             </select>
                             @error('userType')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Block</label>
+                            <select class="form-control" required name="block_id">
+                                <option value="">Select Block</option>
+                                @foreach ($block as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }} - {{ $item->type()->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('block_id')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>
@@ -55,8 +70,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Unit No.</label>
-                            <input type="text" class="form-control" required name="unit_no" placeholder="No"
-                                autofocus />
+                            <input type="text" class="form-control" required name="unit_no" placeholder="No" autofocus />
                             @error('unit_no')
                                 <div class="form-text text-danger">
                                     {{ $message }}

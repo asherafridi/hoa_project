@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Block;
+use App\Models\Phase;
 use App\Models\Properties;
 use App\Models\User;
 use App\Models\UserType;
@@ -21,6 +23,8 @@ class MemberController extends Controller
 
         $title = "Members";
         $query = User::query();
+        $query->join('properties', 'properties.id', '=', 'users.propertyId');
+
 
         if (request()->has('search')) {
             $search = request()->input('search');
@@ -71,8 +75,11 @@ class MemberController extends Controller
 
         }
         $properties = Properties::get();
+        $block = Block::all();
+        $phase = Phase::all();
 
-        return view('admin.member.list', compact('title', 'boardmember', 'properties'));
+
+        return view('admin.member.list', compact('title', 'boardmember', 'properties', 'block', 'phase'));
     }
 
     /**

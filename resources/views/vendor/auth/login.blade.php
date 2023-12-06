@@ -1,4 +1,4 @@
-@extends('member.layouts.app')
+@extends('vendor.layouts.app')
 @section('title', 'Login')
 
 @section('content')
@@ -14,22 +14,22 @@
                         <h4 class="mb-2 mt-2">Welcome to {{ settings('website_name') }}! 👋</h4>
                         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-                        <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="{{ route('vendor.login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
+                                <input type="text" class="form-control" id="email" name="contactEmail"
                                     placeholder="Enter your email" autofocus />
-                                @error('email')
+                                @error('contactEmail')
                                     {{ $message }}
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="{{ route('password.request') }}">
+                                    {{-- <a href="{{ route('vendor.password.request') }}">
                                         <small>Forgot Password?</small>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
@@ -55,7 +55,7 @@
 
                         <p class="text-center">
                             <span>Don't Have an Account?</span>
-                            <a href="{{ route('register') }}">
+                            <a href="{{ route('vendor.register') }}">
                                 <span>Register Now</span>
                             </a>
                         </p>

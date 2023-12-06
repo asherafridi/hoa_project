@@ -16,13 +16,13 @@ return new class extends Migration {
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->integar('lot_number')->nullable();
+            $table->string('lot_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('picture', 250);
+            $table->string('picture')->nullable(); // Adjusted to remove length limit
             $table->float('balance', 8, 2)->default(0.00);
-            $table->integer('userType')->nullable();
-            $table->integer('status', 1)->default(0);
+            $table->tinyInteger('userType')->nullable(); // Adjusted to tinyInteger
+            $table->tinyInteger('status')->default(0); // Adjusted to tinyInteger
             $table->integer('propertyId')->nullable();
             $table->rememberToken();
             $table->timestamps();
