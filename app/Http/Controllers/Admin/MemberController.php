@@ -25,12 +25,6 @@ class MemberController extends Controller
         $query = User::query();
 
 
-        $query->join('properties', 'properties.id', '=', 'users.propertyId');
-        $query->select(
-            'users.*',
-            'properties.phase_id',
-            'properties.block_id'
-        );
 
         if (request()->has('search')) {
             $search = request()->input('search');
@@ -38,6 +32,7 @@ class MemberController extends Controller
             $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
         }
         if ($request->property !== null) {
+
 
             $query->where('propertyId', $request->property);
         }
