@@ -23,7 +23,6 @@ class MemberController extends Controller
 
         $title = "Members";
         $query = User::query();
-        $query->join('properties', 'properties.id', '=', 'users.propertyId');
 
 
         if (request()->has('search')) {
@@ -37,6 +36,15 @@ class MemberController extends Controller
             });
         }
         if ($request->property !== null) {
+
+            $query->join('properties', 'properties.id', '=', 'users.propertyId');
+            $query->select(
+                'users.*',
+                'properties.id as property_id',
+                'properties.name',
+                'properties.address',
+                'properties.other_column'
+            );
             $query->where('propertyId', $request->property);
         }
         if ($request->status !== null) {
