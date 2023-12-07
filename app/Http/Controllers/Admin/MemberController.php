@@ -25,26 +25,20 @@ class MemberController extends Controller
         $query = User::query();
 
 
+        $query->join('properties', 'properties.id', '=', 'users.propertyId');
+        $query->select(
+            'users.*',
+            'properties.phase_id',
+            'properties.block_id'
+        );
+
         if (request()->has('search')) {
             $search = request()->input('search');
-            $columns = Schema::getColumnListing((new User())->getTable());
-
-            $query->where(function ($subquery) use ($search, $columns) {
-                foreach ($columns as $column) {
-                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
-                }
-            });
+            $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
+            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
         }
         if ($request->property !== null) {
 
-            $query->join('properties', 'properties.id', '=', 'users.propertyId');
-            $query->select(
-                'users.*',
-                'properties.id as property_id',
-                'properties.name',
-                'properties.address',
-                'properties.other_column'
-            );
             $query->where('propertyId', $request->property);
         }
         if ($request->status !== null) {
