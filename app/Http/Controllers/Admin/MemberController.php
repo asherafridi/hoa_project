@@ -108,7 +108,7 @@ class MemberController extends Controller
             'phone' => 'required',
             'userType' => 'required',
             'propertyId' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ]);
         $data = $request->all();
@@ -149,7 +149,7 @@ class MemberController extends Controller
             'phone' => 'required',
             'userType' => 'required',
             'propertyId' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
         ]);
 
         // Find the user to update by their ID
