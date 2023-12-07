@@ -23,6 +23,13 @@ class MemberController extends Controller
 
         $title = "Members";
         $query = User::query();
+        $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
+        $query->select(
+            'users.*',
+            'properties.phase_id',
+            'properties.block_id'
+        );
+
 
 
 
