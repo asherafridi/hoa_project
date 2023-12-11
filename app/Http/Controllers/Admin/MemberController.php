@@ -206,10 +206,18 @@ class MemberController extends Controller
     public function getMember(Request $request)
     {
         $query = User::query();
-        $query->join('properties', 'properties.id', '=', 'users.propertyId');
-        $query->join('user_type', 'user_type.id', '=', 'users.userType');
-        $query->join('phase', 'phase.id', '=', 'properties.phase_id');
-        $query->join('block', 'block.id', '=', 'properties.block_id');
+        $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
+        $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
+        $query->leftJoin('phase', 'phase.id', '=', 'properties.phase_id');
+        $query->leftJoin('block', 'block.id', '=', 'properties.block_id');
+
+        // $query->select(
+        //     'users.*',
+        //     'properties.name as propertyName',
+        //     'user_type.name as user_type_name',
+        //     'phase.name as phase_name',
+        //     'block.name as block_name',
+        // );
 
 
         if (request()->has('search')) {
@@ -222,10 +230,10 @@ class MemberController extends Controller
             $query->where('users.lot_number', $request->lot_number);
         }
 
-        if (request()->has('property')) {
-            $query->where('propertyId', $request->property);
+        if ($request->property !== null) {
+            $query->where('users.propertyId', $request->property);
         }
-        if ($request->status !== null) {
+        if (request()->has('status')) {
             $query->where('users.status', $request->status);
         }
 
@@ -236,13 +244,6 @@ class MemberController extends Controller
         if (request()->has('block')) {
             $query->where('block.id', $request->phase);
         }
-        $query->select(
-            'users.*',
-            'properties.name as propertyName',
-            'user_type.name as user_type_name',
-            'phase.name as phase_name',
-            'block.name as block_name',
-        );
 
         $member = $query->get();
         return response()->json($member);
