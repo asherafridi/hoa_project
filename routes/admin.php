@@ -45,6 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('member', MemberController::class)->middleware('admin.auth');
     Route::resource('member-type', MemberTypeController::class)->middleware('admin.auth');
+    Route::get('get-member', [MemberController::class, 'getMember']);
 
 
     Route::resource('phase', PhaseController::class)->middleware('admin.auth');

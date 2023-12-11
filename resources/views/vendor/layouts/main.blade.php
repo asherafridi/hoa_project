@@ -48,7 +48,7 @@
     <script src="{{ asset('admin/assets/js/config.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
+
 </head>
 
 <body>
@@ -56,14 +56,14 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            @include('member.partials.sidebar')
+            @include('vendor.partials.sidebar')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
 
-                @include('member.partials.navbar')
+                @include('vendor.partials.navbar')
 
                 <!-- / Navbar -->
 
@@ -75,7 +75,7 @@
                     <!-- / Content -->
 
                     <!-- Footer -->
-                    @include('member.partials.footer')
+                    @include('vendor.partials.footer')
                     <!-- / Footer -->
 
 
@@ -116,51 +116,51 @@
         </div>
     @endif
 
-        <!-- / Layout wrapper -->
+    <!-- / Layout wrapper -->
 
 
-        <script src="{{ asset('admin/assets/js/ui-toasts.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/ui-toasts.js') }}"></script>
 
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-        <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
-        <!-- endbuild -->
+    <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
+    <!-- endbuild -->
 
-        <!-- Vendors JS -->
-        <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <!-- Vendors JS -->
+    <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
-        <!-- Main JS -->
-        <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+    <!-- Main JS -->
+    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
-        <!-- Page JS -->
-        <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
+    <!-- Page JS -->
+    <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
 
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-        <script>
-          @if (Session::has('success'))
-              const toastLiveExample = document.getElementById('liveToast');
-              const toast = new bootstrap.Toast(toastLiveExample);
-              toast.show();
-          @endif
+    <script>
+        @if (Session::has('success'))
+            const toastLiveExample = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+        @endif
 
-            @if (Session::has('error'))
-                const toastLiveExample = document.getElementById('liveToast');
-                const toast = new bootstrap.Toast(toastLiveExample);
-                toast.show();
-            @endif
+        @if (Session::has('error'))
+            const toastLiveExample = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+        @endif
 
-            flatpickr("#flatpickr-range",{
-                mode:'range',
-                dateFormat: 'Y-m-d',
-            });
-        </script>
+        flatpickr("#flatpickr-range", {
+            mode: 'range',
+            dateFormat: 'Y-m-d',
+        });
+    </script>
 
 </body>
 

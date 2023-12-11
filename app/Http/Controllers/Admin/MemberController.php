@@ -62,6 +62,8 @@ class MemberController extends Controller
             // Extract the attributes from the first user to dynamically generate CSV header
             $attributes = $users->isEmpty() ? [] : array_keys($users->first()->getAttributes());
 
+
+
             // Prepare CSV content with dynamic header
             $csvContent = implode(',', $attributes) . "\n";
 
@@ -200,5 +202,51 @@ class MemberController extends Controller
         $boardmember->delete();
 
         return redirect()->route('admin.member.index')->with('success', 'Member Deleted Successfully');
+    }
+    public function getMember(Request $request)
+    {
+        $query = User::query();
+        $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
+        $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
+        $query->leftJoin('phase', 'phase.id', '=', 'properties.phase_id');
+        $query->leftJoin('block', 'block.id', '=', 'properties.block_id');
+        $query->select(
+            'users.*',
+            'properties.name as propertyName',
+            'user_type.name as user_type_name',
+            'phase.name as phase_name',
+            'block.name as block_name',
+        );
+
+
+
+
+
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
+            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+        }
+        if ($request->has('property')) {
+
+
+            $query->where('propertyId', $request->property);
+        }
+        if ($request->has('status')) {
+            $query->where('users.status', $request->status);
+        }
+        if ($request->lot_number !== null) {
+            $query->where('users.lot_number', $request->lot_number);
+        }
+
+        if ($request->has('phase')) {
+            $query->where('phase.id', $request->phase);
+        }
+        if ($request->has('block')) {
+            $query->where('block.id', $request->phase);
+        }
+
+        $member = $query->get();
+        return response()->json($member);
     }
 }

@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return "Welcome " . auth()->guard('vendor')->user()->name;
+        $title = 'Dashboard';
+        return view('vendor.dashboard', compact('title'));
     }
 }

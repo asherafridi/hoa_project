@@ -29,7 +29,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ auth()->user()->picture == null ? asset('admin/assets/img/avatars/1.png') : auth()->user()->picture }}"
+                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->user()->picture }}"
                             alt class=" rounded-circle" />
                     </div>
                 </a>
@@ -39,14 +39,14 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ auth()->user()->picture == null ? asset('admin/assets/img/avatars/1.png') : auth()->user()->picture }}"
+                                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->guard('vendor')->user()->picture }}"
                                             alt class=" rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">{{ auth()->user()->fullname() }}</span>
+                                    <span class="fw-semibold d-block">{{ auth()->guard('vendor')->user()->name }}</span>
                                     <small
-                                        class="text-muted">{{ auth()->user()->type()? auth()->user()->type()->name: 'New Member' }}</small>
+                                        class="text-muted">{{ auth()->guard('vendor')->user()->type()? auth()->guard('vendor')->user()->type()->name: 'New Member' }}</small>
                                 </div>
                             </div>
                         </a>
@@ -55,7 +55,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                        <a class="dropdown-item" href="{{ route('vendor.profile') }}">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">My Profile</span>
                         </a>
@@ -63,7 +63,7 @@
                     <li>
                         <a class="dropdown-item">
                             <i class="bx bx-power-off me-2"></i>
-                            <form method="post" action="{{ route('logout') }}" style="display: inline-block">
+                            <form method="post" action="{{ route('vendor.logout') }}" style="display: inline-block">
                                 @csrf
                                 <span class="align-middle"><button
                                         style="display: inline; background:transparent; border:none; outline:none;"

@@ -30,8 +30,8 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                        @forelse ($boardmember as $item)
+                    <tbody class="table-border-bottom-0" id="result">
+                        {{-- @forelse ($boardmember as $item)
                             <tr>
                                 <td>{{ $item->lot_number === null ? 'Not Assigned Yet' : $item->lot_number }}</td>
                                 <td>{{ $item->firstName }}</td>
@@ -49,9 +49,7 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            {{-- <a class="dropdown-item" href="{{route('admin.member.show',$item->id)}}"
-                        ><i class="bx bx-menu me-1"></i> View</a
-                      > --}}
+
                                             <a class="dropdown-item" href="{{ route('admin.member.edit', $item->id) }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
                                             <form method="POST" action="{{ route('admin.member.destroy', $item->id) }}">
@@ -68,20 +66,100 @@
                             <tr>
                                 <td class="text-center" colspan="12">Data Not Found</td>
                             </tr>
-                        @endforelse
+                        @endforelse --}}
 
                     </tbody>
                 </table>
 
                 <div class="d-flex justify-content-between mt-4 mb-2 px-3 w-100 ">
 
-                    {{ $boardmember->links() }}
+                    {{-- {{ $boardmember->links() }} --}}
                 </div>
             </div>
         </div>
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $("#searchBtn").click(() => {
+                let lot_number = '';
+                let search = $("#searchInput").val();
+                let property = $("#propertyId").val();
+                let status = '';
+                let phase = '';
+                let block = '';
+                getMemberData(
+                    `search=${search}&property=${property}&status=${status}&lot_number=${lot_number}&phase=${phase}&block=${block}`
+                );
+            });
+
+        });
+
+        function getMemberData(query) {
+
+            $('#result').html(`<tr>
+                    <td colspan="12" class="text-center">Loading</td>
+                    </tr>`);
+            $.ajax({
+                url: '{{ env('APP_URL') }}/admin/get-member?' + query,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+
+                    $('#result').html(``);
+                    if (data.length == 0) {
+
+                        $('#result').html(`<tr>
+                    <td colspan="12" class="text-center">Loading</td>
+                    </tr>`);
+                    }
+                    data.forEach(element => {
+                        let id = element.id;
+                        let env = "{{ env('APP_URL') }}";
+                        $('#result').append(`<tr>
+                        <td>${element.lot_number}</td>
+                        <td>${element.firstName}</td>
+                        <td>${element.lastName}</td>
+                        <td>${element.email}</td>
+                        <td>${element.phone}</td>
+                        <td>${element.user_type_name}</td>
+                        <td>${element.propertyName}</td>
+                        <td>${element.balance}</td>
+                        <td>${element.email}</td>
+                        <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+
+                                            <a class="dropdown-item" href="${env}/admin/member/${id}/edit"><i
+                                                    class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <form method="POST" action="${env}/admin/member/${id}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="dropdown-item" type="submit"><i
+                                                        class="bx bx-trash me-1"></i> Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                        </tr>`);
+                        console.log(element);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    $('#result').html(`<tr>
+                    <td colspan="12" class="text-center">Error occurred while fetching data.</td>
+                    </tr>`);
+                }
+            });
+        }
+    </script>
 
 
 

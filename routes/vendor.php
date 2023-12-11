@@ -14,7 +14,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
 
         Route::post('register', [RegisteredVendorController::class, 'store']);
         Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest.vendor');
-        Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('admin_login')->middleware('guest.vendor');
+        Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login')->middleware('guest.vendor');
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
         Route::get('profile', [AuthenticatedSessionController::class, 'profile'])->name('profile');
@@ -24,6 +24,6 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
         Route::post('profile/password/update', [AuthenticatedSessionController::class, 'profilePasswordUpdate'])->name('profile.password_update');
     });
 
-    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('vendor.auth');
 
 });
