@@ -226,7 +226,7 @@ class MemberController extends Controller
         }
 
         if ($request->property !== null) {
-            $query->where('propertyId', $request->property);
+            $query->where('users.propertyId', $request->property);
         }
 
         // if ($request->lot_number !== null) {
