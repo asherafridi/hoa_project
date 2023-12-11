@@ -219,11 +219,11 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        if (request()->has('search')) {
-            $search = request()->input('search');
-            $query->where('firstName', 'LIKE', '%' . $search . '%');
-            $query->where('lastName', 'LIKE', '%' . $search . '%');
-        }
+        // if (request()->has('search')) {
+        //     $search = request()->input('search');
+        //     $query->where('firstName', 'LIKE', '%' . $search . '%');
+        //     $query->where('lastName', 'LIKE', '%' . $search . '%');
+        // }
 
         if ($request->property !== null) {
             $query->where('users.propertyId', $request->property);
