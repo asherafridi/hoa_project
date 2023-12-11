@@ -211,13 +211,13 @@ class MemberController extends Controller
         $query->leftJoin('phase', 'phase.id', '=', 'properties.phase_id');
         $query->leftJoin('block', 'block.id', '=', 'properties.block_id');
 
-        // $query->select(
-        //     'users.*',
-        //     'properties.name as propertyName',
-        //     'user_type.name as user_type_name',
-        //     'phase.name as phase_name',
-        //     'block.name as block_name',
-        // );
+        $query->select(
+            'users.*',
+            'properties.name as propertyName',
+            'user_type.name as user_type_name',
+            'phase.name as phase_name',
+            'block.name as block_name',
+        );
 
 
         if (request()->has('search')) {
