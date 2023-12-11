@@ -116,7 +116,7 @@
                     if (data.length == 0) {
 
                         $('#result').html(`<tr>
-                    <td colspan="12" class="text-center">Loading</td>
+                    <td colspan="12" class="text-center">Data Not Found</td>
                     </tr>`);
                     }
                     data.forEach(element => {
