@@ -226,7 +226,6 @@ class MemberController extends Controller
         }
 
         if ($request->property !== null) {
-            return 'Non existent';
             $query->where('propertyId', $request->property);
         }
 
