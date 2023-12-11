@@ -232,7 +232,6 @@ class MemberController extends Controller
         }
 
         if ($request->phase !== null) {
-            return $request->phase;
             $query->where('phase.id', $request->phase);
         }
         if (request()->has('block')) {
@@ -247,6 +246,6 @@ class MemberController extends Controller
         );
 
         $member = $query->get();
-        // return response()->json($member);
+        return response()->json($member);
     }
 }
