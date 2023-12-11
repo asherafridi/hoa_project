@@ -129,9 +129,9 @@
                         <td>${element.email}</td>
                         <td>${element.phone}</td>
                         <td>${element.user_type_name}</td>
-                        <td>${element.phase_name}</td>
-                        <td>${element.block_name}</td>
-                        <td>${element.propertyName=null ?element.propertyName : 'Property Not Found' }</td>
+                        <td>${element.phase_name != null ? element.phase_name : 'Phase Not Found' }</td>
+                        <td>${element.block_name !=null ? element.block_name : 'Block Not Found'}</td>
+                        <td>${element.propertyName !=null ?element.propertyName : 'Property Not Found' }</td>
                         <td>${element.balance}</td>
                         <td>${element.status==0 ? 'Unapproved' : 'Approved'}</td>
                         <td>
