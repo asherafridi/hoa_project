@@ -129,7 +129,7 @@
                         <td>${element.email}</td>
                         <td>${element.phone  !=null ?  element.phone : 'Number Not Setuped'}</td>
                         <td>${element.user_type_name !=null ? element.user_type_name : 'Type Not Found'}</td>
-                        <td>${element.phase_name != null ? element.phase_name : 'Phase Not Found' }</td>
+                        <td>${element.phase_name !== null ? element.phase_name : 'Phase Not Found' }</td>
                         <td>${element.block_name !=null ? element.block_name : 'Block Not Found'}</td>
                         <td>${element.propertyName !=null ?element.propertyName : 'Property Not Found' }</td>
                         <td>${element.balance}</td>
