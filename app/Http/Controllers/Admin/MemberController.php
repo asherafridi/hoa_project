@@ -216,36 +216,39 @@ class MemberController extends Controller
             'properties.name as propertyName',
             'user_type.name as user_type_name',
             'phase.name as phase_name',
-            'block.name as block_name',
+            'block.name as block_name'
         );
 
-        if (request()->has('search')) {
-            $search = request()->input('search');
-            $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
-            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where(function ($query) use ($search) {
+                $query->orWhere('users.firstName', 'LIKE', '%' . $search . '%')
+                    ->orWhere('users.lastName', 'LIKE', '%' . $search . '%');
+            });
         }
 
-        if ($request->property !== null) {
+        if ($request->has('property')) {
             $query->where('users.propertyId', $request->property);
         }
 
-        // if ($request->lot_number !== null) {
-        //     $query->where('users.lot_number', $request->lot_number);
-        // }
+        if ($request->has('lot_number')) {
+            $query->where('users.lot_number', $request->lot_number);
+        }
 
-        // if (request()->has('status')) {
-        //     $query->where('users.status', $request->status);
-        // }
+        if ($request->has('status')) {
+            $query->where('users.status', $request->status);
+        }
 
-        // if ($request->phase !== null) {
-        //     $query->where('phase.id', $request->phase);
-        // }
+        if ($request->has('phase')) {
+            $query->where('phase.id', $request->phase);
+        }
 
-        // if (request()->has('block')) {
-        //     $query->where('block.id', $request->phase);
-        // }
+        if ($request->has('block')) {
+            $query->where('block.id', $request->block);
+        }
 
-        $member = $query->get();
-        return response()->json($member);
+        $members = $query->get();
+
+        return response()->json($members);
     }
 }
