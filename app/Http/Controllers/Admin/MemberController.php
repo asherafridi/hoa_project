@@ -27,8 +27,9 @@ class MemberController extends Controller
         $query->select(
             'users.*',
             'properties.phase_id',
-            'properties.block_id'
+            'properties.block_id',
         );
+
 
 
 
@@ -38,19 +39,21 @@ class MemberController extends Controller
             $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
             $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
         }
-        if ($request->property !== null) {
+        if ($request->has('property')) {
 
 
             $query->where('propertyId', $request->property);
         }
-        if ($request->status !== null) {
-            $query->where('status', $request->status);
+        if ($request->has('status')) {
+            $query->where('users.status', $request->status);
         }
         if ($request->lot_number !== null) {
             $query->where('lot_number', $request->lot_number);
         }
 
         $boardmember = $query->paginate(10);
+
+        // return $boardmember;
 
         if (request()->has('download')) {
             // $query->get();
@@ -149,7 +152,7 @@ class MemberController extends Controller
             'phone' => 'required',
             'userType' => 'required',
             'propertyId' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,' . $id,
         ]);
 
         // Find the user to update by their ID
