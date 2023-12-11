@@ -156,7 +156,7 @@
                         </tr>`);
                     });
 
-                    console.log(data);
+                    console.log(data.length);
                 },
                 error: function(xhr, status, error) {
                     $('#result').html(`<tr>
