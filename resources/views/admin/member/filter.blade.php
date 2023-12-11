@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Lot Number</label>
                     <input type="text" class="form-contro" name="lot_number" value="{{ request('lot_number') }}"
-                        id="searchInput" placeholder="Search...">
+                        id="lotNumberInput" placeholder="Search...">
                 </div>
             </div>
             <div class="col-md-2">
@@ -27,7 +27,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Phase</label>
-                    <select class="form-control select2" name="phase">
+                    <select class="form-control select2" name="phase" id="phase">
                         <option value="">Select Phase</option>
                         @foreach ($phase as $item)
                             <option value="{{ $item->id }}" {{ request('phase') == $item->id ? 'selected' : '' }}>
@@ -53,7 +53,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Status</label>
-                    <select class="form-control select2" name="status" id="">
+                    <select class="form-control select2" name="status" id="status">
                         <option value="">Select Status</option>
                         <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unapproved
                         </option>
@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Search</label>
                     <input type="text" class="form-contro" name="search" value="{{ request('search') }}"
-                        id="" placeholder="Search...">
+                        id="searchInput" placeholder="Search...">
                 </div>
             </div>
             <div class="col-md-2">

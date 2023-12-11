@@ -84,13 +84,14 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(() => {
+            getMemberData('');
             $("#searchBtn").click(() => {
-                let lot_number = '';
+                let lot_number = $("#lotNumberInput").val();
                 let search = $("#searchInput").val();
                 let property = $("#propertyId").val();
-                let status = '';
-                let phase = '';
-                let block = '';
+                let status = $("#status").val();
+                let phase = $("#phase").val();
+                let block = $("#block").val();
                 getMemberData(
                     `search=${search}&property=${property}&status=${status}&lot_number=${lot_number}&phase=${phase}&block=${block}`
                 );
