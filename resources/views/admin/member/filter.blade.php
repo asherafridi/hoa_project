@@ -40,7 +40,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Block</label>
-                    <select class="form-control select2" name="block">
+                    <select class="form-control select2" name="block" id="block">
                         <option value="">Select Block</option>
                         @foreach ($block as $item)
                             <option value="{{ $item->id }}" {{ request('block') == $item->id ? 'selected' : '' }}>
