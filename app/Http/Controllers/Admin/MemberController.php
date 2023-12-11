@@ -216,39 +216,36 @@ class MemberController extends Controller
             'properties.name as propertyName',
             'user_type.name as user_type_name',
             'phase.name as phase_name',
-            'block.name as block_name'
+            'block.name as block_name',
         );
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where(function ($query) use ($search) {
-                $query->orWhere('users.firstName', 'LIKE', '%' . $search . '%')
-                    ->orWhere('users.lastName', 'LIKE', '%' . $search . '%');
-            });
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $query->where('firstName', 'LIKE', '%' . $search . '%');
+            $query->where('lastName', 'LIKE', '%' . $search . '%');
         }
 
-        if ($request->has('property')) {
+        if ($request->property !== null) {
             $query->where('users.propertyId', $request->property);
         }
 
-        if ($request->has('lot_number')) {
+        if ($request->lot_number !== null) {
             $query->where('users.lot_number', $request->lot_number);
         }
 
-        if ($request->has('status')) {
+        if (request()->has('status')) {
             $query->where('users.status', $request->status);
         }
 
-        if ($request->has('phase')) {
+        if ($request->phase !== null) {
             $query->where('phase.id', $request->phase);
         }
 
-        if ($request->has('block')) {
-            $query->where('block.id', $request->block);
+        if (request()->has('block')) {
+            $query->where('block.id', $request->phase);
         }
 
-        $members = $query->get();
-
-        return response()->json($members);
+        $member = $query->get();
+        return response()->json($member);
     }
 }
