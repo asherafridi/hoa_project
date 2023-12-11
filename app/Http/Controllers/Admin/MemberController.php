@@ -225,7 +225,7 @@ class MemberController extends Controller
         if (request()->has('property')) {
             $query->where('propertyId', $request->property);
         }
-        if ($request->status !== null)) {
+        if ($request->status !== null) {
             $query->where('users.status', $request->status);
         }
 
