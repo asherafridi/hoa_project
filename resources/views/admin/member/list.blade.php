@@ -24,6 +24,8 @@
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>Member Type</th>
+                            <th>Phase</th>
+                            <th>Block</th>
                             <th>Property</th>
                             <th>Balance</th>
                             <th>Status</th>
@@ -127,9 +129,11 @@
                         <td>${element.email}</td>
                         <td>${element.phone}</td>
                         <td>${element.user_type_name}</td>
-                        <td>${element.propertyName}</td>
+                        <td>${element.phase_name}</td>
+                        <td>${element.block_name}</td>
+                        <td>${element.propertyName=null ?element.propertyName : 'Property Not Found' }</td>
                         <td>${element.balance}</td>
-                        <td>${element.email}</td>
+                        <td>${element.status==0 ? 'Unapproved' : 'Approved'}</td>
                         <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

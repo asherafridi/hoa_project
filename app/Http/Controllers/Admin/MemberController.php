@@ -212,10 +212,6 @@ class MemberController extends Controller
         $query->leftJoin('block', 'block.id', '=', 'properties.block_id');
 
 
-
-
-
-
         if (request()->has('search')) {
             $search = request()->input('search');
             $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
