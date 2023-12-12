@@ -229,11 +229,11 @@ class MemberController extends Controller
             $query->where('users.lot_number', $request->lot_number);
         }
 
-        // if ($request->search !== "null") {
-        //     $search = request()->input('search');
-        //     $query->where('firstName', 'LIKE', '%' . $search . '%');
-        //     // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
-        // }
+        if ($request->has('search') && $request->get('search') !== "null") {
+            $search = request()->input('search');
+            $query->where('firstName', 'LIKE', '%' . $search . '%');
+            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+        }
 
         // if ($request->property !== null) {
         //     $query->where('user.propertyId', $request->property);
