@@ -205,7 +205,6 @@ class MemberController extends Controller
     }
     public function getMember(Request $request)
     {
-        // return $request;
 
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
@@ -221,12 +220,12 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        if ($request->status !== null) {
+        if ($request->status !== "null") {
             $query->where('users.status', $request->status);
         }
 
 
-        if ($request->search !== null) {
+        if ($request->search !== "null") {
             $search = request()->input('search');
             $query->where('firstName', 'LIKE', '%' . $search . '%');
             // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
