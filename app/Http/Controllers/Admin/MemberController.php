@@ -220,7 +220,7 @@ class MemberController extends Controller
         );
         $query->where('firstName', 'Like', '%%');
         $query->orWhere('lastName', 'Like', '%%');
-        // $query->where('users.propertyId', 1);
+        $query->where('users.propertyId', 1);
 
         // if (request()->has('search')) {
         //     $search = request()->input('search');
