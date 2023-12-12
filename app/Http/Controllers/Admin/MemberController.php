@@ -220,7 +220,7 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        if ($request->has('status')) {
+        if ($request->has('status') && $request->get('status') != null) {
             $query->where('users.status', $request->status);
         }
 
