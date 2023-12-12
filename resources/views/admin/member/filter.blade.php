@@ -14,8 +14,8 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Properties</label>
-                    <select class="form-control select2" name="property">
-                        <option value="" id="propertyId">Select Property</option>
+                    <select class="form-control select2" name="property" id="propertyId">
+                        <option value="">Select Property</option>
                         @foreach ($properties as $item)
                             <option value="{{ $item->id }}"
                                 {{ request('property') == $item->id ? 'selected' : '' }}>{{ $item->name }}
