@@ -123,11 +123,11 @@
                         let id = element.id;
                         let env = "{{ env('APP_URL') }}";
                         $('#result').append(`<tr>
-                        <td>${element.lot_number !=null ? element.lot_number : 'Number Not Alloted'}</td>
+                        <td>${element.lot_number !=null ? element.lot_number : 'Lot Number Not Found'}</td>
                         <td>${element.firstName}</td>
                         <td>${element.lastName}</td>
                         <td>${element.email}</td>
-                        <td>${element.phone  !=null ?  element.phone : 'Number Not Setuped'}</td>
+                        <td>${element.phone  !=null ?  element.phone : 'Number Not Found'}</td>
                         <td>${element.user_type_name !=null ? element.user_type_name : 'Type Not Found'}</td>
                         <td>${element.phase_name !== null ? element.phase_name : 'Phase Not Found' }</td>
                         <td>${element.block_name != null ? element.block_name : 'Block Not Found'}</td>
