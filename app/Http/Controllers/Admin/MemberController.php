@@ -206,6 +206,7 @@ class MemberController extends Controller
     public function getMember(Request $request)
     {
         // return $request;
+
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
         $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
@@ -221,7 +222,6 @@ class MemberController extends Controller
         );
 
         if (request()->has('status')) {
-            echo $request->status . '<br />';
             $query->where('users.status', $request->status);
         }
 
@@ -229,11 +229,11 @@ class MemberController extends Controller
         if (request()->has('search')) {
             $search = request()->input('search');
             $query->where('firstName', 'LIKE', '%' . $search . '%');
-            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+            // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
         }
 
         if ($request->property !== null) {
-            $query->where('user.propertyId', 1);
+            $query->where('user.propertyId', $request->property);
         }
 
         if ($request->lot_number !== null) {
@@ -249,7 +249,6 @@ class MemberController extends Controller
             $query->where('block.id', $request->phase);
         }
 
-        $query = $query->get();
         return response()->json($query);
     }
 }
