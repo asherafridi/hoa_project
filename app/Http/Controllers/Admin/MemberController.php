@@ -220,33 +220,33 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        if ($request->status !== "null") {
+        if ($request->has('status')) {
             $query->where('users.status', $request->status);
         }
 
 
-        if ($request->search !== "null") {
-            $search = request()->input('search');
-            $query->where('firstName', 'LIKE', '%' . $search . '%');
-            // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
-        }
+        // if ($request->search !== "null") {
+        //     $search = request()->input('search');
+        //     $query->where('firstName', 'LIKE', '%' . $search . '%');
+        //     // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+        // }
 
-        if ($request->property !== null) {
-            $query->where('user.propertyId', $request->property);
-        }
+        // if ($request->property !== null) {
+        //     $query->where('user.propertyId', $request->property);
+        // }
 
-        if ($request->lot_number !== null) {
-            $query->where('users.lot_number', $request->lot_number);
-        }
+        // if ($request->lot_number !== null) {
+        //     $query->where('users.lot_number', $request->lot_number);
+        // }
 
 
-        if ($request->phase !== null) {
-            $query->where('phase.id', $request->phase);
-        }
+        // if ($request->phase !== null) {
+        //     $query->where('phase.id', $request->phase);
+        // }
 
-        if (request()->has('block')) {
-            $query->where('block.id', $request->phase);
-        }
+        // if (request()->has('block')) {
+        //     $query->where('block.id', $request->phase);
+        // }
 
         $member = $query->get();
 
