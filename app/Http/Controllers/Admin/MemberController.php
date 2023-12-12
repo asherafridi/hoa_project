@@ -221,12 +221,12 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        if (request()->has('status')) {
+        if ($request->status !== null) {
             $query->where('users.status', $request->status);
         }
 
 
-        if (request()->has('search')) {
+        if ($request->search !== null) {
             $search = request()->input('search');
             $query->where('firstName', 'LIKE', '%' . $search . '%');
             // $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
