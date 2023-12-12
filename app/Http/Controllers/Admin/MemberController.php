@@ -225,6 +225,10 @@ class MemberController extends Controller
         }
 
 
+        if ($request->has('lot_number')) {
+            $query->where('users.lot_number', $request->lot_number);
+        }
+
         // if ($request->search !== "null") {
         //     $search = request()->input('search');
         //     $query->where('firstName', 'LIKE', '%' . $search . '%');
@@ -235,9 +239,6 @@ class MemberController extends Controller
         //     $query->where('user.propertyId', $request->property);
         // }
 
-        // if ($request->lot_number !== null) {
-        //     $query->where('users.lot_number', $request->lot_number);
-        // }
 
 
         // if ($request->phase !== null) {
