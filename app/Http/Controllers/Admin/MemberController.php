@@ -218,17 +218,15 @@ class MemberController extends Controller
             'phase.name as phase_name',
             'block.name as block_name',
         );
-        $query->where('firstName', 'Like', '%%');
-        $query->orWhere('lastName', 'Like', '%%');
-        $query->where('users.propertyId', 1);
 
-        // if (request()->has('search')) {
-        //     $search = request()->input('search');
-        //     $query->where('firstName', 'LIKE', '%' . $search . '%');
-        //     $query->where('lastName', 'LIKE', '%' . $search . '%');
-        // }
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $query->where('firstName', 'LIKE', '%' . $search . '%');
+            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+        }
 
         if ($request->property !== null) {
+            $query->where('user.propertyId', 1);
         }
 
         if ($request->lot_number !== null) {
