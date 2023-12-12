@@ -221,6 +221,7 @@ class MemberController extends Controller
         );
 
         if (request()->has('status')) {
+            echo $request->status . '<br />';
             $query->where('users.status', $request->status);
         }
 
