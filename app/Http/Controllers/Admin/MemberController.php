@@ -234,9 +234,9 @@ class MemberController extends Controller
             $query->where('firstName', 'LIKE', '%' . $search . '%');
         }
 
-        // if ($request->property !== null) {
-        //     $query->where('user.propertyId', $request->property);
-        // }
+        if ($request->has('property') && $request->get('property') != null) {
+            $query->where('user.propertyId', $request->property);
+        }
 
 
 
