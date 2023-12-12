@@ -249,6 +249,8 @@ class MemberController extends Controller
             $query->where('block.id', $request->phase);
         }
 
-        return response()->json($query);
+        $member = $query->get();
+
+        return response()->json($member);
     }
 }
