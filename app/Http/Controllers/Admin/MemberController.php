@@ -244,9 +244,9 @@ class MemberController extends Controller
             $query->where('phase.id', $request->phase);
         }
 
-        // if (request()->has('block')) {
-        //     $query->where('block.id', $request->phase);
-        // }
+        if (request()->has('block') && $request->get('block') != null) {
+            $query->where('block.id', $request->phase);
+        }
 
         $member = $query->get();
 
