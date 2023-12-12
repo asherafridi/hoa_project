@@ -206,10 +206,10 @@ class MemberController extends Controller
     public function getMember(Request $request)
     {
         $query = User::query();
-        $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
-        $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
-        $query->leftJoin('phase', 'phase.id', '=', 'properties.phase_id');
-        $query->leftJoin('block', 'block.id', '=', 'properties.block_id');
+        $query->join('properties', 'properties.id', '=', 'users.propertyId');
+        $query->join('user_type', 'user_type.id', '=', 'users.userType');
+        $query->join('phase', 'phase.id', '=', 'properties.phase_id');
+        $query->join('block', 'block.id', '=', 'properties.block_id');
 
         $query->select(
             'users.*',
@@ -218,6 +218,9 @@ class MemberController extends Controller
             'phase.name as phase_name',
             'block.name as block_name',
         );
+        $query->where('firstName', 'Like', '%dust%');
+        $query->orWhere('lastName', 'Like', '%ros%');
+        // $query->where('users.propertyId', 1);
 
         // if (request()->has('search')) {
         //     $search = request()->input('search');
@@ -226,7 +229,6 @@ class MemberController extends Controller
         // }
 
         if ($request->property !== null) {
-            $query->where('users.propertyId', $request->property);
         }
 
         if ($request->lot_number !== null) {
