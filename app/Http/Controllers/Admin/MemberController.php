@@ -225,7 +225,7 @@ class MemberController extends Controller
         }
 
 
-        if ($request->has('lot_number')) {
+        if ($request->has('lot_number') && $request->get('lot_number') != null) {
             $query->where('users.lot_number', $request->lot_number);
         }
 
