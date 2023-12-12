@@ -232,7 +232,7 @@ class MemberController extends Controller
         if ($request->has('search') && $request->get('search') != null) {
             $search = request()->input('search');
             $query->where('firstName', 'LIKE', '%' . $search . '%');
-            $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
+            $query->where('lastName', 'LIKE', '%' . $search . '%');
         }
 
         // if ($request->property !== null) {
