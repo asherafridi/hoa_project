@@ -219,7 +219,6 @@ class MemberController extends Controller
             'block.name as block_name',
         );
 
-        $query->where('users.status', $request->status);
 
         if (request()->has('search')) {
             $search = request()->input('search');
@@ -236,6 +235,7 @@ class MemberController extends Controller
         }
 
         if (request()->has('status')) {
+            $query->where('users.status', $request->status);
         }
 
         if ($request->phase !== null) {
