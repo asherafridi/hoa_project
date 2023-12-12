@@ -205,7 +205,7 @@ class MemberController extends Controller
     }
     public function getMember(Request $request)
     {
-        return $request;
+        // return $request;
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
         $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
@@ -219,6 +219,10 @@ class MemberController extends Controller
             'phase.name as phase_name',
             'block.name as block_name',
         );
+
+        if (request()->has('status')) {
+            $query->where('users.status', $request->status);
+        }
 
 
         if (request()->has('search')) {
@@ -235,9 +239,6 @@ class MemberController extends Controller
             $query->where('users.lot_number', $request->lot_number);
         }
 
-        if (request()->has('status')) {
-            $query->where('users.status', $request->status);
-        }
 
         if ($request->phase !== null) {
             $query->where('phase.id', $request->phase);
