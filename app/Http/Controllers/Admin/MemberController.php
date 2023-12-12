@@ -218,8 +218,8 @@ class MemberController extends Controller
             'phase.name as phase_name',
             'block.name as block_name',
         );
-        $query->where('firstName', 'Like', '%dust%');
-        $query->orWhere('lastName', 'Like', '%ros%');
+        $query->where('firstName', 'Like', '%%');
+        $query->orWhere('lastName', 'Like', '%%');
         // $query->where('users.propertyId', 1);
 
         // if (request()->has('search')) {
