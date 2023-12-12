@@ -205,6 +205,7 @@ class MemberController extends Controller
     }
     public function getMember(Request $request)
     {
+        return $request;
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
         $query->leftJoin('user_type', 'user_type.id', '=', 'users.userType');
