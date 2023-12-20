@@ -1,11 +1,15 @@
 <?php
 use App\Http\Controllers\Vendor\AnnouncementController;
+use App\Http\Controllers\Vendor\CommitteeController;
 use App\Http\Controllers\Vendor\EventController;
 use App\Http\Controllers\Vendor\DocumentController;
 use App\Http\Controllers\Vendor\GalleryController;
 use App\Http\Controllers\Vendor\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Vendor\Auth\RegisteredVendorController;
 use App\Http\Controllers\Vendor\HomeController;
+use App\Http\Controllers\Vendor\PaymentController;
+use App\Http\Controllers\Vendor\WorkOrderController;
+use App\Models\Committee;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,4 +38,7 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
     Route::resource('events', EventController::class)->middleware(['vendor.auth']);
     Route::resource('gallery', GalleryController::class)->middleware(['vendor.auth']);
     Route::resource('documents', DocumentController::class)->middleware(['vendor.auth']);
+    Route::resource('committee', CommitteeController::class)->middleware(['vendor.auth']);
+    Route::resource('payment', PaymentController::class)->middleware(['vendor.auth']);
+    Route::resource('work-order', WorkOrderController::class)->middleware(['vendor.auth']);
 });

@@ -21,14 +21,14 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item @if (str_contains($title, 'Dashboard') == 1) active @endif">
-            <a href="{{ route('dashboard') }}" class="menu-link">
+            <a href="{{ route('vendor.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard </div>
             </a>
         </li>
 
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active open @endif">
+        <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active open @endif">
 
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
@@ -38,49 +38,22 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                 </li>
-                <li class="menu-item">
+                {{-- <li class="menu-item">
                     <a href="{{ route('work-order.create') }}" class="menu-link">
                         <div data-i18n="Without menu">Create Work Request</div>
                     </a>
-                </li>
+                </li> --}}
                 <li class="menu-item">
-                    <a href="{{ route('work-order.index') }}" class="menu-link">
+                    <a href="{{ route('vendor.work-order.index') }}" class="menu-link">
                         <div data-i18n="Without menu">My Work Orders</div>
                     </a>
                 </li>
             </ul>
-        </li> --}}
+        </li>
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Bills') == 1) active open @endif">
-            
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
-                <div data-i18n="Layouts">Bills</div>
-            </a>
 
-            <ul class="menu-sub">
-                <li class="menu-item">
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('bills.index') }}?status=Unpaid" class="menu-link">
-                        <div data-i18n="Without menu">Unpaid Bills</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('bills.index') }}?status=Paid" class="menu-link">
-                        <div data-i18n="Without menu">Paid Bills</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('bills.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">All Bills</div>
-                    </a>
-                </li>
-            </ul>
-        </li> --}}
+        <li class="menu-item @if (str_contains($title, 'Payment') == 1) active open @endif">
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Payment') == 1) active open @endif">
-            
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
                 <div data-i18n="Layouts">Payments</div>
@@ -90,19 +63,19 @@
                 <li class="menu-item">
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('payment.index') }}" class="menu-link">
+                    <a href="{{ route('vendor.payment.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Payment History</div>
                     </a>
                 </li>
-    </ul>
-    </li> --}}
+            </ul>
+        </li>
 
-        {{-- <li class="menu-item  @if (str_contains($title, 'Committee') == 1) active @endif">
-            <a href="{{ route('committee.index') }}" class="menu-link">
+        <li class="menu-item  @if (str_contains($title, 'Committee') == 1) active @endif">
+            <a href="{{ route('vendor.committee.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Boxicons">Committee</div>
             </a>
-        </li> --}}
+        </li>
 
         <li class="menu-item  @if (str_contains($title, 'Events') == 1) active @endif">
             <a href="{{ route('vendor.events.index') }}" class="menu-link">

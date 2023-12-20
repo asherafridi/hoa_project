@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        {{-- <div class="row">
+        <div class="row">
 
             <div class="col-lg-3 col-md-3 col-6 mb-4">
                 <div class="card">
@@ -64,104 +64,111 @@
 
 
         <div class="row">
-          <!-- Order Statistics -->
-          <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-              <div class="card h-100">
-                  <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                      <div class="card-title mb-4">
-                          <h5 class="m-0 me-2">Work Orders</h5>
-    </div>
-    </div>
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="d-flex flex-column align-items-left gap-1">
-        <span>Total Work Orders</span>
-    </div>
-    </div>
-    <hr>
-    <ul class="p-0 m-0">
-        @foreach ($widget['work_orders'] as $item)
-            <li class="d-flex mb-4 pb-1">
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                        <h6 class="mb-0">{{ $item->description }}</h6>
-                        <small class="text-muted">{{ $item->vendor() ? $item->vendor()->name : 'No Vendor' }}</small>
+            <!-- Order Statistics -->
+            <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                        <div class="card-title mb-4">
+                            <h5 class="m-0 me-2">Work Orders</h5>
+                            {{-- <small class="text-muted">42.82k Total Sales</small> --}}
+                        </div>
                     </div>
-                    <div class="user-progress">
-                        <small class="fw-semibold">{{ date('d-M-Y', strtotime($item->date)) }}</small>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-    </div>
-    </div>
-    </div>
-    <!--/ Order Statistics -->
-    <!-- Order Statistics -->
-    <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-        <div class="card h-100">
-            <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                <div class="card-title mb-4">
-                    <h5 class="m-0 me-2">Bills</h5>
-                    <small class="text-muted">{{ $widget['total_bill_amount'] }} Amount</small>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="d-flex flex-column align-items-left gap-1">
-        <span>Total Bills</span>
-    </div>
-    </div>
-    <hr>
-    <ul class="p-0 m-0">
-        @foreach ($widget['bills'] as $item)
-            <li class="d-flex mb-4 pb-1">
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                    <div class="me-2">
-                        <h6 class="mb-0">{{ $item->description }}</h6>
-                        <small class="text-muted">{{ $item->user() ? $item->user()->name : 'No User' }}</small>
-                    </div>
-                    <div class="user-progress">
-                        <small class="fw-semibold">{{ $item->amount }}</small>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-    </div>
-    </div>
-    </div>
-    <!--/ Order Statistics -->
-
-
-    <!-- Transactions -->
-    <div class="col-md-6 col-lg-4 order-2 mb-4">
-        <div class="card h-100">
-            <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="card-title m-0 me-2">Recent Announcements</h5>
-            </div>
-            <div class="card-body">
-                <ul class="p-0 m-0">
-                    @foreach ($widget['announcements'] as $item)
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <small class="text-muted d-block mb-1">{{ $item->title }}</small>
-                                    <h6 class="mb-0">{{ $item->description }}</h6>
-                                </div>
-                                <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">{{ date('d-M-Y', strtotime($item->date)) }}</h6>
-                                </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-column align-items-left gap-1">
+                                {{-- <h2 class="mb-0">{{$widget['total_work_orders']}}</h2> --}}
+                                <span>Total Work Orders</span>
                             </div>
-                        </li>
-                    @endforeach
-                </ul>
+                            {{-- <div id="orderStatisticsChart"></div> --}}
+                        </div>
+                        <hr>
+                        <ul class="p-0 m-0">
+                            @foreach ($widget['work_orders'] as $item)
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">{{ $item->description }}</h6>
+                                            <small
+                                                class="text-muted">{{ $item->vendor() ? $item->vendor()->name : 'No Vendor' }}</small>
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">{{ date('d-M-Y', strtotime($item->date)) }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <!--/ Order Statistics -->
+            <!-- Order Statistics -->
+            <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                        <div class="card-title mb-4">
+                            <h5 class="m-0 me-2">Bills</h5>
+                            <small class="text-muted">{{ $widget['total_bill_amount'] }} Amount</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-column align-items-left gap-1">
+                                {{-- <h2 class="mb-0">{{$widget['total_bills']}}</h2> --}}
+                                <span>Total Bills</span>
+                            </div>
+                            {{-- <div id="orderStatisticsChart"></div> --}}
+                        </div>
+                        <hr>
+                        <ul class="p-0 m-0">
+                            @foreach ($widget['bills'] as $item)
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">{{ $item->description }}</h6>
+                                            <small
+                                                class="text-muted">{{ $item->user() ? $item->user()->name : 'No User' }}</small>
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">{{ $item->amount }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/ Order Statistics -->
+
+
+            <!-- Transactions -->
+            <div class="col-md-6 col-lg-4 order-2 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="card-title m-0 me-2">Recent Announcements</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="p-0 m-0">
+                            @foreach ($widget['announcements'] as $item)
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <small class="text-muted d-block mb-1">{{ $item->title }}</small>
+                                            <h6 class="mb-0">{{ $item->description }}</h6>
+                                        </div>
+                                        <div class="user-progress d-flex align-items-center gap-1">
+                                            <h6 class="mb-0">{{ date('d-M-Y', strtotime($item->date)) }}</h6>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/ Transactions -->
         </div>
-    </div>
-    <!--/ Transactions -->
-    </div> --}}
 
 
 
@@ -312,7 +319,5 @@
         </div>
       </div>
     </div> --}}
-
-        Welcome {{ auth()->guard('vendor')->name }}
     </div>
 @stop
