@@ -1,15 +1,14 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        
-        <a href="{{route('home')}}" class="app-brand-link">
-            @if (settings('website_logo')!=null)
-            <span class="app-brand-logo demo">
-                <img src="{{settings('website_logo')}}" style="height: 40px">
-                      </span>
-                
+
+        <a href="{{ route('home') }}" class="app-brand-link">
+            @if (settings('website_logo') != null)
+                <span class="app-brand-logo demo">
+                    <img src="{{ settings('website_logo') }}" style="height: 40px">
+                </span>
             @else
-            <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform:capitalize;">{{ settings('website_name') }}</span>
-                
+                <span class="app-brand-text demo menu-text fw-bolder ms-2"
+                    style="text-transform:capitalize;">{{ settings('website_name') }}</span>
             @endif
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -27,10 +26,10 @@
                 <div data-i18n="Analytics">Dashboard </div>
             </a>
         </li>
-        
-        
+
+
         <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Layouts">Work Order</div>
@@ -51,9 +50,9 @@
                 </li>
             </ul>
         </li>
-        
+
         <li class="menu-item @if (str_contains($title, 'Bills') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
                 <div data-i18n="Layouts">Bills</div>
@@ -79,9 +78,9 @@
                 </li>
             </ul>
         </li>
-        
+
         <li class="menu-item @if (str_contains($title, 'Payment') == 1) active open @endif">
-            
+
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
                 <div data-i18n="Layouts">Payments</div>
@@ -104,7 +103,7 @@
         </li>
 
 
-        
+
 
 
 
@@ -126,6 +125,13 @@
             <a href="{{ route('announcement.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bell"></i>
                 <div data-i18n="Boxicons">Announcement</div>
+            </a>
+        </li>
+
+        <li class="menu-item @if (str_contains($title, 'Polls') == 1) active @endif">
+            <a href="{{ route('polls.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-bell"></i>
+                <div data-i18n="Boxicons">Polls</div>
             </a>
         </li>
 

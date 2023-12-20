@@ -104,60 +104,35 @@
             </a>
         </li> --}}
 
-        {{-- <li class="menu-item  @if (str_contains($title, 'Events') == 1) active @endif">
-            <a href="{{ route('events.index') }}" class="menu-link">
+        <li class="menu-item  @if (str_contains($title, 'Events') == 1) active @endif">
+            <a href="{{ route('vendor.events.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
                 <div data-i18n="Boxicons">Events</div>
             </a>
-        </li> --}}
+        </li>
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Announcement') == 1) active @endif">
-            <a href="{{ route('announcement.index') }}" class="menu-link">
+        <li class="menu-item @if (str_contains($title, 'Announcement') == 1) active @endif">
+            <a href="{{ route('vendor.announcement.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bell"></i>
                 <div data-i18n="Boxicons">Announcement</div>
             </a>
-        </li> --}}
+        </li>
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Documents') == 1) active @endif">
-            <a href="{{ route('admin.documents.index') }}" class="menu-link">
+        <li class="menu-item @if (str_contains($title, 'Documents') == 1) active @endif">
+            <a href="{{ route('vendor.documents.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-file-doc"></i>
                 <div data-i18="Boxicons">Documents</div>
             </a>
-        </li> --}}
+        </li>
 
-        {{-- <li class="menu-item @if (str_contains($title, 'Gallery') == 1) active @endif">
-            <a href="{{ route('admin.gallery.index') }}" class="menu-link">
+        <li class="menu-item @if (str_contains($title, 'Gallery') == 1) active @endif">
+            <a href="{{ route('vendor.gallery.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-images"></i>
                 <div data-i18="Boxicons">Gallery</div>
             </a>
-        </li> --}}
+        </li>
 
-        {{-- <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">Pages</span>
-    </li> --}}
-        {{-- <li class="menu-item">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Account Settings">Account Settings</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
-            <div data-i18n="Account">Account</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="pages-account-settings-notifications.html" class="menu-link">
-            <div data-i18n="Notifications">Notifications</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="pages-account-settings-connections.html" class="menu-link">
-            <div data-i18n="Connections">Connections</div>
-          </a>
-        </li>
-      </ul>
-    </li> --}}
+
 
 
 

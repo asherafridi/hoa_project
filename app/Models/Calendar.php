@@ -9,7 +9,7 @@ use App\Models\Committee;
 class Calendar extends Model
 {
     use HasFactory;
-    protected $fillable = ['eventName', 'description', 'startDate', 'endDate', 'location', 'committeeId', 'user_id'];
+    protected $fillable = ['eventName', 'description', 'startDate', 'endDate', 'location', 'committeeId', 'forUser', 'user_id'];
 
     function committee()
     {

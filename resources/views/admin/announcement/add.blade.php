@@ -27,8 +27,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Date</label>
-                            <input type="datetime-local" class="form-control" required name="date" placeholder="Arrangement"
-                                autofocus />
+                            <input type="datetime-local" class="form-control" required name="date"
+                                placeholder="Arrangement" autofocus />
                             @error('date')
                                 <div class="form-text text-danger">
                                     {{ $message }}
@@ -49,6 +49,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <label class="form-label">For User</label>
+                            <select class="form-control" required name="forUser">
+                                @foreach (forUser() as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @error('forUser')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="row px-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

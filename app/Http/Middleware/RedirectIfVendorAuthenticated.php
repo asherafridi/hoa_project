@@ -16,7 +16,7 @@ class RedirectIfVendorAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('admin')->check()) {
+        if (Auth::guard('vendor')->check()) {
             return redirect('vendor/dashboard');
         }
         return $next($request);

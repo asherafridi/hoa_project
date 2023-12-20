@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'date', 'adminId'];
+    protected $fillable = ['title', 'description', 'date', 'forUser', 'adminId'];
 }

@@ -9,9 +9,10 @@ class Gallery extends Model
 {
     use HasFactory;
     protected $table = "gallery";
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['name', 'image', 'forUser'];
 
-    public function getImageAttribute($value){
+    public function getImageAttribute($value)
+    {
         return '/' . $value; // Assuming images are stored in a folder named 'images'
     }
 }

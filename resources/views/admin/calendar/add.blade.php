@@ -21,7 +21,7 @@
                                 autofocus />
                             @error('eventName')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -31,7 +31,7 @@
                             <input class="form-control" type="datetime-local" required name="startDate" value="" />
                             @error('startDate')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -41,7 +41,7 @@
                             <input class="form-control" type="datetime-local" required name="endDate" value="" />
                             @error('endDate')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -49,10 +49,11 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Location</label>
-                            <input type="text" class="form-control" name="location" required placeholder="St. 1000 , Newyork etc" />
+                            <input type="text" class="form-control" name="location" required
+                                placeholder="St. 1000 , Newyork etc" />
                             @error('location')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -61,12 +62,12 @@
                             <select class="form-control" name="committeeId" required>
                                 <option>Select Committee</option>
                                 @foreach ($committee as $comm)
-                                <option value="{{$comm->id}}">{{$comm->name}}</option>
+                                    <option value="{{ $comm->id }}">{{ $comm->name }}</option>
                                 @endforeach
                             </select>
                             @error('committeeId')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -77,7 +78,24 @@
                             <textarea type="text" name="description" class="form-control" placeholder="Description..." rows="3"></textarea>
                             @error('description')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <label class="form-label">For User</label>
+                            <select class="form-control" required name="forUser">
+                                @foreach (forUser() as $item)
+                                    <option value="{{ $item }}">
+                                        {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('forUser')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>

@@ -82,6 +82,10 @@ function contacts()
 {
     return array("Email", "Phone", "Address", "Address1");
 }
+function forUser()
+{
+    return array("Members Only", "Vendors Only", "Both");
+}
 
 function propertyStatus()
 {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Member\DocumentController;
 use App\Http\Controllers\Member\EventController;
 use App\Http\Controllers\Member\HomeController;
 use App\Http\Controllers\Member\PaymentController;
+use App\Http\Controllers\Member\PollsController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Committee;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::resource('committee', CommitteeController::class)->middleware(['auth']);
 Route::resource('events', EventController::class)->middleware(['auth']);
 Route::resource('announcement', AnnouncementController::class)->middleware(['auth']);
 Route::resource('documents', DocumentController::class)->middleware(['auth']);
+Route::resource('polls', PollsController::class)->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -171,6 +171,13 @@
             </a>
         </li>
 
+        <li class="menu-item @if (str_contains($title, 'Polls') == 1) active @endif">
+            <a href="{{ route('admin.polls.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Polls</div>
+            </a>
+        </li>
+
         <li class="menu-item @if (str_contains($title, 'Gallery') == 1) active @endif">
             <a href="{{ route('admin.gallery.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-images"></i>

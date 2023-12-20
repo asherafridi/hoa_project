@@ -1,4 +1,8 @@
 <?php
+use App\Http\Controllers\Vendor\AnnouncementController;
+use App\Http\Controllers\Vendor\EventController;
+use App\Http\Controllers\Vendor\DocumentController;
+use App\Http\Controllers\Vendor\GalleryController;
 use App\Http\Controllers\Vendor\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Vendor\Auth\RegisteredVendorController;
 use App\Http\Controllers\Vendor\HomeController;
@@ -26,4 +30,8 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
 
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('vendor.auth');
 
+    Route::resource('announcement', AnnouncementController::class)->middleware('vendor.auth');
+    Route::resource('events', EventController::class)->middleware(['vendor.auth']);
+    Route::resource('gallery', GalleryController::class)->middleware(['vendor.auth']);
+    Route::resource('documents', DocumentController::class)->middleware(['vendor.auth']);
 });
