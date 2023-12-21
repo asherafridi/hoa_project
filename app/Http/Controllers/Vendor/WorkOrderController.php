@@ -15,7 +15,7 @@ class WorkOrderController extends Controller
     {
 
         $title = "Work Order";
-        $workOrderQuery = WorkOrder::where('requestedBy', auth()->guard('vendor')->user()->id);
+        $workOrderQuery = WorkOrder::where('assignedTo', auth()->guard('vendor')->user()->id);
 
         if ($request->has('search')) {
             $search = $request->input('search');
