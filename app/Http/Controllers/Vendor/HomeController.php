@@ -31,6 +31,7 @@ class HomeController extends Controller
         $widget['total_bills'] = Transaction::count();
         $widget['total_bill_amount'] = Transaction::sum('amount');
         $widget['announcements'] = Announcement::get();
+        $widget['announcemen'] = Announcement::get();
         return view('vendor.dashboard', compact('title', 'widget'));
     }
 }
