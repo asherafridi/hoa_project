@@ -17,6 +17,8 @@ class PaymentController extends Controller
         $title = "Payment History";
         $paymentQuery = Payment::query();
 
+        $paymentQuery->where('vendor_id', auth()->user()->id);
+
         if ($request->has('search')) {
             $search = $request->input('search');
             $columns = \Schema::getColumnListing((new Payment())->getTable());

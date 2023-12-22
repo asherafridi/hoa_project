@@ -23,7 +23,7 @@
                             <th>Priority</th>
                             <th>Status</th>
                             <th>Assigned To</th>
-                            {{-- <th>Action</th> --}}
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -38,7 +38,19 @@
                                 <td>{{ $item->priority != null ? $item->priority : 'Admin will Assign' }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->vendor() ? $item->vendor()->name : 'Work not Assigned Yet' }}</td>
-
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{{ route('vendor.work-order.edit', $item->id) }}"><i
+                                                    class="bx bx-edit-alt me-1"></i> Update Work Order Status</a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>

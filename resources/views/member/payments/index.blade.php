@@ -32,7 +32,6 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $item->transaction()->description }}</td>
-
                                 <td>{{ $item->paymentDate }}</td>
                                 <td>{{ settings('currency_symbol') }} {{ number_format($item->amount, 2) }}</td>
                                 <td>{{ $item->paymentMethod }}</td>
