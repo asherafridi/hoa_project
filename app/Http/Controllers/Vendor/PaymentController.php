@@ -17,7 +17,7 @@ class PaymentController extends Controller
         $title = "Payment History";
         $paymentQuery = Payment::query();
 
-        $paymentQuery->where('vendor_id', auth()->user()->id);
+        $paymentQuery->where('vendor_id', auth()->guard('vendor')->user()->id);
 
         if ($request->has('search')) {
             $search = $request->input('search');
