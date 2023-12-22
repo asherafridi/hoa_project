@@ -86,7 +86,7 @@ class WorkOrderController extends Controller
         $vendor = Vendor::all();
         $properties = Properties::all();
         $members = User::all();
-        return view('vendor.work-order.details', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
+        return view('vendor.work-order.edit', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
     }
 
     /**
