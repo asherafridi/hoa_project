@@ -12,81 +12,123 @@
             </div>
 
             <div class="card-body">
-
-                <form method="POST" action="{{ route('vendor.work-order.update', $workOrder->id) }}"
+                <form method="POST" action="{{ route('admin.work-order.update', $workOrder->id) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                            <label class="form-label">Property Id</label>
-                            <input type="text" class="form-control"
-                                value="{{ $workOrder->property() ? $workOrder->property()->name : 'Property Not Assigned' }}"
-                                readonly />
-                        </div>
 
-                        <div class="col-md-4">
-                            <label class="form-label">Requested By</label>
-                            <input type="text" class="form-control"
-                                value="{{ $workOrder->requestedBy() ? $workOrder->requestedBy()->fullName() : 'Requested By Admin' }}"
-                                readonly />
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="form-label">Requested Date</label>
-                            <input type="text" class="form-control" value="{{ $workOrder->requested_date }}" readonly />
-                        </div>
-                    </div>
 
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Priority</label>
-                            <input type="text" class="form-control" value="{{ $workOrder->priority }}" readonly />
+                            <select class="form-control" name="priority">
+                                <option value="">Select Priority Level</option>
+                                @foreach (priority_level() as $priority)
+                                    <option value="{{ $priority }}"
+                                        {{ $workOrder->priority == $priority ? 'selected' : '' }}>
+                                        {{ $priority }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('priority')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Status</label>
-                            <input type="text" class="form-control" value="{{ $workOrder->status }}" readonly />
+                            <select class="form-control" name="status">
+                                <option value="">Select Status</option>
+                                @foreach (workOrder_Status() as $status)
+                                    <option value="{{ $status }}"
+                                        {{ $workOrder->status == $status ? 'selected' : '' }}>
+                                        {{ $status }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('status')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">Assigned To</label>
-                            <input type="text" class="form-control"
-                                value="{{ $workOrder->vendor() ? $workOrder->vendor()->name : 'Work Not Assigned' }}"
-                                readonly />
+                            <label class="form-label">Assigned to</label>
+                            <select class="form-control" name="assignedTo">
+                                <option value="">Select Vendor</option>
+                                @foreach ($vendor as $vendor)
+                                    <option value="{{ $vendor->id }}"
+                                        {{ $workOrder->assignedTo == $vendor->id ? 'selected' : '' }}>
+                                        {{ $vendor->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('assignedTo')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Completion Date</label>
-                            <input type="text" class="form-control" value="{{ $workOrder->completion_date }}" readonly />
+                            <input type="date" class="form-control" name="completion_date"
+                                value="{{ $workOrder->completion_date }}" />
+                            @error('completion_date')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
-                        @if ($workOrder->invoice)
-                            <div class="col-md-4">
-                                <label class="form-label">Invoice Amount</label>
-                                <input type="text" class="form-control" value="{{ $workOrder->invoice_amount }}"
-                                    readonly />
-                            </div>
-                        @endif
+                        <div class="col-md-4">
+                            <label class="form-label">Invoice</label>
+
+                            <input type="file" class="form-control" name="invoice" />
+                            @if ($workOrder->invoice)
+                                <div>
+                                    <a href="{{ $workOrder->invoice }}" class="btn btn-link btn-sm">Download Invoice</a>
+                                </div>
+                            @endif
+                            @error('invoice')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Invoice Amount</label>
+                            <input type="number" class="form-control" name="invoice_amount"
+                                value="{{ $workOrder->invoice_amount }}" />
+                            @error('invoice_amount')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
-                            <textarea class="form-control" rows="4" readonly>{{ $workOrder->description }}</textarea>
+                            <textarea type="text" name="description" class="form-control" placeholder="Description..." rows="4">{{ $workOrder->description }}</textarea>
+                            @error('description')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
-                    @if ($workOrder->invoice)
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label class="form-label">Invoice</label>
-                                <a href="{{ $workOrder->invoice }}" class="btn btn-link btn-sm">Download Invoice</a>
-                            </div>
-                        </div>
-                    @endif
+                    <div class="row px-3">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
                 </form>
             </div>
         </div>
