@@ -6,8 +6,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="header d-flex justify-content-between">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Polls/</span> List</h4>
-            <div class="btn-left"><a href="{{ route('admin.polls.create') }}" class="btn btn-primary"> Add Poll</a>
-            </div>
+
         </div>
         <div class="row">
             @foreach ($polls as $item)
