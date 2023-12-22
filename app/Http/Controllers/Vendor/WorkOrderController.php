@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Properties;
+use App\Models\User;
+use App\Models\Vendor;
 use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 
@@ -76,7 +79,14 @@ class WorkOrderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $title = "Update Work Order Status";
+        $workOrder = WorkOrder::find($id);
+
+        $vendor = Vendor::all();
+        $properties = Properties::all();
+        $members = User::all();
+        return view('vendor.work-order.details', compact('title', 'workOrder', 'properties', 'members', 'vendor'));
     }
 
     /**
