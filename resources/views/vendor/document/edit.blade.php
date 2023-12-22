@@ -12,68 +12,39 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.documents.update', $document->id) }}"
+
+                <form method="POST" action="{{ route('vendor.work-order.update', $workOrder->id) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" required name="name" value="{{ $document->name }}"
-                                placeholder="Name" autofocus />
-                            @error('name')
-                                <div class="form-text text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
 
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                            <textarea type="text" name="description" class="form-control" value="" placeholder="Description..."
-                                rows="3">{{ $document->description }}</textarea>
-                            @error('description')
-                                <div class="form-text text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Document</label>
-                            <input type="file" class="form-control" required name="doc" placeholder="Name"
-                                autofocus />
-                            @error('file')
-                                <div class="form-text text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
 
-                    </div>
+                    <div class="row mb-4">
 
-                    <div class="row">
-                        <div class="col-md-12 mb-4">
-                            <label class="form-label">For User</label>
-                            <select class="form-control" required name="forUser">
-                                @foreach (forUser() as $item)
-                                    <option value="{{ $item }}" {{ $document->forUser == $item ? 'selected' : '' }}>
-                                        {{ $item }}
+
+                        <div class="col-md-4">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="">Select Status</option>
+                                @foreach (workOrder_Status() as $status)
+                                    <option value="{{ $status }}"
+                                        {{ $workOrder->status == $status ? 'selected' : '' }}>
+                                        {{ $status }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('forUser')
+                            @error('status')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
+
                     </div>
+
+
                     <div class="row px-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
