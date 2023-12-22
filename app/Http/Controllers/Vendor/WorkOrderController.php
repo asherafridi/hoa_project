@@ -94,7 +94,13 @@ class WorkOrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $workOrder = WorkOrder::findOrFail($id);
+
+
+        $workOrder->update($request->all());
+
+        return redirect('/vendor/work-order')->with('success', 'Operation successful');
     }
 
     /**
