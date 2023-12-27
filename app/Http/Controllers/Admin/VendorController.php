@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use App\Models\VendorType;
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -83,6 +85,15 @@ class VendorController extends Controller
         return view('admin.vendor.edit', compact('title', 'vendor', 'types'));
     }
 
+    public function secretLogin(string $id)
+    {
+
+        $member = Vendor::find($id);
+
+        Auth::guard('vendor')->login($member);
+
+        return redirect(RouteServiceProvider::VENDOR_HOME);
+    }
     /**
      * Update the specified resource in storage.
      */
