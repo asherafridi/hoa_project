@@ -44,7 +44,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" target="_blank"
                                                 href="{{ route('admin.vendor-slogin', $item->id) }}"><i
-                                                    class="bx bx-menu me-1"></i> View</a>
+                                                    class='bx bx-lock-open-alt'></i> Secret Login</a>
                                             <a class="dropdown-item" href="{{ route('admin.vendor.show', $item->id) }}"><i
                                                     class="bx bx-menu me-1"></i> View</a>
                                             <a class="dropdown-item" href="{{ route('admin.vendor.edit', $item->id) }}"><i
