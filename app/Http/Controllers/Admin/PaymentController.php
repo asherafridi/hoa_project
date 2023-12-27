@@ -85,8 +85,17 @@ class PaymentController extends Controller
             ]);
         }
 
+        $admin_reciept = null;
+        if ($request->file('admin_reciept')) {
+            $fileName = time() . '_' . $request->file('admin_reciept')->getClientOriginalName();
+            $filePath = $request->file('admin_reciept')->store('uploads/admin_reciept', 'public');
+
+            $admin_reciept = "/" . $filePath;
+        }
+
         $payment->update([
-            'status' => $request->status
+            'status' => $request->status,
+            'admin_reciept' => $admin_reciept
         ]);
 
         return redirect('/admin/payments')->with('success', 'Payment Status Updated');

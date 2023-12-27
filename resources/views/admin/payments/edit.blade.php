@@ -12,7 +12,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.payments.update', $payment->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin.payments.update', $payment->id) }}">
                     @csrf
                     @method('PUT') <!-- Use the PUT method for updating -->
 
@@ -22,12 +22,26 @@
                             <select class="form-control" required name="status">
                                 <option value="">Select Status</option>
                                 @foreach (paymentStatus() as $item)
-                                    <option value="{{ $item }}" {{ old('status', $payment->status) == $item ? 'selected' : '' }}>
+                                    <option value="{{ $item }}"
+                                        {{ old('status', $payment->status) == $item ? 'selected' : '' }}>
                                         {{ $item }}
                                     </option>
                                 @endforeach
                             </select>
                             @error('status')
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Official Reciept</label>
+                            <input type="file" class="form-control" required name="admin_reciept"
+                                placeholder="Website Name" autofocus />
+                            @error('logo')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>
