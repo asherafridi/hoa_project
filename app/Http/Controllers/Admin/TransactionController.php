@@ -30,7 +30,7 @@ class TransactionController extends Controller
         }
 
         if ($request->type !== null) {
-            $query->where('transaction_type', $request->type);
+            $query->where('transactionType', $request->type);
         }
 
         $transactions = $query->paginate(10);
