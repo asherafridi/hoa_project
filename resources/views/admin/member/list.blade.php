@@ -142,6 +142,8 @@
                                         </button>
                                         <div class="dropdown-menu">
 
+                                            <a class="dropdown-item" target="_blank" href="${env}/admin/member-slogin/${id}"><i
+                                                    class="bx bx-edit-alt me-1"></i> Secret Login</a>
                                             <a class="dropdown-item" href="${env}/admin/member/${id}/edit"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
                                             <form method="POST" action="${env}/admin/member/${id}">

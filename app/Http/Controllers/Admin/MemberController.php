@@ -12,6 +12,8 @@ use GuzzleHttp\Psr7\Response;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -141,6 +143,15 @@ class MemberController extends Controller
         $properties = Properties::get();
         $types = UserType::get();
         return view('admin.member.edit', compact('title', 'member', 'properties', 'types'));
+    }
+    public function secretLogin(string $id)
+    {
+
+        $member = User::find($id);
+
+        Auth::login($member);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

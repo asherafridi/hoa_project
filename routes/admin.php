@@ -45,6 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('admin.auth');
 
     Route::resource('member', MemberController::class)->middleware('admin.auth');
+    Route::get('member-slogin/{id}', [MemberController::class, 'secretLogin'])->middleware('admin.auth')->name('member-slogin');
     Route::resource('member-type', MemberTypeController::class)->middleware('admin.auth');
     Route::get('get-member', [MemberController::class, 'getMember']);
 
@@ -59,6 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('property-type', PropertyTypeController::class)->middleware('admin.auth');
 
     Route::resource('vendor', VendorController::class)->middleware('admin.auth');
+
+    Route::get('vendor-slogin/{id}', [VendorController::class, 'secretLogin'])->middleware('admin.auth')->name('vendor-slogin');
     Route::resource('vendor-type', VendorTypeController::class)->middleware('admin.auth');
 
     Route::resource('work-order', WordOrderController::class)->middleware('admin.auth');
