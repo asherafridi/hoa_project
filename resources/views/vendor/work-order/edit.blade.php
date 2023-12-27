@@ -1,4 +1,4 @@
-@extends('member.layouts.main')
+@extends('vendor.layouts.main')
 @section('title', 'View Work Order')
 
 @section('content')
