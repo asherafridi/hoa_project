@@ -38,7 +38,7 @@
 
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Official Reciept</label>
+                            <label class="form-label">Admin Reciept</label>
                             <input type="file" class="form-control" required name="admin_reciept"
                                 placeholder="Website Name" autofocus />
                             @error('logo')

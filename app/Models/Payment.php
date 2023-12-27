@@ -9,21 +9,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Payment extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table='payments';
+    protected $table = 'payments';
 
-    protected $fillable=['userId','transactionId','paymentDate','amount','paymentMethod','status','reference','screenshot'];
+    protected $fillable = ['userId', 'transactionId', 'paymentDate', 'amount', 'paymentMethod', 'status', 'reference', 'screenshot', 'admin_reciept'];
 
-    public function user(){
+    public function user()
+    {
         return User::find($this->userId);
     }
 
-    public function transaction(){
+    public function transaction()
+    {
         return Transaction::find($this->transactionId);
     }
-    public function getScreenshotAttribute($value){
-        if($value!=null){
+    public function getScreenshotAttribute($value)
+    {
+        if ($value != null) {
             return "/" . $value;
-        }else{
+        } else {
             return $value;
         }
     }
