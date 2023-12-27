@@ -13,7 +13,7 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = "Transactions";
         $query = Transaction::query();
@@ -29,9 +29,15 @@ class TransactionController extends Controller
             });
         }
 
+        if ($request->type !== null) {
+            $query->where('transaction_type', $request->type);
+        }
+
         $transactions = $query->paginate(10);
 
-        return view('admin.transaction.list', compact('title', 'transactions'));
+        $transaction_type = TransactionType::get();
+
+        return view('admin.transaction.list', compact('title', 'transactions', 'transaction_type'));
     }
 
     /**
