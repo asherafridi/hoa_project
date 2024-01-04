@@ -44,7 +44,7 @@ class BillsController extends Controller
     {
         $title = "Pay Bill";
         $bill = Transaction::find($id);
-        return view('member.bills.pay-bill', compact('bill', 'title'));
+        return view('vendor.bills.pay-bill', compact('bill', 'title'));
     }
     public function manualBillPay(Request $request)
     {
@@ -66,7 +66,7 @@ class BillsController extends Controller
         $request['status'] = "Pending";
         Payment::create($request->all());
 
-        return redirect('/bills')->with('error', 'Wait for Admin Approval');
+        return redirect('vendor/bills')->with('error', 'Wait for Admin Approval');
     }
 
     /**
