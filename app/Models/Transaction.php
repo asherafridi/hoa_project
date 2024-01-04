@@ -9,19 +9,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table='transaction';
-    protected $fillable=['userId','transactionType','transactionDate','amount','status','description'];
-    function user(){
+    protected $table = 'transaction';
+    protected $fillable = ['userId', 'vendorId', 'transactionType', 'transactionDate', 'amount', 'status', 'description'];
+    function user()
+    {
         $user = User::find($this->userId);
         return $user;
     }
-    function type(){
+    function type()
+    {
         $user = TransactionType::find($this->transactionType);
         return $user;
     }
 
-    function payment(){
-        $payment = Payment::where('status', '!=','Declined')->where('transactionId',$this->id)->first();
+    function payment()
+    {
+        $payment = Payment::where('status', '!=', 'Declined')->where('transactionId', $this->id)->first();
         return $payment;
     }
 }
