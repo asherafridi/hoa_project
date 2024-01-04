@@ -16,7 +16,7 @@ class BillsController extends Controller
     {
 
         $title = "Bills";
-        $transactionsQuery = Transaction::where('userId', auth()->user()->id);
+        $transactionsQuery = Transaction::where('vendorId', auth()->guard('vendor')->user()->id);
 
         if ($request->has('search')) {
             $search = $request->input('search');
