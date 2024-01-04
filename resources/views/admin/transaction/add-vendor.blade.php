@@ -16,9 +16,9 @@
                     @csrf
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label class="form-label">User</label>
+                            <label class="form-label">Vendor</label>
                             <select class="form-control" required name="vendorId">
-                                <option value="">Select User</option>
+                                <option value="">Select Vendor</option>
                                 @foreach ($users as $item)
                                     <option value="{{ $item->id }}">{{ $item->fullname() }}</option>
                                 @endforeach

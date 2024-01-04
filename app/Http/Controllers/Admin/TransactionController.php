@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\TransactionType;
 use App\Models\User;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -50,6 +51,13 @@ class TransactionController extends Controller
         $users = User::all();
         return view('admin.transaction.add', compact('title', 'type', 'users'));
     }
+    public function createVendor()
+    {
+        $title = "Add Transaction";
+        $type = TransactionType::all();
+        $users = Vendor::all();
+        return view('admin.transaction.add-vendor', compact('title', 'type', 'users'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -57,7 +65,6 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'userId' => 'required',
             'transactionType' => 'required',
             'transactionDate' => 'required',
             'amount' => 'required',
