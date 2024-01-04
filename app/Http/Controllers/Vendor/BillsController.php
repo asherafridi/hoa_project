@@ -35,7 +35,7 @@ class BillsController extends Controller
 
         $transactions = $transactionsQuery->paginate(10);
 
-        return view('member.bills.index', compact('title', 'transactions'));
+        return view('vendor.bills.index', compact('title', 'transactions'));
 
     }
 
