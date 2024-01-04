@@ -18,6 +18,8 @@ class TransactionController extends Controller
     {
         $title = "Transactions";
         $query = Transaction::query();
+        $query->where('userId', '!=', null);
+
 
         if (request()->has('search')) {
             $search = request()->input('search');
