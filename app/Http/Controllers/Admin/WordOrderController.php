@@ -74,8 +74,10 @@ class WordOrderController extends Controller
         if ($request->hasFile('invoice')) {
             $file = $request->file('invoice');
             if ($file->isValid()) {
-                $path = $file->store('uploads/invoices/');
-                $request->merge(['invoice' => $path]);
+
+                $fileName = time() . '_' . $request->file('logo')->getClientOriginalName();
+                $filePath = $request->file('logo')->store('uploads/website', 'public');
+                $request->merge(['invoice' => $filePath]);
             } else {
                 return redirect()->back()->with('error', 'Failed to upload the invoice file.');
             }
@@ -129,8 +131,9 @@ class WordOrderController extends Controller
                     Storage::delete($workOrder->invoice);
                 }
 
-                $path = $file->store('uploads/invoices/');
-                $request->merge(['invoice' => $path]);
+                $fileName = time() . '_' . $request->file('logo')->getClientOriginalName();
+                $filePath = $request->file('logo')->store('uploads/website', 'public');
+                $request->merge(['invoice' => $filePath]);
             } else {
                 return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
             }
