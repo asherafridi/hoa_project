@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SocialIconController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\VendorTransactionController;
 use App\Http\Controllers\Admin\TransactionTypeController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\VendorTypeController;
@@ -68,7 +69,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
     Route::resource('transaction', TransactionController::class)->middleware('admin.auth');
-    Route::get('transaction-vendor', [TransactionController::class, 'createVendor'])->middleware('admin.auth')->name('transaction.createvendor');
+    Route::resource('vendor-transaction', VendorTransactionController::class)->middleware('admin.auth');
     Route::resource('transaction-type', TransactionTypeController::class)->middleware('admin.auth');
 
     Route::resource('calendar', CalendarController::class)->middleware('admin.auth');

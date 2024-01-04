@@ -129,6 +129,11 @@
                     </a>
                 </li>
                 <li class="menu-item">
+                    <a href="{{ route('admin.vendor-transaction.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Vendor Transactions</div>
+                    </a>
+                </li>
+                <li class="menu-item">
                     <a href="{{ route('admin.transaction-type.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Transaction Type</div>
                     </a>

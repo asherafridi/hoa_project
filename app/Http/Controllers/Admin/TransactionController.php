@@ -51,13 +51,6 @@ class TransactionController extends Controller
         $users = User::all();
         return view('admin.transaction.add', compact('title', 'type', 'users'));
     }
-    public function createVendor()
-    {
-        $title = "Add Transaction";
-        $type = TransactionType::all();
-        $users = Vendor::all();
-        return view('admin.transaction.add-vendor', compact('title', 'type', 'users'));
-    }
 
     /**
      * Store a newly created resource in storage.
