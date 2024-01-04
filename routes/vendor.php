@@ -42,8 +42,8 @@ Route::prefix('vendor')->name('vendor.')->group(function () {
     Route::resource('committee', CommitteeController::class)->middleware(['vendor.auth']);
     Route::resource('payment', PaymentController::class)->middleware(['vendor.auth']);
 
-    Route::resource('bills', BillsController::class)->middleware(['auth']);
-    Route::get('pay-bill/{id}', [BillsController::class, 'payBill'])->middleware(['auth'])->name('pay-bill');
-    Route::post('manual-pay', [BillsController::class, 'manualBillPay'])->middleware(['auth'])->name('manual-bill.pay');
+    Route::resource('bills', BillsController::class)->middleware(['vendor.auth']);
+    Route::get('pay-bill/{id}', [BillsController::class, 'payBill'])->middleware(['vendor.auth'])->name('pay-bill');
+    Route::post('manual-pay', [BillsController::class, 'manualBillPay'])->middleware(['vendor.auth'])->name('manual-bill.pay');
     Route::resource('work-order', WorkOrderController::class)->middleware(['vendor.auth']);
 });
