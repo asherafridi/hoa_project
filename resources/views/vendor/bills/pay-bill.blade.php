@@ -72,7 +72,8 @@
 
                                 <input class="text-sm form-control mb-3 mt-2"
                                     value="{{ settings('payment_method_manual') }}" readonly>
-                                <form action="{{ route('manual-bill.pay') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('vendor.manual-bill.pay') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="vendorId"
                                         value="{{ auth()->guard('vendor')->user()->id }}">
