@@ -32,7 +32,7 @@
                         @forelse ($payments as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->userId != null ? $item->user()->fullname() : $item->vendor()->name . 'Vendor' }}
+                                <td>{{ $item->userId != null ? $item->user()->fullname() : $item->vendor()->name . ' - Vendor' }}
                                 </td>
                                 <td>{{ $item->transaction() ? $item->transaction()->description : 'Transaction Not Found' }}
                                 </td>
@@ -48,9 +48,11 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('admin.payments.show', $item->id) }}"><i
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.payments.show', $item->id) }}"><i
                                                     class="bx bx-menu me-1"></i> View</a>
-                                            <a class="dropdown-item" href="{{ route('admin.payments.edit', $item->id) }}"><i
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.payments.edit', $item->id) }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Update Status</a>
                                         </div>
                                     </div>
