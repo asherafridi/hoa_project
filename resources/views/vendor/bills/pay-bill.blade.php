@@ -74,7 +74,8 @@
                                     value="{{ settings('payment_method_manual') }}" readonly>
                                 <form action="{{ route('manual-bill.pay') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="hidden" name="userId" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="vendorId"
+                                        value="{{ auth()->guard('vendor')->user()->id }}">
                                     <input type="hidden" name="transactionId" value="{{ $bill->id }}">
                                     <input type="hidden" name="paymentMethod" value="Manual Payment">
                                     <div class="col-md-12 mb-3">
