@@ -17,6 +17,11 @@ class Payment extends Model
     {
         return User::find($this->userId);
     }
+    function vendor()
+    {
+        $user = Vendor::find($this->vendorId);
+        return $user;
+    }
 
     public function transaction()
     {
