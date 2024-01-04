@@ -70,6 +70,34 @@
             </ul>
         </li>
 
+        <li class="menu-item @if (str_contains($title, 'Bills') == 1) active open @endif">
+
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
+                <div data-i18n="Layouts">Bills</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('vendor.bills.index') }}?status=Unpaid" class="menu-link">
+                        <div data-i18n="Without menu">Unpaid Bills</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('vendor.bills.index') }}?status=Paid" class="menu-link">
+                        <div data-i18n="Without menu">Paid Bills</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('vendor.bills.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">All Bills</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="menu-item  @if (str_contains($title, 'Committee') == 1) active @endif">
             <a href="{{ route('vendor.committee.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
