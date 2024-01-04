@@ -10,7 +10,10 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5>{{ $title }}<h5>
-                        <a href="{{ route('admin.transaction.create') }}" class="btn btn-primary">Add {{ $title }}</a>
+                        <a href="{{ route('admin.transaction.create') }}" class="btn btn-primary">Add Member
+                            {{ $title }}</a>
+                        <a href="{{ route('admin.transaction.createvendor') }}" class="btn btn-primary">Add Vendor
+                            {{ $title }}</a>
             </div>
 
             <div class="table-responsive text-nowrap">

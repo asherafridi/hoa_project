@@ -68,6 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
     Route::resource('transaction', TransactionController::class)->middleware('admin.auth');
+    Route::get('transaction-vendor', [TransactionController::class, 'createVendor'])->middleware('admin.auth')->name('transaction.createvendor');
     Route::resource('transaction-type', TransactionTypeController::class)->middleware('admin.auth');
 
     Route::resource('calendar', CalendarController::class)->middleware('admin.auth');

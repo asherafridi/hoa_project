@@ -17,7 +17,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">User</label>
-                            <select class="form-control" required name="userId">
+                            <select class="form-control" required name="vendorId">
                                 <option value="">Select User</option>
                                 @foreach ($users as $item)
                                     <option value="{{ $item->id }}">{{ $item->fullname() }}</option>
