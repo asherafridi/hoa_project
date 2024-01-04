@@ -138,7 +138,6 @@ class WordOrderController extends Controller
                 return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
             }
         }
-        return $request->all();
 
         $workOrder->update($request->all());
 
