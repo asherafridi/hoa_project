@@ -133,7 +133,7 @@ class WordOrderController extends Controller
 
                 $originalFilename = $file->getClientOriginalName(); // Get the original filename.
                 $filename = $file->storeAs('uploads/documents', $originalFilename, 'public');
-                $request->merge(['invoice' => $filename]);
+                $request['invoice'] = $filename;
             } else {
                 return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
             }
