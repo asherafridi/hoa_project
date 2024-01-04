@@ -1,4 +1,4 @@
-@extends('member.layouts.main')
+@extends('vendor.layouts.main')
 @section('title', $title)
 
 @section('content')
