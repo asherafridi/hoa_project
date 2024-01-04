@@ -18,29 +18,30 @@
 
                         <div class="col-md-4">
                             <label class="form-label">Property Id</label>
-                            <select class="form-control" name="propertyId"> 
+                            <select class="form-control" name="propertyId">
                                 <option value="">Select Property</option>
                                 @foreach ($property as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                             @error('propertyId')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Requested By</label>
-                            <select class="form-control" name="requestedBy"> 
+                            <select class="form-control" name="requestedBy">
                                 <option value="">Select Member</option>
                                 @foreach ($members as $item)
-                                <option value="{{$item->id}}">{{$item->firstName}} {{$item->lastName}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->firstName }} {{ $item->lastName }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('requestedBy')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -49,74 +50,74 @@
                             <input type="date" class="form-control" name="requested_date" />
                             @error('requested_date')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="row mb-4">
 
                         <div class="col-md-4">
                             <label class="form-label">Priority</label>
-                            <select class="form-control" name="priority"> 
+                            <select class="form-control" name="priority">
                                 <option value="">Select Priority Level</option>
                                 @foreach (priority_level() as $item)
-                                <option value="{{$item}}">{{$item}}</option>
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('priority')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Status</label>
-                            <select class="form-control" name="status"> 
+                            <select class="form-control" name="status">
                                 <option value="">Select Status</option>
                                 @foreach (workOrder_Status() as $item)
-                                <option value="{{$item}}">{{$item}}</option>
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('status')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Assigned to</label>
-                            <select class="form-control" name="assignedTo"> 
+                            <select class="form-control" name="assignedTo">
                                 <option value="">Select Vendor</option>
                                 @foreach ($vendor as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                             @error('status')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Completion Date</label>
                             <input type="date" class="form-control" name="completion_date" />
                             @error('completion_date')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Invoice</label>
-                            <input type="file" class="form-control" name="invoice" />
-                            @error('invoice')
+                            <input type="file" class="form-control" name="invoice1" />
+                            @error('invoice1')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -125,7 +126,7 @@
                             <input type="number" class="form-control" name="invoice_amount" />
                             @error('invoice_amount')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>

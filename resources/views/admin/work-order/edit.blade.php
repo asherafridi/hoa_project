@@ -137,13 +137,13 @@
                         <div class="col-md-4">
                             <label class="form-label">Invoice</label>
 
-                            <input type="file" class="form-control" name="invoice" />
+                            <input type="file" class="form-control" name="invoice1" />
                             @if ($workOrder->invoice)
                                 <div>
                                     <a href="{{ $workOrder->invoice }}" class="btn btn-link btn-sm">Download Invoice</a>
                                 </div>
                             @endif
-                            @error('invoice')
+                            @error('invoice1')
                                 <div class="form-text text-danger">
                                     {{ $message }}
                                 </div>

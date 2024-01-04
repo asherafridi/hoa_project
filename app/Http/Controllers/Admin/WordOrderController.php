@@ -71,8 +71,8 @@ class WordOrderController extends Controller
             'invoice' => 'file|mimes:pdf,docx|max:2048',
         ]);
         $workOrder = new WorkOrder;
-        if ($request->hasFile('invoice')) {
-            $file = $request->file('invoice');
+        if ($request->hasFile('invoice1')) {
+            $file = $request->file('invoice1');
             if ($file->isValid()) {
 
                 $originalFilename = $file->getClientOriginalName(); // Get the original filename.
@@ -123,8 +123,8 @@ class WordOrderController extends Controller
         $workOrder = WorkOrder::findOrFail($id);
 
         // Handle file upload
-        if ($request->hasFile('invoice')) {
-            $file = $request->file('invoice');
+        if ($request->hasFile('invoice1')) {
+            $file = $request->file('invoice1');
             if ($file->isValid()) {
                 // Delete the old invoice file if it exists
                 if ($workOrder->invoice) {
@@ -133,7 +133,7 @@ class WordOrderController extends Controller
 
                 $originalFilename = $file->getClientOriginalName(); // Get the original filename.
                 $filename = $file->storeAs('uploads/documents', $originalFilename, 'public');
-                $request['invoice'] = $filename;
+                $request->merge(['invoice' => $filename]);
             } else {
                 return redirect()->back()->with('error', 'Failed to upload the new invoice file.');
             }
