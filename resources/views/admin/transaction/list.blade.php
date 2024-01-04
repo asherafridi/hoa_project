@@ -22,6 +22,7 @@
                         <tr>
                             <th>#</th>
                             <th>User</th>
+                            <th>Vendor</th>
                             <th>Date</th>
                             <th>Type</th>
                             <th>Amount</th>
@@ -34,7 +35,8 @@
                         @forelse ($transactions as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->user() ? $item->user()->fullname() : 'No User Found' }}</td>
+                                <td>{{ $item->userId != null ? $item->user()->fullname() : 'No User Found' }}</td>
+                                <td>{{ $item->vendorId != null ? $item->vendor()->name : 'No Vendor Found' }}</td>
                                 <td>{{ $item->transactionDate }}</td>
                                 <td>{{ $item->type() ? $item->type()->name : '' }}</td>
                                 <td>{{ settings('currency_symbol') }} {{ number_format($item->amount, 2) }}</td>

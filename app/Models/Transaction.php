@@ -16,6 +16,11 @@ class Transaction extends Model
         $user = User::find($this->userId);
         return $user;
     }
+    function vendor()
+    {
+        $user = Vendor::find($this->vendorId);
+        return $user;
+    }
     function type()
     {
         $user = TransactionType::find($this->transactionType);
