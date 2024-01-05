@@ -140,7 +140,7 @@
                             <input type="file" class="form-control" name="invoice1" />
                             @if ($workOrder->invoice)
                                 <div>
-                                    <a href="{{ $workOrder->invoice }}" class="btn btn-link btn-sm">Download Invoice</a>
+                                    <a href="/{{ $workOrder->invoice }}" class="btn btn-link btn-sm">Download Invoice</a>
                                 </div>
                             @endif
                             @error('invoice1')
