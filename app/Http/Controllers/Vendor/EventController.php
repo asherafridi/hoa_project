@@ -15,7 +15,7 @@ class EventController extends Controller
     {
         $title = "Events";
         $calendarQuery = Calendar::query();
-        $calendarQuery->where('forUser', ['Vendors Only', 'Both']);
+        // $calendarQuery->where('forUser', ['Vendors Only', 'Both']);
 
         if ($request->has('search')) {
             $search = $request->input('search');
