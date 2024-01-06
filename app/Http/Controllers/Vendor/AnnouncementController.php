@@ -16,7 +16,7 @@ class AnnouncementController extends Controller
 
         $title = "Announcements";
         $announcementQuery = Announcement::query();
-        $announcementQuery->where('forUser', ['Vendors Only', 'Both']);
+        $announcementQuery->whereIn('forUser', ['Vendors Only', 'Both']);
 
         if ($request->has('search')) {
             $search = $request->input('search');
