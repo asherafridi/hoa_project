@@ -13,7 +13,7 @@ class BlockController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = "Block";
         $query = Block::query();
