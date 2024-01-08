@@ -36,7 +36,8 @@
                                 <td>{{ settings('currency_symbol') }} {{ number_format($item->amount, 2) }}</td>
                                 <td>{{ $item->paymentMethod }}</td>
                                 <td>{{ $item->reference }}</td>
-                                <td><a class="btn btn-primary btn-sm" href="{{ $item->admin_reciept }}">Download</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="{{ $item->admin_reciept }}"
+                                        download="">Download</a></td>
                                 <td>{{ $item->status }}</td>
                                 {{-- <td>
                   <div class="dropdown">
