@@ -69,6 +69,10 @@ class TransactionController extends Controller
 
         $transactions = new Transaction;
         $transactions->create($request->all());
+        if ($request->vendorId !== null) {
+            return redirect()->route('admin.vendor-transaction.index')->with('success', 'Transaction Added Successfully');
+
+        }
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction Added Successfully');
     }
 
