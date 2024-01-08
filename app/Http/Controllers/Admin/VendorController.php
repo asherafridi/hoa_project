@@ -8,6 +8,7 @@ use App\Models\VendorType;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
@@ -58,6 +59,7 @@ class VendorController extends Controller
             'serviceDescription' => 'required',
         ]);
         $vendor = new Vendor;
+        $request['password'] = Hash::make('12345678');
         $vendor->create($request->all());
         return redirect('/admin/vendor')->with('success', 'Operation Successfull');
     }
