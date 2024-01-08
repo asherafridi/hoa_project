@@ -30,18 +30,17 @@ class WorkOrderController extends Controller
             //         $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
             //     }
             // });
+            $searchTerm = $request->search;
+            $users = User::orWhere('firstName', 'like', '%' . $searchTerm . '%')
+                ->orWhere('lastName', 'like', '%' . $searchTerm . '%')
+                ->get();
 
-            if (!empty($searchTerm)) {
-                $users = User::orWhere('firstName', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('lastName', 'like', '%' . $searchTerm . '%')
-                    ->get();
+            $userIds = $users->pluck('id')->toArray();
+            // return $userIds;
 
-                $userIds = $users->pluck('id')->toArray();
-                return $userIds;
+            // Assuming $workOrderQuery is an existing query builder for WorkOrder
+            $workOrderQuery->orWhereIn('requested_by', $userIds);
 
-                // Assuming $workOrderQuery is an existing query builder for WorkOrder
-                $workOrderQuery->orWhereIn('requested_by', $userIds);
-            }
         }
 
         if ($request->priority !== null) {
