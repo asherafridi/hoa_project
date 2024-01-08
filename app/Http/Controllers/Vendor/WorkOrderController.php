@@ -39,7 +39,7 @@ class WorkOrderController extends Controller
             // return $userIds;
 
             // Assuming $workOrderQuery is an existing query builder for WorkOrder
-            $workOrderQuery->orWhereIn('requestedBy', $userIds);
+            $workOrderQuery->orWhere('requestedBy', $userIds);
 
         }
 
