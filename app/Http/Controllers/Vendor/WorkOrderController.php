@@ -31,7 +31,9 @@ class WorkOrderController extends Controller
             //     }
             // });
             $user = User::orWhere('firstName', 'like', '%' . $request->search . '%')->orWhere('lastName', 'like', '%' . $request->search . '%')->get();
-            return $user;
+            foreach ($user as $item) {
+                $workOrderQuery->whereIn('requested_by', $item->id);
+            }
         }
 
         if ($request->priority !== null) {
