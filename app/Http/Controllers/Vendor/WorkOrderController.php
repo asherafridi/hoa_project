@@ -30,7 +30,7 @@ class WorkOrderController extends Controller
             //         $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
             //     }
             // });
-            $user = User::where('firstName', 'like', '%' . $request->search . '%')->whereOr('lastName', 'like', '%' . $request->search . '%')->get();
+            $user = User::orWhere('firstName', 'like', '%' . $request->search . '%')->orWhere('lastName', 'like', '%' . $request->search . '%')->get();
             return $user;
         }
 
