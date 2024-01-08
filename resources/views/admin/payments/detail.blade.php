@@ -19,7 +19,7 @@
                         <div class="col-md-4">
                             <label class="form-label">User</label>
                             <input type="text" class="form-control"
-                                value="{{ $payment->userId != null ? $payment->user()->fullname() : $payment->vendor()->name . 'Vendor' }}"
+                                value="{{ $payment->userId != null ? $payment->user()->fullname() : $payment->vendor()->name . ' - Vendor' }}"
                                 name="amount" required placeholder="999" />
 
                             @error('userId')
