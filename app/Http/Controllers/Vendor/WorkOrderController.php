@@ -20,15 +20,18 @@ class WorkOrderController extends Controller
         $title = "Work Order";
         $workOrderQuery = WorkOrder::where('assignedTo', auth()->guard('vendor')->user()->id);
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
 
-            $workOrderQuery->where(function ($subquery) use ($search, $columns) {
-                foreach ($columns as $column) {
-                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
-                }
-            });
+        if ($request->has('search')) {
+            // $search = $request->input('search');
+            // $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
+
+            // $workOrderQuery->where(function ($subquery) use ($search, $columns) {
+            //     foreach ($columns as $column) {
+            //         $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+            //     }
+            // });
+            $user = User::where('firstName', 'like', '%' . $request->search . '%')->whereOr('lastName', 'like', '%' . $request->search . '%')->get();
+            return $user;
         }
 
         if ($request->priority !== null) {

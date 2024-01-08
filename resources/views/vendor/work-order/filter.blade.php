@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="" class="form-label">Search</label>
+                        <label for="" class="form-label">Search User</label>
                         <input type="text" class="form-control" name="search" id=""
                             placeholder="Search...">
                     </div>
