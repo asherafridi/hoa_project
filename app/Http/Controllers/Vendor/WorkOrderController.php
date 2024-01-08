@@ -37,6 +37,7 @@ class WorkOrderController extends Controller
                     ->get();
 
                 $userIds = $users->pluck('id')->toArray();
+                return $userIds;
 
                 // Assuming $workOrderQuery is an existing query builder for WorkOrder
                 $workOrderQuery->orWhereIn('requested_by', $userIds);
