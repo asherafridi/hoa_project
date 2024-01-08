@@ -21,7 +21,7 @@ class WorkOrderController extends Controller
         $workOrderQuery = WorkOrder::where('assignedTo', auth()->guard('vendor')->user()->id);
 
 
-        if ($request->has('search')) {
+        if ($request->search !== null) {
             // $search = $request->input('search');
             // $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
 
@@ -36,7 +36,7 @@ class WorkOrderController extends Controller
                 ->get();
 
             $userIds = $users->pluck('id')->toArray();
-            // return $userIds;
+            return $userIds;
 
             // Assuming $workOrderQuery is an existing query builder for WorkOrder
             $workOrderQuery->orWhere('requestedBy', $userIds);
