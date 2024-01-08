@@ -17,7 +17,7 @@ class VendorTransactionController extends Controller
     public function index(Request $request)
     {
 
-        $title = "Vendor Transactions";
+        $title = "Transactions";
         $query = Transaction::query();
         $query->where('vendorId', '!=', null);
         if (request()->has('search')) {
