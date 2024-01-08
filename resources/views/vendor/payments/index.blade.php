@@ -5,7 +5,7 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Payments /</span> History</h4>
-        @include('member.partials.search-bar')
+        @include('vendor.partials.search-bar')
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5>{{ $title }}<h5>
@@ -37,7 +37,8 @@
                                 <td>{{ settings('currency_symbol') }} {{ number_format($item->amount, 2) }}</td>
                                 <td>{{ $item->paymentMethod }}</td>
                                 <td>{{ $item->reference }}</td>
-                                <td><a class="btn btn-primary btn-sm" href="{{ $item->admin_reciept }}">Download</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="{{ $item->admin_reciept }}"
+                                        download="">Download</a></td>
                                 <td>{{ $item->status }}</td>
                                 {{-- <td>
                   <div class="dropdown">
