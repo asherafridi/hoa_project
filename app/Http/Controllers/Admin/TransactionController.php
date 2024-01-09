@@ -98,6 +98,7 @@ class TransactionController extends Controller
         $type = TransactionType::all();
         $users = User::all();
         $transaction = Transaction::findOrFail($id);
+
         return view('admin.transaction.edit', compact('title', 'type', 'users', 'transaction'));
     }
 
@@ -113,15 +114,12 @@ class TransactionController extends Controller
         }
 
         // Update the transaction with the new data from the request.
-        $transaction->update([
-            'userId' => $request->userId,
-            'transactionType' => $request->transactionType,
-            'transactionDate' => $request->transactionDate,
-            'amount' => $request->amount,
-            'status' => $request->status,
-            'description' => $request->description,
-        ]);
+        $transaction->update($request->all());
 
+        if ($request->vendorId !== null) {
+            return redirect()->route('admin.vendor-transaction.index')->with('success', 'Transaction Added Successfully');
+
+        }
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction updated successfully');
     }
 
@@ -132,6 +130,9 @@ class TransactionController extends Controller
     {
         $properties = Transaction::find($id);
         $properties->delete();
-        return redirect()->route('admin.transaction.index')->with('success', 'Property Deleted Successfully');
+        return redirect()->back()->with('success', 'Property Deleted Successfully');
+
+
+        // return redirect()->route('admin.transaction.index')->with('success', 'Property Deleted Successfully');
     }
 }
