@@ -18,16 +18,16 @@ class BlockController extends Controller
         $title = "Block";
         $query = Block::query();
 
-        // if (request()->has('search')) {
-        //     $search = request()->input('search');
-        //     $columns = \Schema::getColumnListing((new Properties())->getTable());
+        if (request()->has('search')) {
+            $search = request()->input('search');
+            $columns = \Schema::getColumnListing((new Properties())->getTable());
 
-        //     $query->where(function ($subquery) use ($search, $columns) {
-        //         foreach ($columns as $column) {
-        //             $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
-        //         }
-        //     });
-        // }
+            $query->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
+            });
+        }
 
         $properties = $query->paginate(10);
 
