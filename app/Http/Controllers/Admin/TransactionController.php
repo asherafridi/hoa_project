@@ -113,13 +113,11 @@ class TransactionController extends Controller
             return redirect()->route('admin.transaction.index')->with('error', 'Transaction not found');
         }
 
-        return $request->all();
         // Update the transaction with the new data from the request.
         $transaction->update($request->all());
 
         if ($request->vendorId !== null) {
-            return true;
-            // return redirect()->route('admin.vendor-transaction.index')->with('success', 'Transaction Updated Successfully');
+            return redirect()->route('admin.vendor-transaction.index')->with('success', 'Transaction Updated Successfully');
 
         }
         return redirect()->route('admin.transaction.index')->with('success', 'Transaction updated successfully');
