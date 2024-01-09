@@ -113,6 +113,7 @@ class TransactionController extends Controller
             return redirect()->route('admin.transaction.index')->with('error', 'Transaction not found');
         }
 
+        return $request->all();
         // Update the transaction with the new data from the request.
         $transaction->update($request->all());
 
