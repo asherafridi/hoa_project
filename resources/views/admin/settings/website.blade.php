@@ -129,5 +129,30 @@
             </div>
         </div>
 
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin.settings.about.update') }}">
+                    @csrf
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Currency</label>
+                            <input type="text" class="form-control" value="{{ settings('currency') }}"
+                                name="currency" autofocus />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Currency Symbol</label>
+                            <input type="text" class="form-control" value="{{ settings('currency_symbol') }}"
+                                name="currency_symbol" autofocus />
+                        </div>
+                    </div>
+
+
+                    <div class="row px-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 @stop
