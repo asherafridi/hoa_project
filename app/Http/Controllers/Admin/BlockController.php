@@ -20,7 +20,7 @@ class BlockController extends Controller
 
         if (request()->has('search')) {
             $search = request()->input('search');
-            $columns = \Schema::getColumnListing((new Properties())->getTable());
+            $columns = \Schema::getColumnListing((new Block())->getTable());
 
             $query->where(function ($subquery) use ($search, $columns) {
                 foreach ($columns as $column) {
