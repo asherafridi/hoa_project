@@ -47,7 +47,7 @@ class VendorTransactionController extends Controller
      */
     public function create()
     {
-        $title = "Add Vendor Transaction";
+        $title = "Add Transaction";
         $type = TransactionType::all();
         $users = Vendor::all();
         return view('admin.vendor-transaction.add', compact('title', 'type', 'users'));
@@ -74,7 +74,7 @@ class VendorTransactionController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit Vendor Transaction";
+        $title = "Edit Transaction";
         $type = TransactionType::all();
         $users = Vendor::all();
         $transaction = Transaction::findOrFail($id);
