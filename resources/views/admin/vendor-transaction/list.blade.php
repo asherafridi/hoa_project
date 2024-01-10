@@ -9,9 +9,9 @@
         @include('admin.transaction.filter')
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5>{{ $title }}<h5>
+                <h5>Vendor Transactions<h5>
                         <a href="{{ route('admin.vendor-transaction.create') }}" class="btn btn-primary">Add
-                            {{ $title }}</a>
+                            Vendor Transaction</a>
             </div>
 
             <div class="table-responsive text-nowrap">
