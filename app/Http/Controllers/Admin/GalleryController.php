@@ -87,6 +87,7 @@ class GalleryController extends Controller
 
         // Update other fields
         $document->name = $request->input('name');
+        $document->forUser = $request->input('forUser');
 
         $document->save();
 
