@@ -31,8 +31,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Image</label>
-                            <input type="file" class="form-control" required name="file" placeholder="Name"
-                                autofocus />
+                            <input type="file" class="form-control" name="file" placeholder="Name" autofocus />
                             @error('file')
                                 <div class="form-text text-danger">
                                     {{ $message }}

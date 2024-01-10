@@ -15,7 +15,7 @@ class GalleryController extends Controller
     {
 
         $title = "Gallery";
-        $gallery = Gallery::paginate(10);
+        $gallery = Gallery::whereIn('forUser', ['Vendors Only', 'Both'])->paginate(10);
         return view('vendor.gallery.list', compact('title', 'gallery'));
     }
 

@@ -16,7 +16,7 @@ class SiteController extends Controller
     {
         $title = "Home";
         $vendor = Vendor::limit(4)->get();
-        $gallery = Gallery::limit(4)->get();
+        $gallery = Gallery::whereIn('forUser', ['Members Only', 'Both'])->limit(4)->get();
         return view('frontend.basic.home', compact('title', 'vendor', 'gallery'));
     }
     public function reset()
@@ -28,7 +28,7 @@ class SiteController extends Controller
     public function gallery()
     {
         $title = "Gallery";
-        $images = Gallery::paginate(9);
+        $images = Gallery::whereIn('forUser', ['Members Only', 'Both'])->paginate(9);
         return view('frontend.basic.gallery', compact('title', 'images'));
     }
     public function events()
