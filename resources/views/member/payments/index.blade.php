@@ -31,7 +31,7 @@
                         @forelse ($payment as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->transaction()->description }}</td>
+                                <td>{{ $item->transaction() != null ? $item->transaction()->description : 'No Transaction Found'}}</td>
                                 <td>{{ $item->paymentDate }}</td>
                                 <td>{{ settings('currency_symbol') }} {{ number_format($item->amount, 2) }}</td>
                                 <td>{{ $item->paymentMethod }}</td>
