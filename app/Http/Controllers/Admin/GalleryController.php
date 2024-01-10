@@ -10,9 +10,9 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $title="Gallery";
+        $title = "Gallery";
         $gallery = Gallery::paginate(10);
-        return view('admin.gallery.list',compact('title','gallery'));
+        return view('admin.gallery.list', compact('title', 'gallery'));
     }
 
     /**
@@ -20,8 +20,8 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $title="Add Gallery";
-        return view('admin.gallery.add',compact('title'));
+        $title = "Add Gallery";
+        return view('admin.gallery.add', compact('title'));
     }
 
     /**
@@ -29,19 +29,19 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'file'=>'required'
+        $validated = $request->validate([
+            'name' => 'required',
+            'file' => 'required'
         ]);
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $filename = $file->store('uploads/gallery','public');
-            $request['image']= $filename;
+            $filename = $file->store('uploads/gallery', 'public');
+            $request['image'] = $filename;
             // Now, $filename contains the path or filename of the stored file.
         }
         $document = new Gallery;
         $document->create($request->all());
-        return redirect('/admin/gallery')->with('success','Operation Successfull');
+        return redirect('/admin/gallery')->with('success', 'Operation Successfull');
     }
 
     /**
@@ -49,9 +49,9 @@ class GalleryController extends Controller
      */
     public function show(string $id)
     {
-        $title="View Gallery";
-        $gallery=Gallery::find($id);
-        return view('admin.gallery.detail',compact('title','gallery'));
+        $title = "View Gallery";
+        $gallery = Gallery::find($id);
+        return view('admin.gallery.detail', compact('title', 'gallery'));
     }
 
     /**
@@ -59,11 +59,11 @@ class GalleryController extends Controller
      */
     public function edit(string $id)
     {
-        
-        $title="Edit Gallery";
-        $gallery=Gallery::find($id);
-        
-        return view('admin.gallery.edit',compact('title','gallery'));
+
+        $title = "Edit Gallery";
+        $gallery = Gallery::find($id);
+
+        return view('admin.gallery.edit', compact('title', 'gallery'));
     }
 
     /**
@@ -72,26 +72,25 @@ class GalleryController extends Controller
     public function update(Request $request, string $id)
     {
         $document = Gallery::findOrFail($id);
-    
-    $validated = $request->validate([
-        'name' => 'required',
-        'file' => 'required' // Allow 'file' to be optional
-    ]);
 
-    // Check if a new file has been uploaded
-    if ($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = $file->store('uploads/gallery', 'public');
-        $document->image =  $filename; // Update the file path
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
 
-    }
+        // Check if a new file has been uploaded
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = $file->store('uploads/gallery', 'public');
+            $document->image = $filename; // Update the file path
 
-    // Update other fields
-    $document->name = $request->input('name');
-    
-    $document->save();
+        }
 
-    return redirect('/admin/gallery')->with('success', 'Operation Successful');
+        // Update other fields
+        $document->name = $request->input('name');
+
+        $document->save();
+
+        return redirect('/admin/gallery')->with('success', 'Operation Successful');
     }
 
     /**
@@ -99,8 +98,8 @@ class GalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        $document=Gallery::find($id);
+        $document = Gallery::find($id);
         $document->delete();
-        return redirect('/admin/gallery')->with('success','Operation Successfull');
+        return redirect('/admin/gallery')->with('success', 'Operation Successfull');
     }
 }
