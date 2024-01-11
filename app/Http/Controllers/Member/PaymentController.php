@@ -25,6 +25,12 @@ class PaymentController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                // Add conditions to search in the related User model
+                $subquery->orWhereHas('transactions', function ($userQuery) use ($search) {
+                    $userQuery->where('description', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 
