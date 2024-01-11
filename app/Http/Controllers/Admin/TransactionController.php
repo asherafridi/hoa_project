@@ -18,7 +18,7 @@ class TransactionController extends Controller
     {
         $title = "Transactions";
         $query = Transaction::query();
-        $query->where('userId', '!=', null);
+        $query->where('vendorId', null);
 
 
         if (request()->has('search')) {
