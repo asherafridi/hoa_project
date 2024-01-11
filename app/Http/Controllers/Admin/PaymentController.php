@@ -30,7 +30,7 @@ class PaymentController extends Controller
 
                 // Add conditions to search in the related User model
                 $subquery->orWhereHas('users', function ($userQuery) use ($search) {
-                    $userQuery->where('fistName', 'LIKE', '%' . $search . '%')
+                    $userQuery->where('firstName', 'LIKE', '%' . $search . '%')
                         ->orWhere('lastName', 'LIKE', '%' . $search . '%');
                     // Add more conditions as needed
                 });
