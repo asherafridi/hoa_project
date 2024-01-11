@@ -35,4 +35,9 @@ class Payment extends Model
             return $value;
         }
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
