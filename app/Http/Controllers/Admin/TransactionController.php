@@ -29,6 +29,14 @@ class TransactionController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+
+                // Add conditions to search in the related User model
+                $subquery->orWhereHas('users', function ($userQuery) use ($search) {
+                    $userQuery->where('firstName', 'LIKE', '%' . $search . '%')
+                        ->orWhere('lastName', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 

@@ -32,4 +32,13 @@ class Transaction extends Model
         $payment = Payment::where('status', '!=', 'Declined')->where('transactionId', $this->id)->first();
         return $payment;
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'userId');
+    }
+    public function vendors()
+    {
+        return $this->belongsTo(Vendor::class, 'vendorId');
+    }
 }
