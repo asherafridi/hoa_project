@@ -115,6 +115,7 @@ class DocumentsController extends Controller
         // Update other fields
         $document->name = $request->input('name');
         $document->description = $request->input('description');
+        $document->forUser = $request->input('forUser');
 
         $document->save();
 
