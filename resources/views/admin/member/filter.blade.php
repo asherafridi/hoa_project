@@ -2,7 +2,7 @@
     <style>
         .select2 {
             display: block;
-            width: 100%;
+            width: 100% !important;
         }
 
         .form-contro {
