@@ -44,8 +44,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Document</label>
-                            <input type="file" class="form-control" required name="doc" placeholder="Name"
-                                autofocus />
+                            <input type="file" class="form-control" name="doc" placeholder="Name" autofocus />
                             @error('file')
                                 <div class="form-text text-danger">
                                     {{ $message }}
