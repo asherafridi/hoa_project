@@ -40,6 +40,10 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class, 'userId');
     }
+    public function vendors()
+    {
+        return $this->belongsTo(Vendor::class, 'vendorId');
+    }
     public function transactions()
     {
         return $this->belongsTo(Transaction::class, 'transactionId');
