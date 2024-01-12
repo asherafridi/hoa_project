@@ -16,6 +16,7 @@ class DocumentController extends Controller
 
         $title = "Document";
         $query = Document::query();
+        $query->whereIn('forUser', ['Vendors Only', 'Both']);
 
         if (request()->has('search')) {
             $search = request()->input('search');

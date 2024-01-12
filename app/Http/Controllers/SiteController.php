@@ -34,7 +34,7 @@ class SiteController extends Controller
     public function events()
     {
         $title = "Events";
-        $events = Calendar::paginate(12);
+        $events = Calendar::whereIn('forUser', ['Members Only', 'Both'])->paginate(12);
         return view('frontend.basic.event', compact('title', 'events'));
     }
     public function eventPage($id)
@@ -46,7 +46,7 @@ class SiteController extends Controller
     public function documents()
     {
         $title = "Documents";
-        $document = Document::paginate(12);
+        $document = Document::whereIn('forUser', ['Members Only', 'Both'])->paginate(12);
         return view('frontend.basic.document', compact('title', 'document'));
     }
     public function contactForm(Request $request)
