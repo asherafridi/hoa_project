@@ -15,7 +15,7 @@
         <div class="row">
 
             {{-- <form method="get" class="row"> --}}
-            <div class="col-md-2">
+            <div class="col-lg-2 col-md-3">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Lot Number</label>
                     <input type="text" class="form-contro" name="lot_number" value="{{ request('lot_number') }}"
