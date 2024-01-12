@@ -1,4 +1,15 @@
 <div class="card mb-3">
+    <style>
+        .select2 {
+            display: block;
+            width: 100%;
+        }
+
+        .form-contro {
+            display: block;
+            width: 100%;
+        }
+    </style>
     <div class="card-header">
         {{-- <h5>Filter</h5> --}}
         <div class="row">
