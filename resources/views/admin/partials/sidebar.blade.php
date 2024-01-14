@@ -178,7 +178,7 @@
 
         <li class="menu-item @if (str_contains($title, 'Polls') == 1) active @endif">
             <a href="{{ route('admin.polls.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <i class="menu-icon tf-icons bx bx-poll"></i>
                 <div data-i18n="Analytics">Polls</div>
             </a>
         </li>
