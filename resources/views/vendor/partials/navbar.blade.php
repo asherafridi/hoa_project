@@ -39,7 +39,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->guard('vendor')->user()->picture }}"
+                                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): '/' .auth()->guard('vendor')->user()->picture }}"
                                             alt class=" rounded-circle" />
                                     </div>
                                 </div>
