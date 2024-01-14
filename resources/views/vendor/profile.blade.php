@@ -18,7 +18,7 @@
 
                             <div class="row">
                                 <div class="mb-3 col-md-4">
-                                    <label for="firstName" class="form-label">First Name</label>
+                                    <label for="firstName" class="form-label">Name</label>
                                     <input class="form-control" type="text" id="name" name="name"
                                         value="{{ auth()->guard('vendor')->user()->name }}" autofocus />
                                 </div>
