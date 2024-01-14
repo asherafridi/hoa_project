@@ -88,21 +88,25 @@ class AuthenticatedSessionController extends Controller
 
     public function profilePasswordUpdate(Request $request)
     {
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required'
+        ]);
 
+        $admin = Admin::find(Auth::guard('admin')->user()->id);
+        $admin_pass = $admin->password;
 
-        // $admin= Admin::find(Auth::guard('admin')->user()->id);
-        // $admin_pass=$admin->password;
-        // $old_pass=bcrypt($request->old_password);
+        // Check if old password is correct
+        if (!password_verify($request->old_password, $admin_pass)) {
+            return redirect('/admin/profile')->with('error', 'Incorrect old password');
+        }
 
-        // echo $admin_pass;
-        // echo "<br>";
-        // echo $old_pass;
+        // Update password
+        $admin->password = bcrypt($request->password);
+        $admin->save();
 
-        // // if($admin_pass!==$old_pass){
-        // //     
-        // // }
-
-        return redirect('/admin/profile')->with('error', 'Operation Not Successfull');
+        return redirect('/admin/profile')->with('success', 'Password updated successfully');
 
     }
 }
