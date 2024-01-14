@@ -53,7 +53,7 @@ class CommitteeController extends Controller
         $request['adminId'] = auth()->guard('admin')->user()->id;
         $calendar = new Committee;
         $calendar->create($request->all());
-        return redirect('/admin/committee')->with('success', 'Operation Successfull');
+        return redirect('/admin/committee')->with('success', 'Committee Added Successfull');
     }
 
     /**
@@ -89,7 +89,7 @@ class CommitteeController extends Controller
 
         $committee = Committee::find($id);
         $committee->update($request->all());
-        return redirect('/admin/committee')->with('success', 'Operation Successfull');
+        return redirect('/admin/committee')->with('success', 'Committee Updated Successfull');
     }
 
     /**
@@ -99,6 +99,6 @@ class CommitteeController extends Controller
     {
         $product = Committee::find($id);
         $product->delete();
-        return redirect('/admin/committee')->with('success', 'Operation Successfull');
+        return redirect('/admin/committee')->with('success', 'Committee Deleted Successfull');
     }
 }

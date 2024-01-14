@@ -16,4 +16,9 @@ class Calendar extends Model
         $committee = Committee::find($this->committeeId);
         return $committee;
     }
+    function committees()
+    {
+
+        return $this->belongsTo(Committee::class, 'committeeId');
+    }
 }
