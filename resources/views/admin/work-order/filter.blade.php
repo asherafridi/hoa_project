@@ -10,7 +10,8 @@
                         <select class="form-control" name="priority">
                             <option value="">Filter By Priority</option>
                             @foreach (priority_level() as $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $item }}" @if ($item == request('priority')) selected @endif>
+                                    {{ $item }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -21,7 +22,8 @@
                         <select class="form-control" name="status">
                             <option value="">Filter By Status</option>
                             @foreach (workOrder_Status() as $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $item }}" @if ($item == request('status')) selected @endif>
+                                    {{ $item }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -35,13 +37,14 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="" class="form-label">Search</label>
-                        <input type="text" class="form-control" name="search" id="" placeholder="Search...">
+                        <input type="text" class="form-control" name="search" id=""
+                            placeholder="Search...">
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">&nbsp;</label>
-                        <input type="submit" class="btn btn-primary form-control"/>
+                        <input type="submit" class="btn btn-primary form-control" />
                     </div>
                 </div>
             </form>
