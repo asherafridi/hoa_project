@@ -37,7 +37,7 @@ class BillsController extends Controller
 
                 // Add conditions to search in the related User model
                 $subquery->orWhereHas('types', function ($userQuery) use ($search) {
-                    $userQuery->where('mame', 'LIKE', '%' . $search . '%');
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
                 });
             });
         }
