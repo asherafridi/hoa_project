@@ -102,7 +102,7 @@ class AuthenticatedSessionController extends Controller
         $vendor_pass = $vendor->password;
 
         // Check if old password is correct
-        if (!password_verify(Hash::make($request->old_password), $vendor_pass)) {
+        if (!password_verify($request->old_password, $vendor_pass)) {
             return redirect('/vendor/profile')->with('error', 'Incorrect old password');
         }
 
