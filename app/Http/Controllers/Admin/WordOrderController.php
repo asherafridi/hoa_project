@@ -98,7 +98,7 @@ class WordOrderController extends Controller
             }
         }
         $workOrder->create($request->all());
-        return redirect('/admin/work-order')->with('success', 'Operation Successfull');
+        return redirect('/admin/work-order')->with('success', 'Work Order Added Successfull');
     }
 
     /**
@@ -156,7 +156,7 @@ class WordOrderController extends Controller
 
         $workOrder->update($request->all());
 
-        return redirect('/admin/work-order')->with('success', 'Operation successful');
+        return redirect('/admin/work-order')->with('success', 'Work Order Added successful');
     }
 
     /**
@@ -166,6 +166,6 @@ class WordOrderController extends Controller
     {
         $workOrder = WorkOrder::find($id);
         $workOrder->delete();
-        return redirect('/admin/work-order')->with('success', 'Operation Successfull');
+        return redirect('/admin/work-order')->with('success', 'Work Order Removed Successfull');
     }
 }
