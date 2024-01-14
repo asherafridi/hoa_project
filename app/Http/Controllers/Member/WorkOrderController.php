@@ -28,6 +28,21 @@ class WorkOrderController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                $subquery->orWhereHas('properties', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+                $subquery->orWhereHas('users', function ($userQuery) use ($search) {
+                    $userQuery->where('firstName', 'LIKE', '%' . $search . '%')
+                        ->orWhere('lastName', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+
+                $subquery->orWhereHas('vendors', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 
