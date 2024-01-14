@@ -19,18 +19,13 @@
                             <div class="row">
                                 <div class="mb-3 col-md-4">
                                     <label for="firstName" class="form-label">First Name</label>
-                                    <input class="form-control" type="text" id="firstName" name="firstName"
-                                        value="{{ auth()->guard('vendor')->user()->firstName }}" autofocus />
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <label for="firstName" class="form-label">Last Name</label>
-                                    <input class="form-control" type="text" id="firstName" name="lastName"
-                                        value="{{ auth()->guard('vendor')->user()->lastName }}" autofocus />
+                                    <input class="form-control" type="text" id="name" name="name"
+                                        value="{{ auth()->guard('vendor')->user()->name }}" autofocus />
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label for="email" class="form-label">E-mail</label>
-                                    <input class="form-control" type="text" id="email" name="email"
-                                        value="{{ auth()->guard('vendor')->user()->email }}"
+                                    <input class="form-control" type="text" id="email" name="contactEmail"
+                                        value="{{ auth()->guard('vendor')->user()->comtactEmail }}"
                                         placeholder="john.doe@example.com" />
                                 </div>
                             </div>
