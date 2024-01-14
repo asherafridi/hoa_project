@@ -63,7 +63,7 @@ class AuthenticatedSessionController extends Controller
         try {
             $admin = Vendor::find(Auth::guard('vendor')->user()->id);
             $admin->name = $request->name;
-            $admin->email = $request->contactEmail;
+            $admin->contactEmail = $request->contactEmail;
             $admin->save();
             return redirect('/vendor/profile')->with('success', 'Operation Successfull');
         } catch (\Throwable $th) {
