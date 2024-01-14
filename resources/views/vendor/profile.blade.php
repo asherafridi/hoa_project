@@ -25,7 +25,7 @@
                                 <div class="mb-3 col-md-4">
                                     <label for="email" class="form-label">E-mail</label>
                                     <input class="form-control" type="text" id="email" name="contactEmail"
-                                        value="{{ auth()->guard('vendor')->user()->comtactEmail }}"
+                                        value="{{ auth()->guard('vendor')->user()->contactEmail }}"
                                         placeholder="john.doe@example.com" />
                                 </div>
                             </div>
