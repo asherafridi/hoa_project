@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\Vendor;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -101,12 +102,12 @@ class AuthenticatedSessionController extends Controller
         $vendor_pass = $vendor->password;
 
         // Check if old password is correct
-        if (!password_verify($request->old_password, $vendor_pass)) {
-            return redirect('/vendor/profile')->with('error', 'Incorrect old password');
-        }
+        // if (!password_verify(Hash::make($request->old_password), $vendor_pass)) {
+        //     return redirect('/vendor/profile')->with('error', 'Incorrect old password');
+        // }
 
         // Update password
-        $vendor->password = bcrypt($request->password);
+        $vendor->password = Hash::make($request->password);
         $vendor->save();
 
         return redirect('/vendor/profile')->with('success', 'Password updated successfully');
