@@ -52,6 +52,7 @@
                                     <input class="form-control" type="file" accept=".jpg, .jpeg, .png" id="firstName"
                                         name="picture" />
                                 </div>
+                                {{ auth()->guard('vendor')->user()->picture }}
                             </div>
                             <div class="mt-2">
                                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
