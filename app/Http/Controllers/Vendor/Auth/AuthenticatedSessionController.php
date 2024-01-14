@@ -78,7 +78,7 @@ class AuthenticatedSessionController extends Controller
 
         try {
 
-            $admin = Admin::find(auth()->guard('vendor')->user()->id);
+            $admin = Vendor::find(auth()->guard('vendor')->user()->id);
             $filePath = $request->file('picture')->store('uploads/vendor', 'public');
             $admin->picture = $filePath;
             $admin->save();
@@ -98,7 +98,7 @@ class AuthenticatedSessionController extends Controller
             'password_confirmation' => 'required'
         ]);
 
-        $vendor = Admin::find(Auth::guard('vendor')->user()->id);
+        $vendor = Vendor::find(Auth::guard('vendor')->user()->id);
         $vendor_pass = $vendor->password;
 
         // Check if old password is correct
