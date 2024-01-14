@@ -40,7 +40,7 @@ class PhaseController extends Controller
         ]);
         $data = $request->all();
         Phase::create($data);
-        return redirect()->route('admin.phase.index')->with('success', 'Property Type Added Successfully');
+        return redirect()->route('admin.phase.index')->with('success', 'Phase Added Successfully');
     }
 
     /**
@@ -82,7 +82,7 @@ class PhaseController extends Controller
         ]);
 
         // Redirect back to the index page with a success message
-        return redirect()->route('admin.phase.index')->with('success', 'Property Type Updated Successfully');
+        return redirect()->route('admin.phase.index')->with('success', 'Phase Updated Successfully');
     }
 
     /**
@@ -98,6 +98,6 @@ class PhaseController extends Controller
         $PropertyType->delete();
 
         // Redirect back to the index page with a success message
-        return redirect()->route('admin.phase.index')->with('success', 'Property Type Deleted Successfully');
+        return redirect()->route('admin.phase.index')->with('success', 'Phase Deleted Successfully');
     }
 }

@@ -20,5 +20,10 @@ class Block extends Model
         $user = Phase::find($this->phase_id);
         return $user;
     }
+    function phase()
+    {
+
+        return $this->belongsTo(Phase::class, 'phase_id');
+    }
 
 }

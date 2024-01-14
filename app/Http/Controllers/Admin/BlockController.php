@@ -26,6 +26,11 @@ class BlockController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                $subquery->orWhereHas('phase', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 
