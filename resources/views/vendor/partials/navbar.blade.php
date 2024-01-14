@@ -29,7 +29,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->user()->picture }}"
+                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->guard('vendor')->user()->picture }}"
                             alt class=" rounded-circle" />
                     </div>
                 </a>
@@ -39,7 +39,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): '/' .auth()->guard('vendor')->user()->picture }}"
+                                        <img src="{{ auth()->guard('vendor')->user()->picture == null? asset('admin/assets/img/avatars/1.png'): auth()->guard('vendor')->user()->picture }}"
                                             alt class=" rounded-circle" />
                                     </div>
                                 </div>
