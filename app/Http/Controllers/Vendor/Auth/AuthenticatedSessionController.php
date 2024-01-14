@@ -79,7 +79,7 @@ class AuthenticatedSessionController extends Controller
         try {
 
             $admin = Vendor::find(auth()->guard('vendor')->user()->id);
-            $filePath = $request->file('picture')->store('uploads/vendor', 'public');
+            $filePath = $request->file('picture')->store('uploads/admin', 'public');
             $admin->picture = $filePath;
             $admin->save();
             return redirect('/vendor/profile')->with('success', 'Operation Successfull');
