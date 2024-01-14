@@ -9,19 +9,35 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class WorkOrder extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['propertyId','requestedBy','requested_date','description','priority','status','assignedTo','completion_date','invoice','invoice_amount'];
-    function vendor(){
+    protected $fillable = ['propertyId', 'requestedBy', 'requested_date', 'description', 'priority', 'status', 'assignedTo', 'completion_date', 'invoice', 'invoice_amount'];
+    function vendor()
+    {
         $vendor = Vendor::find($this->assignedTo);
         return $vendor;
     }
 
-    function requestedBy(){
+    function requestedBy()
+    {
         $user = User::find($this->requestedBy);
         return $user;
     }
 
-    function property(){
-        $property=Properties::find($this->propertyId);
+    function property()
+    {
+        $property = Properties::find($this->propertyId);
         return $property;
+    }
+
+    function properties()
+    {
+        return $this->belongsTo(Properties::class, 'propertyId');
+    }
+    function users()
+    {
+        return $this->belongsTo(User::class, 'requestedBy');
+    }
+    function vendors()
+    {
+        return $this->belongsTo(Vendor::class, 'assignedTo');
     }
 }
