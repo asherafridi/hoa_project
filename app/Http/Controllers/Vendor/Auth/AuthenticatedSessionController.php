@@ -98,7 +98,7 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         $vendor = Admin::find(Auth::guard('vendor')->user()->id);
-        $vendor_pass = $admin->password;
+        $vendor_pass = $vendor->password;
 
         // Check if old password is correct
         if (!password_verify($request->old_password, $vendor_pass)) {
