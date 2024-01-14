@@ -77,13 +77,13 @@ class AuthenticatedSessionController extends Controller
 
         try {
 
-            $admin = Admin::find(auth()->guard('admin')->user()->id);
-            $filePath = $request->file('picture')->store('uploads/admin', 'public');
+            $admin = Admin::find(auth()->guard('vendor')->user()->id);
+            $filePath = $request->file('picture')->store('uploads/vendor', 'public');
             $admin->picture = $filePath;
             $admin->save();
-            return redirect('/admin/profile')->with('success', 'Operation Successfull');
+            return redirect('/vendor/profile')->with('success', 'Operation Successfull');
         } catch (\Throwable $th) {
-            return redirect('/admin/profile')->with('error', $th);
+            return redirect('/vendor/profile')->with('error', $th);
         }
     }
 
