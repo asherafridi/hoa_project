@@ -22,24 +22,29 @@ class WorkOrderController extends Controller
 
 
         if ($request->search !== null) {
-            // $search = $request->input('search');
-            // $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
+            $search = $request->input('search');
+            $columns = \Schema::getColumnListing((new WorkOrder())->getTable());
 
-            // $workOrderQuery->where(function ($subquery) use ($search, $columns) {
-            //     foreach ($columns as $column) {
-            //         $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
-            //     }
-            // });
-            $searchTerm = $request->search;
-            $users = User::orWhere('firstName', 'like', '%' . $searchTerm . '%')
-                ->orWhere('lastName', 'like', '%' . $searchTerm . '%')
-                ->get();
+            $workOrderQuery->where(function ($subquery) use ($search, $columns) {
+                foreach ($columns as $column) {
+                    $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
+                }
 
-            $userIds = $users->pluck('id')->toArray();
-            // return $userIds;
+                $subquery->orWhereHas('properties', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+                $subquery->orWhereHas('users', function ($userQuery) use ($search) {
+                    $userQuery->where('firstName', 'LIKE', '%' . $search . '%')
+                        ->orWhere('lastName', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
 
-            // Assuming $workOrderQuery is an existing query builder for WorkOrder
-            $workOrderQuery->whereIn('requestedBy', $userIds);
+                $subquery->orWhereHas('vendors', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+            });
 
         }
 
