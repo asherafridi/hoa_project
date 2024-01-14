@@ -28,6 +28,11 @@ class VendorController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                $subquery->orWhereHas('vendorType', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 
@@ -61,7 +66,7 @@ class VendorController extends Controller
         $vendor = new Vendor;
         $request['password'] = Hash::make('12345678');
         $vendor->create($request->all());
-        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Vendor Added Successfull');
     }
 
     /**
@@ -111,7 +116,7 @@ class VendorController extends Controller
 
         $vendor = Vendor::find($id);
         $vendor->update($request->all());
-        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Vendor Updated Successfull');
     }
 
     /**
@@ -122,6 +127,6 @@ class VendorController extends Controller
 
         $vendor = Vendor::find($id);
         $vendor->delete();
-        return redirect('/admin/vendor')->with('success', 'Operation Successfull');
+        return redirect('/admin/vendor')->with('success', 'Vendor Added Successfull');
     }
 }

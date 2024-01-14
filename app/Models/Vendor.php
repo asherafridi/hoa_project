@@ -34,4 +34,9 @@ class Vendor extends Authenticatable
     {
         return $this->name;
     }
+
+    function vendorType()
+    {
+        return $this->belongsTo(VendorType::class, 'vendorType');
+    }
 }
