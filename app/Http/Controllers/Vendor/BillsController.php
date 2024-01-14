@@ -26,6 +26,19 @@ class BillsController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                // Add conditions to search in the related User model
+
+                // Add conditions to search in the related User model
+                $subquery->orWhereHas('vendors', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+
+                // Add conditions to search in the related User model
+                $subquery->orWhereHas('types', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                });
             });
         }
 
