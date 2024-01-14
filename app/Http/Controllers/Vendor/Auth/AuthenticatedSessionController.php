@@ -91,19 +91,25 @@ class AuthenticatedSessionController extends Controller
     {
 
 
-        // $admin= Admin::find(Auth::guard('admin')->user()->id);
-        // $admin_pass=$admin->password;
-        // $old_pass=bcrypt($request->old_password);
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required'
+        ]);
 
-        // echo $admin_pass;
-        // echo "<br>";
-        // echo $old_pass;
+        $vendor = Admin::find(Auth::guard('vendor')->user()->id);
+        $vendor_pass = $admin->password;
 
-        // // if($admin_pass!==$old_pass){
-        // //     
-        // // }
+        // Check if old password is correct
+        if (!password_verify($request->old_password, $vendor_pass)) {
+            return redirect('/vendor/profile')->with('error', 'Incorrect old password');
+        }
 
-        return redirect('/admin/profile')->with('error', 'Operation Not Successfull');
+        // Update password
+        $vendor->password = bcrypt($request->password);
+        $vendor->save();
+
+        return redirect('/vendor/profile')->with('success', 'Password updated successfully');
 
     }
 }
