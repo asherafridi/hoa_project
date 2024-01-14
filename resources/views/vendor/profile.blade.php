@@ -1,4 +1,4 @@
-@extends('member.layouts.main')
+@extends('vendor.layouts.main')
 @section('title', 'Profile')
 
 @section('content')
@@ -13,24 +13,25 @@
                     <!-- Account -->
 
                     <div class="card-body">
-                        <form id="formAccountSettings" method="POST" action="{{ route('profile.updatemine') }}">
+                        <form id="formAccountSettings" method="POST" action="{{ route('vendor.profile.update') }}">
                             @csrf
 
                             <div class="row">
                                 <div class="mb-3 col-md-4">
                                     <label for="firstName" class="form-label">First Name</label>
                                     <input class="form-control" type="text" id="firstName" name="firstName"
-                                        value="{{ auth()->user()->firstName }}" autofocus />
+                                        value="{{ auth()->guard('vendor')->user()->firstName }}" autofocus />
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label for="firstName" class="form-label">Last Name</label>
                                     <input class="form-control" type="text" id="firstName" name="lastName"
-                                        value="{{ auth()->user()->lastName }}" autofocus />
+                                        value="{{ auth()->guard('vendor')->user()->lastName }}" autofocus />
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label for="email" class="form-label">E-mail</label>
                                     <input class="form-control" type="text" id="email" name="email"
-                                        value="{{ auth()->user()->email }}" placeholder="john.doe@example.com" />
+                                        value="{{ auth()->guard('vendor')->user()->email }}"
+                                        placeholder="john.doe@example.com" />
                                 </div>
                             </div>
                             <div class="mt-2">
@@ -48,7 +49,7 @@
 
                     <div class="card-body">
                         <form id="formAccountSettings" enctype="multipart/form-data" method="POST"
-                            action="{{ route('profile.picture') }}">
+                            action="{{ route('vendor.profile.picture') }}">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-12">
@@ -70,7 +71,8 @@
                     <h5 class="card-header">Change Account Password</h5>
                     <div class="card-body">
 
-                        <form id="formAccountDeactivation" method="POST" action="{{ route('profile.update.password') }}">
+                        <form id="formAccountDeactivation" method="POST"
+                            action="{{ route('vendor.profile.password_update') }}">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-4">
