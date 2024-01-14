@@ -9,7 +9,8 @@
                 <select class="form-control" name="type">
                     <option value="">Filter By Type</option>
                     @foreach ($transaction_type as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option value="{{ $item->id }}" @if ($item->name == request('type')) selected @endif>
+                            {{ $item->name }}</option>
                     @endforeach
                 </select>
             </div>
