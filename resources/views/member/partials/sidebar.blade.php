@@ -31,7 +31,7 @@
         <li class="menu-item @if (str_contains($title, 'Work Order') == 1) active open @endif">
 
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-group"></i>
+                <i class="menu-icon tf-icons bx bx-basket"></i>
                 <div data-i18n="Layouts">Work Order</div>
             </a>
 
@@ -82,7 +82,7 @@
         <li class="menu-item @if (str_contains($title, 'Payment') == 1) active open @endif">
 
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
+                <i class="menu-icon tf-icons bx bx-money"></i>
                 <div data-i18n="Layouts">Payments</div>
             </a>
 
@@ -130,7 +130,7 @@
 
         <li class="menu-item @if (str_contains($title, 'Polls') == 1) active @endif">
             <a href="{{ route('polls.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-bell"></i>
+                <i class="menu-icon tf-icons bx bx-poll"></i>
                 <div data-i18n="Boxicons">Polls</div>
             </a>
         </li>
