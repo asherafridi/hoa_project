@@ -156,7 +156,7 @@ class WordOrderController extends Controller
 
         $workOrder->update($request->all());
 
-        return redirect('/admin/work-order')->with('success', 'Work Order Added successful');
+        return redirect('/admin/work-order')->with('success', 'Work Order Updated successful');
     }
 
     /**
