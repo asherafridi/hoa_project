@@ -27,6 +27,19 @@ class PropertiesController extends Controller
                 foreach ($columns as $column) {
                     $subquery->orWhere($column, 'LIKE', '%' . $search . '%');
                 }
+
+                $subquery->orWhereHas('propertyType', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+                $subquery->orWhereHas('blocks', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
+                $subquery->orWhereHas('phases', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'LIKE', '%' . $search . '%');
+                    // Add more conditions as needed
+                });
             });
         }
 

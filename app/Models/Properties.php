@@ -25,4 +25,16 @@ class Properties extends Model
         $phase = Phase::find($this->phase_id);
         return $phase;
     }
+    function propertyType()
+    {
+        return $this->belongsTo(PropertyType::class, 'propertyType');
+    }
+    function phases()
+    {
+        return $this->belongsTo(Phase::class, 'phase_id');
+    }
+    function blocks()
+    {
+        return $this->belongsTo(Block::class, 'block_id');
+    }
 }
