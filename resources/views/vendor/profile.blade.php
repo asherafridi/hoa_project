@@ -53,7 +53,7 @@
                                         name="picture" />
                                 </div>
                             </div>
-                            {{ auth()->guard('vendor')->user() }}
+                            {{ auth()->guard('vendor')->user()->picture }}
                             <div class="mt-2">
                                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                 <button type="reset" class="btn btn-outline-secondary">Cancel</button>
