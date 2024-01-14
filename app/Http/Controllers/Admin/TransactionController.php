@@ -35,7 +35,6 @@ class TransactionController extends Controller
                 $subquery->orWhereHas('users', function ($userQuery) use ($search) {
                     $userQuery->where('firstName', 'LIKE', '%' . $search . '%')
                         ->orWhere('lastName', 'LIKE', '%' . $search . '%');
-                    // Add more conditions as needed
                 });
             });
         }

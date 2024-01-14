@@ -41,4 +41,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(Vendor::class, 'vendorId');
     }
+    public function types()
+    {
+        return $this->belongsTo(TransactionType::class, 'transactionType');
+    }
 }
