@@ -10,7 +10,7 @@
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin.settings.about.update') }}">
                     @csrf
-                    <div class="row mb-4">
+                    {{-- <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">About Subtitle</label>
                             <input type="text" class="form-control" value="{{ settings('aboutus_subtitle') }}"
@@ -29,7 +29,7 @@
                             <label class="form-label">About Desc</label>
                             <textarea class="form-control" name="aboutus_desc">{{ settings('aboutus_desc') }}</textarea>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">About Background</label>
