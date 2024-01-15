@@ -16,6 +16,7 @@ class EventController extends Controller
         $title = "Events";
         $calendarQuery = Calendar::query();
         $calendarQuery->whereIn('forUser', ['Members Only', 'Both']);
+        $calendarQuery->where('forUser', '!=', null);
 
         if ($request->has('search')) {
             $search = $request->input('search');
