@@ -59,7 +59,7 @@ class AnnouncementController extends Controller
         $request['adminId'] = auth()->user()->id;
         $announcement = new Announcement;
         $announcement->create($request->all());
-        return redirect('/announcement')->with('success', 'Operation Successfull');
+        return redirect('/announcement')->with('success', 'Please Wait For Admin Approval');
     }
 
     /**
