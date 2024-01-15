@@ -37,45 +37,45 @@
                         </div>
                     </div>
 
-                    {{-- <hr> --}}
-                    {{-- <div class="row mb-4">
+                    <hr>
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Counter 1 Text</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec1_text')}}" name="aboutus_sec1_text"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec1_text') }}"
+                                name="aboutus_sec1_text" autofocus />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 1 Number</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec1_number')}}" name="aboutus_sec1_number"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec1_number') }}"
+                                name="aboutus_sec1_number" autofocus />
                         </div>
-                    </div> --}}
+                    </div>
 
-                    {{-- <hr>
+                    <hr>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Counter 2 Text</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec2_text')}}" name="aboutus_sec2_text"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec2_text') }}"
+                                name="aboutus_sec2_text" autofocus />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 2 Number</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec2_number')}}" name="aboutus_sec2_number"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec2_number') }}"
+                                name="aboutus_sec2_number" autofocus />
                         </div>
                     </div>
-                    
+
                     <hr>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Counter 3 Text</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec3_text')}}" name="aboutus_sec3_text"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec3_text') }}"
+                                name="aboutus_sec3_text" autofocus />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 3 Number</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec3_number')}}" name="aboutus_sec3_number"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec3_number') }}"
+                                name="aboutus_sec3_number" autofocus />
                         </div>
                     </div>
 
@@ -83,15 +83,15 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Counter 4 Text</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec4_text')}}" name="aboutus_sec4_text"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec4_text') }}"
+                                name="aboutus_sec4_text" autofocus />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 4 Number</label>
-                            <input type="text" class="form-control" value="{{settings('aboutus_sec4_number')}}" name="aboutus_sec4_number"
-                                autofocus />
+                            <input type="text" class="form-control" value="{{ settings('aboutus_sec4_number') }}"
+                                name="aboutus_sec4_number" autofocus />
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="row px-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
