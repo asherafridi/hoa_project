@@ -67,7 +67,7 @@ class EventController extends Controller
         // $data['user_id'] = auth()->user()->id;
 
         $calendar->create($data);
-        return redirect('/events')->with('success', 'Operation Successfull');
+        return redirect('/events')->with('success', 'Please Wait For Admin Approval');
 
     }
 
