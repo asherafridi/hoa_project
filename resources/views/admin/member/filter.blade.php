@@ -14,7 +14,7 @@
         {{-- <h5>Filter</h5> --}}
         <div class="row">
 
-            <form method="get" class="row">
+            <form method="get" class="row" onkeydown="return event.key != 'Enter';">
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">Filter By Lot Number</label>
@@ -84,7 +84,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="" class="form-label">&nbsp;</label>
-                        <button id="searchBtn" class="btn btn-primary form-control">Search</button>
+                        <div id="searchBtn" class="btn btn-primary form-control">Search</div>
                     </div>
                 </div>
                 <div class="col-md-2">

@@ -27,7 +27,6 @@
                             <th>Phase</th>
                             <th>Block</th>
                             <th>Property</th>
-                            <th>Balance</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -132,7 +131,7 @@
                         <td>${element.phase_name !== null ? element.phase_name : 'Phase Not Found' }</td>
                         <td>${element.block_name != null ? element.block_name : 'Block Not Found'}</td>
                         <td>${element.propertyName !=null ?element.propertyName : 'Property Not Found' }</td>
-                        <td>${element.balance}</td>
+                        
                         <td>${element.status==0 ? 'Unapproved' : 'Approved'}</td>
                         <td>
                                     <div class="dropdown">
