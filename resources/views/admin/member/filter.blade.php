@@ -14,7 +14,7 @@
         {{-- <h5>Filter</h5> --}}
         <div class="row">
 
-            {{-- <form method="get" class="row"> --}}
+            <form method="get" class="row">
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">Filter By Lot Number</label>
@@ -82,7 +82,7 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="" class="form-label">&nbsp;</label>
-                    <input type="submit" id="searchBtn" class="btn btn-primary form-control" />
+                    <input id="searchBtn" class="btn btn-primary form-control" />
                 </div>
             </div>
             <div class="col-md-2">
@@ -91,7 +91,7 @@
                     <input type="submit" value="Download CSV" name="download" class="form-control btn btn-secondary">
                 </div>
             </div>
-            {{-- </form> --}}
+            </form>
         </div>
     </div>
 </div>
