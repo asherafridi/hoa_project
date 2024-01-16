@@ -55,7 +55,7 @@
 
 <body>
     <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-wrapper layout-content-navbar overflow-hidden">
         <div class="layout-container">
             <!-- Menu -->
             @include('admin.partials.sidebar')

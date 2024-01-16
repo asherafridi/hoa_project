@@ -12,36 +12,38 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.calendar.update',$calendar->id) }}">
-                    
+                <form method="POST" action="{{ route('admin.calendar.update', $calendar->id) }}">
+
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Event Name</label>
-                            <input type="text" class="form-control" required name="eventName" value="{{$calendar->eventName}}" placeholder="Arrangement"
-                                autofocus />
+                            <input type="text" readonly class="form-control" required name="eventName"
+                                value="{{ $calendar->eventName }}" placeholder="Arrangement" autofocus />
                             @error('eventName')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Start Date</label>
-                            <input class="form-control" type="datetime-local" required name="startDate" value="{{$calendar->startDate}}" />
+                            <input class="form-control" readonly type="datetime-local" required name="startDate"
+                                value="{{ $calendar->startDate }}" />
                             @error('startDate')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">End Date</label>
-                            <input class="form-control" type="datetime-local" required name="endDate"  value="{{$calendar->endDate}}" />
+                            <input class="form-control" readonly type="datetime-local" required name="endDate"
+                                value="{{ $calendar->endDate }}" />
                             @error('endDate')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -49,21 +51,22 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Location</label>
-                            <input type="text" class="form-control" name="location" required  value="{{$calendar->location}}" placeholder="St. 1000 , Newyork etc" />
+                            <input type="text" readonly class="form-control" name="location" required
+                                value="{{ $calendar->location }}" placeholder="St. 1000 , Newyork etc" />
                             @error('location')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Committee</label>
-                            <select class="form-control" name="committeeId" required>
+                            <select class="form-control" readonly name="committeeId" required>
                                 <option value="1">Committee 1</option>
                             </select>
                             @error('committeeId')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -71,10 +74,11 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Event Description</label>
-                            <textarea type="text" name="description" class="form-control"  value="" placeholder="Description..." rows="3">{{$calendar->description}}</textarea>
+                            <textarea type="text" readonly name="description" class="form-control" value="" placeholder="Description..."
+                                rows="3">{{ $calendar->description }}</textarea>
                             @error('description')
                                 <div class="form-text text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
