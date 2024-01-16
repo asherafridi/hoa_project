@@ -83,7 +83,7 @@ class MemberController extends Controller
             // ];
 
             // return response()->make($csvContent, 200, $headers);
-            $users = User::select('id', 'firstName', 'lastName', 'email', 'phone', 'lot_number')->get();
+            $users = User::select('id', 'firstName', 'lastName', 'email', 'phone', 'lot_number', 'created_at', 'updated_at')->get();
 
             // Prepare CSV content with dynamic header
             $csvContent = implode(',', array_keys($users->first()->getAttributes())) . "\n";
