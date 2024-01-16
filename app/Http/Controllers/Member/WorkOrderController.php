@@ -82,7 +82,7 @@ class WorkOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request['requestedDate'] = date('Y-m-d');
+        $request['requestedDate'] = date('Y-m-d H:i:s');
         $request['requestedBy'] = auth()->user()->id;
         $request['status'] = "Customer-Requested";
         WorkOrder::create($request->all());
