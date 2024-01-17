@@ -86,10 +86,10 @@ class MemberController extends Controller
             $users = User::select('id', 'firstName', 'lastName', 'email', 'phone', 'lot_number', 'created_at', 'updated_at')->get();
 
             // Prepare CSV content with dynamic header
-            $csvContent = implode(',', array_keys($users->first()->getAttributes())) . ',User Type,Block,Phase' . "\n";
+            $csvContent = implode(',', array_keys($users->first()->getAttributes())) . ',Member Type,Block,Phase,Property' . "\n";
 
             foreach ($users->all() as $user) {
-                $csvContent .= implode(',', $user->getAttributes()) . "\n";
+                $csvContent .= implode(',', $user->getAttributes()) . $user->phase() . ',' . "\n";
             }
 
             // Prepare the response with appropriate headers
