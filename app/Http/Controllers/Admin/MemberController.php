@@ -22,7 +22,6 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
-
         $title = "Members";
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
@@ -32,18 +31,12 @@ class MemberController extends Controller
             'properties.block_id',
         );
 
-
-
-
-
         if (request()->has('search')) {
             $search = request()->input('search');
             $query->orWhere('firstName', 'LIKE', '%' . $search . '%');
             $query->orWhere('lastName', 'LIKE', '%' . $search . '%');
         }
         if ($request->has('property')) {
-
-
             $query->where('propertyId', $request->property);
         }
         if ($request->has('status')) {
@@ -55,19 +48,11 @@ class MemberController extends Controller
 
         $boardmember = $query->paginate(10);
 
-        // return $boardmember;
-
         if (request()->has('download')) {
-            $query->get();
-            $users = $query;
-
-            return $users;
-
-            // Prepare CSV content with dynamic header
             $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Property,Block,Phase';
             $csvContent = $header . "\n";
 
-            foreach ($users as $user) {
+            foreach ($boardmember as $user) {
                 $additionStr = $user->id . ',';
                 $additionStr .= $user->firstName . ',';
                 $additionStr .= $user->lastName . ',';
@@ -78,12 +63,11 @@ class MemberController extends Controller
                 $additionStr .= $user->updated_at . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found';
                 $additionStr .= ',' . ($user->propertyId != null ? $user->property()->name : 'Property Not Found');
-                $additionStr .= ',' . ($user->propertyId != null ? $user->phase() : 'Phase Not Found');
-                $additionStr .= ',' . ($user->propertyId != null ? $user->block() : 'Block Not Found');
+                $additionStr .= ',' . ($user->propertyId != null ? $user->property()->phase() : 'Phase Not Found');
+                $additionStr .= ',' . ($user->propertyId != null ? $user->property()->block() : 'Block Not Found');
                 $csvContent .= $additionStr . "\n";
             }
 
-            // Prepare the response with appropriate headers
             $headers = [
                 'Content-type' => 'text/csv',
                 'Content-Disposition' => 'attachment; filename=members.csv',
@@ -94,10 +78,10 @@ class MemberController extends Controller
 
             return response()->make($csvContent, 200, $headers);
         }
+
         $properties = Properties::get();
         $block = Block::all();
         $phase = Phase::all();
-
 
         return view('admin.member.list', compact('title', 'boardmember', 'properties', 'block', 'phase'));
     }
