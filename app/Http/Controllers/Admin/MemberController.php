@@ -59,9 +59,8 @@ class MemberController extends Controller
 
         if (request()->has('download')) {
             $query->get();
-            $users = $boardmember;
+            $users = $query;
 
-            return $users;
 
             // Prepare CSV content with dynamic header
             $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Property,Block,Phase';
