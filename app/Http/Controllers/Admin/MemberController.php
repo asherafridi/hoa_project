@@ -86,7 +86,7 @@ class MemberController extends Controller
             $users = User::get();
 
             // Prepare CSV content with dynamic header
-            $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Block,Phase,Property';
+            $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Property,Block,Phase';
             $csvContent = $header . "\n";
 
             foreach ($users->all() as $user) {
@@ -99,6 +99,7 @@ class MemberController extends Controller
                 $additionStr .= $user->created_at . ',';
                 $additionStr .= $user->updated_at . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found' . ',';
+                $additionStr .= $user->propertyId != null ? $user->property()->name : 'Property Not Found' . ',';
                 $csvContent .= $additionStr . "\n";
             }
 
