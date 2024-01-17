@@ -92,6 +92,12 @@ class MemberController extends Controller
             foreach ($users->all() as $user) {
                 $additionStr = $user->id . ',';
                 $additionStr .= $user->firstName . ',';
+                $additionStr .= $user->lastName . ',';
+                $additionStr .= $user->email . ',';
+                $additionStr .= $user->phone . ',';
+                $additionStr .= $user->lot_number . ',';
+                $additionStr .= $user->created_at . ',';
+                $additionStr .= $user->updated_at . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found' . ',';
                 $csvContent .= $additionStr . "\n";
             }
