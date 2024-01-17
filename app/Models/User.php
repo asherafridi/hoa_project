@@ -64,4 +64,16 @@ class User extends Authenticatable
     {
         return $this->firstName . ' ' . $this->lastName;
     }
+    function phase()
+    {
+
+        $property = Properties::withTrashed()->find($this->propertyId);
+        return $property->phase_id != null ? $property->phase() : 'Phase Not Found';
+    }
+    function block()
+    {
+
+        $property = Properties::withTrashed()->find($this->propertyId);
+        return $property->block_id != null ? $property->block() : 'Block Not Found';
+    }
 }

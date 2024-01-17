@@ -100,6 +100,7 @@ class MemberController extends Controller
                 $additionStr .= $user->updated_at . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found' . ',';
                 $additionStr .= $user->propertyId != null ? $user->property()->name : 'Property Not Found' . ',';
+                $additionStr .= $user->propertyId != null ? $user->property()->phase() : '' . ',';
                 $csvContent .= $additionStr . "\n";
             }
 
