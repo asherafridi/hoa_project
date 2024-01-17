@@ -83,13 +83,14 @@ class MemberController extends Controller
             // ];
 
             // return response()->make($csvContent, 200, $headers);
-            $users = User::select('id', 'firstName', 'lastName', 'email', 'phone', 'lot_number', 'created_at', 'updated_at')->get();
+            $users = User::get();
 
             // Prepare CSV content with dynamic header
-            $csvContent = implode(',', array_keys($users->first()->getAttributes())) . ',Member Type,Block,Phase,Property' . "\n";
+            $header = 'id, firstName,lastName,email,phone,lot_number,created_at,updated_at,Member Type,Block,Phase,Property';
+            $csvContent = ',' . $header . '\n';
 
             foreach ($users->all() as $user) {
-                $additionStr = $user->userType != null ? $user->type() : 'Member Type Not Found' . ',';
+                $additionStr = $user->userType != null ? $user->type()->name : 'Member Type Not Found' . ',';
                 $csvContent .= implode(',', $user->getAttributes()) . ',' . $additionStr . "\n";
             }
 
