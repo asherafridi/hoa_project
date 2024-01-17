@@ -61,12 +61,13 @@ class MemberController extends Controller
             $query->get();
             $users = $query;
 
+            return $users;
 
             // Prepare CSV content with dynamic header
             $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Property,Block,Phase';
             $csvContent = $header . "\n";
 
-            foreach ($users->all() as $user) {
+            foreach ($users as $user) {
                 $additionStr = $user->id . ',';
                 $additionStr .= $user->firstName . ',';
                 $additionStr .= $user->lastName . ',';
