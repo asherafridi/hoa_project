@@ -89,7 +89,8 @@ class MemberController extends Controller
             $csvContent = implode(',', array_keys($users->first()->getAttributes())) . ',Member Type,Block,Phase,Property' . "\n";
 
             foreach ($users->all() as $user) {
-                $csvContent .= implode(',', $user->getAttributes()) . $user->phase() . ',' . "\n";
+                $additionStr = $user->type != null ? $user->type() : 'Member Type Not Found' . ',';
+                $csvContent .= implode(',', $user->getAttributes()) . $additionStr . "\n";
             }
 
             // Prepare the response with appropriate headers
