@@ -58,32 +58,9 @@ class MemberController extends Controller
         // return $boardmember;
 
         if (request()->has('download')) {
-            // $query->get();
-            // $users = $boardmember;
-
-            // // Extract the attributes from the first user to dynamically generate CSV header
-            // $attributes = $users->isEmpty() ? [] : array_keys($users->first()->getAttributes());
-
-
-
-            // // Prepare CSV content with dynamic header
-            // $csvContent = implode(',', $attributes) . "\n";
-
-            // foreach ($users->all() as $user) {
-            //     $csvContent .= implode(',', $user->toArray()) . "\n";
-            // }
-
-            // // Prepare the response with appropriate headers
-            // $headers = [
-            //     'Content-type' => 'text/csv',
-            //     'Content-Disposition' => 'attachment; filename=members.csv',
-            //     'Pragma' => 'no-cache',
-            //     'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-            //     'Expires' => '0',
-            // ];
-
-            // return response()->make($csvContent, 200, $headers);
+            $query->get();
             $users = $boardmember;
+
             return $users;
 
             // Prepare CSV content with dynamic header
