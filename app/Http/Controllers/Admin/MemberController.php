@@ -87,13 +87,13 @@ class MemberController extends Controller
 
             // Prepare CSV content with dynamic header
             $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Block,Phase,Property';
-            $csvContent = ',' . $header . "\n";
+            $csvContent = $header . "\n";
 
             foreach ($users->all() as $user) {
                 $additionStr = $user->id . ',';
                 $additionStr .= $user->firstName . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found' . ',';
-                $csvContent .= ',' . $additionStr . "\n";
+                $csvContent .= $additionStr . "\n";
             }
 
             // Prepare the response with appropriate headers
