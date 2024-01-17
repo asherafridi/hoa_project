@@ -90,7 +90,7 @@ class MemberController extends Controller
 
             foreach ($users->all() as $user) {
                 $additionStr = $user->userType != null ? $user->type() : 'Member Type Not Found' . ',';
-                $csvContent .= implode(',', $user->getAttributes()) . $additionStr . "\n";
+                $csvContent .= implode(',', $user->getAttributes()) . ',' . $additionStr . "\n";
             }
 
             // Prepare the response with appropriate headers
