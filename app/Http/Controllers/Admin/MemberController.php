@@ -83,7 +83,7 @@ class MemberController extends Controller
             // ];
 
             // return response()->make($csvContent, 200, $headers);
-            $users = User::get();
+            $users = $boardmember;
 
             // Prepare CSV content with dynamic header
             $header = 'id, First Name,Last Name,Email,Phone,Lot Number,Created At,Updated At,Member Type,Property,Block,Phase';
