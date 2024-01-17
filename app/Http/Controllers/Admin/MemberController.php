@@ -63,8 +63,8 @@ class MemberController extends Controller
                 $additionStr .= $user->updated_at . ',';
                 $additionStr .= $user->userType != null ? $user->type()->name : 'Member Type Not Found';
                 $additionStr .= ',' . ($user->propertyId != null ? $user->property()->name : 'Property Not Found');
-                $additionStr .= ',' . ($user->propertyId != null ? $user->property()->phase() : 'Phase Not Found');
-                $additionStr .= ',' . ($user->propertyId != null ? $user->property()->block() : 'Block Not Found');
+                $additionStr .= ',' . ($user->propertyId != null ? $user->phase() : 'Phase Not Found');
+                $additionStr .= ',' . ($user->propertyId != null ? $user->block() : 'Block Not Found');
                 $csvContent .= $additionStr . "\n";
             }
 
