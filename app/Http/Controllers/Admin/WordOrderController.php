@@ -54,10 +54,17 @@ class WordOrderController extends Controller
         }
         if ($request->date !== null) {
             $date = explode(' to ', $request->date);
-            $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
-            $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
+            if (count($date) == 2) {
+    // Date range selection
+    $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
+    $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[1])->endOfDay();
 
-            $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
+    $workOrderQuery->whereBetween('requested_date', [$startDate, $endDate]);
+} else {
+    // Single date selection
+    $selectedDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date[0])->startOfDay();
+    $workOrderQuery->whereDate('requested_date', $selectedDate);
+}
         }
 
         $workOrder = $workOrderQuery->paginate(10);

@@ -42,7 +42,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
-                            <textarea type="text" name="description" class="form-control" placeholder="Description..." rows="3"> {{ $announcement->description }}</textarea>
+                            <textarea type="text" required name="description" class="form-control" placeholder="Description..." rows="3"> {{ $announcement->description }}</textarea>
                             @error('description')
                                 <div class="form-text text-danger">
                                     {{ $message }}

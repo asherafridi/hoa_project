@@ -75,7 +75,7 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Invoice</label>
-                            <a href="{{ route('admin.work-order.download-invoice', $workOrder->id) }}"
+                            <a href="/{{ $workOrder->invoice }}"
                                 class="btn btn-link btn-sm">Download Invoice</a>
                         </div>
                     </div>

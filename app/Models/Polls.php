@@ -11,7 +11,8 @@ class Polls extends Model
     protected $table = 'polls';
 
     protected $fillable = [
-        'question'
+        'question',
+        'result'
     ];
 
     function options()

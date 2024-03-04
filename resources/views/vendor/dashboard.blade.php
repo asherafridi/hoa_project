@@ -127,8 +127,7 @@
                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                         <div class="me-2">
                                             <h6 class="mb-0">{{ $item->description }}</h6>
-                                            <small
-                                                class="text-muted">{{ $item->user() ? $item->user()->name : 'No User' }}</small>
+                                    <small class="text-muted">{{$item->vendor() ? $item->vendor()->name : 'No Vendor'}}</small>
                                         </div>
                                         <div class="user-progress">
                                             <small class="fw-semibold">{{ $item->amount }}</small>

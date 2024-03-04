@@ -82,4 +82,19 @@ class PollsController extends Controller
         // Redirect back to the index page with a success message
         return redirect()->route('admin.polls.index')->with('success', 'Poll Deleted Successfully');
     }
+    public function changeAnnouncement($id){
+        
+        $poll = Polls::find($id);
+        $result;
+        $poll->result == 0 ? $result =1 : $result = 0;
+        $poll->result = $result;
+        $poll->save();
+        
+        
+        return redirect()->route('admin.polls.index')->with('success', 'Poll Announcement Status Updated');
+    }
+    public function report($id){
+        return redirect()->route('admin.polls.index')->with('success', 'We are working on this feature');
+        
+    }
 }

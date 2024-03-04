@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('question');
+            $table->tinyInteger('result')->default(0);
             $table->timestamps();
         });
     }

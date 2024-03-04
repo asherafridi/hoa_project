@@ -54,6 +54,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('phase', PhaseController::class)->middleware('admin.auth');
 
     Route::resource('polls', PollsController::class)->middleware('admin.auth');
+    Route::get('change-announcement/{id}',[PollsController::class,'changeAnnouncement'])->middleware('admin.auth');
+    Route::get('poll-report/{id}',[PollsController::class,'report'])->middleware('admin.auth');
 
     Route::resource('block', BlockController::class)->middleware('admin.auth');
 

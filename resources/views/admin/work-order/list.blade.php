@@ -16,6 +16,7 @@
           <table class="table">
             <thead>
               <tr>
+                  <th>#</th>
                 <th>Property</th>
                 <th>Requested By</th>
                 <th>Requested Date</th>
@@ -29,6 +30,7 @@
             <tbody class="table-border-bottom-0">
               @forelse ($workOrder as $item)
               <tr>
+                  <td>{{$item->id}}</td>
                 <td>{{$item->property() ? $item->property()->name : 'No Property Selected'}}</td>
                 <td>{{$item->requestedBy() ? $item->requestedBy()->fullname() : 'Have to Select User'}}</td>
                 <td>{{$item->requested_date}}</td>

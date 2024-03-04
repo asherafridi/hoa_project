@@ -22,6 +22,7 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
+
         $title = "Members";
         $query = User::query();
         $query->leftJoin('properties', 'properties.id', '=', 'users.propertyId');
@@ -84,6 +85,7 @@ class MemberController extends Controller
         $phase = Phase::all();
 
         return view('admin.member.list', compact('title', 'boardmember', 'properties', 'block', 'phase'));
+    
     }
 
     /**

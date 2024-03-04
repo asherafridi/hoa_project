@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 1 Number</label>
-                            <input type="text" class="form-control" value="{{ settings('aboutus_sec1_number') }}"
+                            <input type="number" min="1" class="form-control" value="{{ settings('aboutus_sec1_number') }}"
                                 name="aboutus_sec1_number" autofocus />
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 2 Number</label>
-                            <input type="text" class="form-control" value="{{ settings('aboutus_sec2_number') }}"
+                            <input  type="number" min="1" class="form-control" value="{{ settings('aboutus_sec2_number') }}"
                                 name="aboutus_sec2_number" autofocus />
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 3 Number</label>
-                            <input type="text" class="form-control" value="{{ settings('aboutus_sec3_number') }}"
+                            <input  type="number" min="1" class="form-control" value="{{ settings('aboutus_sec3_number') }}"
                                 name="aboutus_sec3_number" autofocus />
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Counter 4 Number</label>
-                            <input type="text" class="form-control" value="{{ settings('aboutus_sec4_number') }}"
+                            <input  type="number" min="1" class="form-control" value="{{ settings('aboutus_sec4_number') }}"
                                 name="aboutus_sec4_number" autofocus />
                         </div>
                     </div>

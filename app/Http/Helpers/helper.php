@@ -67,8 +67,10 @@ function setting_update($key, $update_value)
     $setting = Settings::where('key', $key)->firstOrFail();
 
     $setting->update([
-        "description" => $update_value
+        "description" => "".$update_value
     ]);
+    
+    return $update_value;
 }
 function events()
 {

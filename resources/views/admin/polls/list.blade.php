@@ -20,6 +20,18 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
+                                    
+                                        <a href="/admin/poll-report/{{$item->id}}" class="dropdown-item" type="submit"><i class="bx bxs-report me-1"></i>
+                                            Print Report</a>
+                                    @if($item->result == 0)
+                                        <a href="/admin/change-announcement/{{$item->id}}" class="dropdown-item" type="submit"><i class="bx bx-show me-1"></i>
+                                            Show Results</a>
+                                    
+                                    @else
+                                        <a href="/admin/change-announcement/{{$item->id}}" class="dropdown-item" type="submit"><i class="bx bx-hide me-1"></i>
+                                            Hide Results</a>
+                                    
+                                    @endif
 
                                     <form method="POST" action="{{ route('admin.polls.destroy', $item->id) }}">
                                         @csrf

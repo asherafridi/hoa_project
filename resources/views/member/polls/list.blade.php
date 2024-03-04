@@ -11,6 +11,7 @@
         <div class="row">
             @foreach ($polls as $item)
                 @if ($item->isAwnsered(auth()->user()->id))
+                    @if($item->result == 1)
                     <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-header p-3 d-flex justify-content-between">
@@ -40,6 +41,21 @@
 
                         </div>
                     </div>
+                    @else
+                    
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-header p-3 d-flex justify-content-between">
+                                <p>{{ $item->question }}</p>
+
+
+                            </div>
+                            <div class="card-body p-3">
+                                <p class="text-danger fst-italic" >Please wait for the final count. Admin will share results when ready</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 @else
                     <div class="col-md-3 mb-4">
                         <div class="card">

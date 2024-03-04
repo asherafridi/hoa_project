@@ -30,8 +30,8 @@ class HomeController extends Controller
         $widget['bills'] = Transaction::get();
         $widget['total_bills'] = Transaction::count();
         $widget['total_bill_amount'] = Transaction::sum('amount');
-        $widget['announcements'] = Announcement::get();
-        $widget['announcemen'] = Announcement::get();
+        $widget['announcements'] = Announcement::whereIn('forUser', ['Vendors Only', 'Both'])->get();
+        $widget['announcemen'] = Announcement::whereIn('forUser', ['Vendors Only', 'Both'])->get();
         return view('vendor.dashboard', compact('title', 'widget'));
     }
 }

@@ -29,7 +29,7 @@ class HomeController extends Controller
         $widget['bills']=Transaction::where('userId',auth()->user()->id)->get();
         $widget['total_bills']=Transaction::where('userId',auth()->user()->id)->count();
         $widget['total_bill_amount']=Transaction::where('userID',auth()->user()->id)->sum('amount');
-        $widget['announcements']=Announcement::get();
+        $widget['announcements']=Announcement::whereIn('forUser', ['Members Only', 'Both'])->get();
         return view('member.dashboard',compact('title','widget'));
     }
 }

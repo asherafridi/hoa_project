@@ -47,11 +47,9 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         // $validated=$request->validate([
-        //     'eventName'=>'required',
-        //     'startDate'=>'required',
-        //     'endDate'=>'required',
-        //     'location'=>'required',
-        //     'committeeId'=>'required'
+        //     'name'=>'required',
+        //     'description'=>'required',
+        //     'date'=>'required',
         // ]);
 
         $request['adminId'] = auth()->guard('admin')->user()->id;
@@ -89,11 +87,9 @@ class AnnouncementController extends Controller
     {
 
         // $validated=$request->validate([
-        //     'eventName'=>'required',
-        //     'startDate'=>'required',
-        //     'endDate'=>'required',
-        //     'location'=>'required',
-        //     'committeeId'=>'required'
+        //     'name'=>'required',
+        //     'description'=>'required',
+        //     'date'=>'required',
         // ]);
 
         $announcement = Announcement::find($id);
